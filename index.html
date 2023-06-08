@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="bg-welcome">
-        <div class="text-container">
+    <div class="bg-welcome remove">
+        <div class="text-container ">
 
             <div class="text-box">
                 
@@ -17,10 +18,55 @@
                 <hr>
                 <p>Finding it difficult to split the expenses?</p>
                 <p>You've come to the right place, the FairShare.</p>
-                <button>Get Started</button>
+                <button class="getStarted">Get Started</button>
             </div>
         </div>
         <div class="snow"></div>
+    </div>
+    <div class="add-participantsContainer ">
+        <div class="add-participants">
+            <div class="trip-name-input">
+                <p class="trip-title font">Trip Name</p>
+                <input type="text" class="trip-name" placeholder="Trip Name">
+            </div>
+
+            <p class="addp-title font">
+                Add Participants
+            </p>
+            <div class="add-participants-list">
+                <div class="new-participant">
+                    <input type="text" class="newp-name font" placeholder="Participant Name">
+                    <div class="newp-btns">
+                        <i style="font-size:24px" class="fa newp-add">&#xf067;</i>
+                        <!-- <i style="font-size:24px " class="fa newp-remove">&#xf068;</i> -->
+                    </div>
+                </div>
+                <div class="addedp-list">
+                    <div class="added-p">
+                        <div class="addedp-name">Alice</div>
+                        <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>
+                    </div>
+                    <div class="added-p">
+                        <div class="addedp-name">Bob</div>
+                        <i style="font-size:24px " class="fa newp-remove" id="reomveBob">&#xf068;</i>
+                    </div>
+                </div>
+            </div>
+            <button class="next getStarted">Next</button>
+             
+        </div>
+
+    </div>
+    <div class="dashboard">
+        <div class="nav-bar">
+
+        </div>
+        <div class="dash-container">
+            <div class="event-list"></div>
+            <div class="workspace-container">
+                <div class="workspace"></div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
