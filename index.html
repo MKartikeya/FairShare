@@ -7,6 +7,7 @@
     <title>FairShare</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fontawesome.com/icons/filter?f=classic&s=solid&an=bounce&pc=%231a5181">
 </head>
 <body>
     <div class="bg-welcome remove">
@@ -62,7 +63,7 @@
     </div>
 
 
-    <div class="pop-up-container" style="display: flex;">
+    <div class="pop-up-container" style="display: none;">
         <div class="pop-up">
             <div class="event-name-input-container">
                 <h3 class="event-input-title">Event Name</h3>
@@ -98,13 +99,15 @@
             <div class="event-list-container">
                 <div class="search-bar-container">
                     <p class="events-text">Events</p>
-                    <input type="text" class="search-bar" placeholder="search">
+                    <div class="search-container">
+                        <i style="font-size:24px" class="fa refresh-btn">&#xf021;</i>
+                        <input type="text" class="search-bar" placeholder="search">
+                        <button class="search-btn"><i style="font-size:24px" class="fa">&#xf002;</i></button>
+                    </div>
                 </div>
                 <div class="event-list">
-                    <div class="event"></div>
-                    <div class="event"></div>
-                    <div class="event"></div>
                 </div>
+                <div class="not-found nothing-close">No such Event found</div>
             </div>
             <div class="workspace-container">
                 <div class="workspace">

@@ -1,10 +1,13 @@
 const bgWelcome = document.querySelector(".bg-welcome")
 const getStarted = document.querySelector(".getStarted")
 const addedPList = document.getElementsByClassName("addedp-list")[0];
+const searchBtn=document.querySelector(".search-btn")
+const refreshBtn=document.querySelector(".refresh-btn")
 getStarted.addEventListener("click", closePop)
-
+refreshBtn.addEventListener("click",displayEvents)
+searchBtn.addEventListener("click",searchFilter)
 var participantsList = []
-const eventsList = [];
+const eventsList = ["Kartikeya","Nimai","Ananth"];
 
 function closePop() {
     bgWelcome.classList.add("remove");
@@ -19,6 +22,7 @@ bobRemove.addEventListener("click", (event) => {
 }
 )
 
+displayEvents();
 const addPbtn = document.querySelector('.newp-add')
 addPbtn.addEventListener("click", addPToList);
 function addPToList() {
@@ -65,4 +69,43 @@ function displayParticipants() {
 
         container.innerHTML += participant;
     }
+}
+function displayEvents(){
+    var eventList=document.getElementsByClassName("event-list")[0];
+    var notFound=document.getElementsByClassName("not-found")[0];
+        notFound.classList.add("nothing-close")
+    eventList.innerHTML=""
+    eventsList.forEach((value)=>{
+        var event=document.createElement("div");
+        event.classList.add("event");
+        event.innerHTML=`<p class="event-p">${value}</p>`
+        eventList.append(event)
+    })
+}
+function searchFilter(){
+    var searchBar=document.getElementsByClassName("search-bar")[0];
+    var searchWord=searchBar.value
+    if(searchWord=="") return;
+    var isFound=0
+    var searchResults=[]
+    eventsList.forEach((value)=>{
+        let re = new RegExp(searchWord, "i");
+        if(value.search(re)>=0){
+            searchResults.push(value)
+            isFound=1
+        }
+    })
+    var eventList=document.getElementsByClassName("event-list")[0];
+    eventList.innerHTML="";
+    searchResults.forEach((value)=>{
+        var event=document.createElement("div");
+        event.classList.add("event");
+        event.innerHTML=`<p>${value}</p>`
+        eventList.append(event)
+    })
+    var notFound=document.getElementsByClassName("not-found")[0];
+    if(!isFound){
+        notFound.classList.remove("nothing-close")
+    }
+    searchBar.value="";
 }
