@@ -3,6 +3,9 @@ const getStarted = document.querySelector(".getStarted")
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 getStarted.addEventListener("click", closePop)
 
+var participantsList = []
+const eventsList = [];
+
 function closePop() {
     bgWelcome.classList.add("remove");
 }
@@ -15,7 +18,7 @@ bobRemove.addEventListener("click", (event) => {
     removeFromPList(event);
 }
 )
-var participantsList = []
+
 const addPbtn = document.querySelector('.newp-add')
 addPbtn.addEventListener("click", addPToList);
 function addPToList() {
@@ -46,4 +49,20 @@ function addPToList() {
 function removeFromPList(event) {
     var buttonClicked = event.target;
     buttonClicked.parentElement.remove()
+}
+
+function displayParticipants() {
+    let container = document.getElementsByClassName('event-participants-container');
+    for (let name of participantsList) {
+        let participant = document.createElement('div');
+        participant.className = 'event-participant';
+        participant.id = `${name}`;
+        participant.innerHTML = `<input type="checkbox" class="participant-checkbox">
+            <h3 class="event-participant-name">${name}</h3>
+            <div class="participant-contribution-container">
+            <input class="participant-contribution">   
+            </div>`;
+
+        container.innerHTML += participant;
+    }
 }
