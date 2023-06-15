@@ -3,7 +3,7 @@ const getStarted = document.querySelector(".getStarted")
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 getStarted.addEventListener("click", closePop)
 
-var participantsList = []
+var participantsList = ["Nimai", "Nithya", "Ananth", "Kartikeya"];
 const eventsList = [];
 
 function closePop() {
@@ -52,17 +52,32 @@ function removeFromPList(event) {
 }
 
 function displayParticipants() {
-    let container = document.getElementsByClassName('event-participants-container');
+    let container = document.querySelector('.event-participants-container');
+    container.innerHTML = "";
     for (let name of participantsList) {
-        let participant = document.createElement('div');
-        participant.className = 'event-participant';
-        participant.id = `${name}`;
-        participant.innerHTML = `<input type="checkbox" class="participant-checkbox">
+        container.innerHTML += `<div class="event-participant" id="${name}">
+            <input type="checkbox" class="participant-checkbox">
             <h3 class="event-participant-name">${name}</h3>
             <div class="participant-contribution-container">
             <input class="participant-contribution">   
+            </div>
             </div>`;
-
-        container.innerHTML += participant;
+        console.log(name);
     }
+}
+
+// to check if func is working
+displayParticipants();
+
+// function to display advanced settings
+function toggleSettings() {
+    let inputs = document.querySelectorAll('.participant-contribution');
+    inputs.forEach((input) => {
+        input.style.display = 'block';
+    })
+
+    let text = document.getElementById('settings');
+    // text.style.textDecoration = 'none';
+    text.style.color = 'green';
+    
 }
