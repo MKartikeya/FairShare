@@ -455,7 +455,32 @@ hr {
     align-items: center;
     font-family: "Roboto", sans-serif;
 }
-
+.search-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+}
+.not-found{
+    color: white;
+    font-size: 1.5rem;    
+}
+.nothing-close{
+    display: none;
+}
+.refresh-btn{
+    color:#3f00f2;
+}
+.search-btn{
+    color: #3f00f2;
+    background-color: transparent;
+    border: none;
+}
+.event-p{
+    color: white;
+    font-size: 1.2rem;
+    font-family: "Roboto", sans-serif;
+}
 .events-settings a {
     text-decoration: underline;
     color: white;
