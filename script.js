@@ -3,7 +3,15 @@ const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 const searchBtn = document.querySelector(".search-btn")
 const refreshBtn = document.querySelector(".refresh-btn")
+const createEventBtn = document.querySelector(".create-event")
+const participantsPageDone = document.querySelector(".finishPpage")
+const editParticipants=document.querySelector(".delete-edit_participant")
 let slideCounter = 0;
+participantsPageDone.addEventListener("click",()=>{
+    editP(0)});
+editParticipants.addEventListener("click",()=>{
+    editP(1)})
+createEventBtn.addEventListener("click",createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
@@ -160,3 +168,17 @@ function goPrev() {
     console.log(popups);
 }
 // ======================================
+
+function editP(flag){
+    var participantsPage=document.getElementsByClassName("participants_n_tripname")[0];
+    if(flag==1){
+        participantsPage.style.display='flex';
+    }
+    else{
+        participantsPage.style.display='none';
+    }
+}
+function createEvent(){
+    var createEventPage=document.getElementsByClassName("create-event-page")[0];
+        createEventPage.style.display='flex';
+}
