@@ -3,7 +3,6 @@ const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 const searchBtn = document.querySelector(".search-btn")
 const refreshBtn = document.querySelector(".refresh-btn")
-let slideCounter = 0;
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
@@ -34,19 +33,19 @@ function addPToList() {
     pBox.classList.add('added-p');
     if (parName != "") {
         participantsList.push(parName)
-
+        
 
         pBox.innerHTML = `
-                        <div class="addedp-name">${parName}</div>
+        <div class="addedp-name">${parName}</div>
                         <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
-        addedPList.append(pBox)
-        console.log(addedPList)
-        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
-            removeFromPList(event);
-            var index = participantsList.indexOf(parName)
-            if (index >= 0) {
-                console.log("yess");
-                participantsList.splice(index, 1);
+                        addedPList.append(pBox)
+                        console.log(addedPList)
+                        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
+                            removeFromPList(event);
+                            var index = participantsList.indexOf(parName)
+                            if (index >= 0) {
+                                console.log("yess");
+                                participantsList.splice(index, 1);
             }
         })
     }
@@ -95,18 +94,18 @@ function searchFilter() {
     searchBar.value = "";
 }
 
-
+// to display the participants in the popup
 function displayParticipants(n) {
     let container = document.querySelector('.event-participants-container-' + n);
     container.innerHTML = "";
     for (let name of participantsList) {
         container.innerHTML += `<div class="event-participant" id="${name}">
-            <input type="checkbox" class="participant-checkbox">
-            <h3 class="event-participant-name">${name}</h3>
-            <div class="participant-contribution-container">
-            <input class="participant-contribution">   
-            </div>
-            </div>`;
+        <input type="checkbox" class="participant-checkbox">
+        <h3 class="event-participant-name">${name}</h3>
+        <div class="participant-contribution-container">
+        <input class="participant-contribution">   
+        </div>
+        </div>`;
         console.log(name);
     }
 }
@@ -132,6 +131,11 @@ function toggleSettings(n) {
 }
 
 // functions to nav through popups =====
+/*
+ *  author : nimaiparsa 
+ *  dont touch
+ */
+let slideCounter = 0;
 function setEventPosition() {
     const popups = document.querySelectorAll('.pop-up-event');
     popups.forEach((popup, index) => (
@@ -144,6 +148,7 @@ function setEventPosition() {
 setEventPosition();
 function goNext() {
     const popups = document.querySelectorAll('.pop-up-event');
+    if (slideCounter >= 1) return;
     slideCounter++; 
     popups.forEach((popup) => {
         popup.style.transform = `translateX(-${slideCounter * 100}%)`
@@ -153,10 +158,15 @@ function goNext() {
 
 function goPrev() {
     const popups = document.querySelectorAll('.pop-up-event');
+    if (slideCounter <= 0) return;
     slideCounter--; 
     popups.forEach((popup) => {
         popup.style.transform = `translateX(-${slideCounter * 100}%)`
     })
     console.log(popups);
+}
+
+function updateBtns() {
+
 }
 // ======================================

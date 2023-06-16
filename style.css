@@ -269,8 +269,7 @@ hr {
 }
 
 
-.pop-up,
-.pop-up-event {
+.pop-up {
   width: 40vw;
   height: 80vh;
   min-width: 500px;
@@ -284,16 +283,38 @@ hr {
   top: 0;
 }
 
-.pop-up-window {
-  overflow: hidden;
+.pop-up-event {
   width: 40vw;
-  height: 80vh;
-  width: 40vw;
-  height: 80vh;
+  height: calc(80vh - 130px);
   min-width: 500px;
   background-color: #00000052;
   border-radius: 14px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  transition: 1s;
+  position: relative;
+  top: 0;
+}
+
+.pop-up-window {
+  /* overflow: hidden; */
+  width: 40vw;
+  height: 80vh;
+  min-width: 500px;
+  background-color: #000000;
+  border-radius: 14px;
   box-shadow: 2px 2px 100px 15px #7f55ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pop-up-slide-window {
+  overflow: hidden;
+  width: 40vw;
+  min-width: 500px;
+  height: calc(80vh - 130px);
 }
 
 .trip-name {
@@ -464,8 +485,8 @@ hr {
 .event-participants-container-1,
 .event-participants-container-2 {
   width: 50%;
-  height: 400px;
   display: flex;
+  height: 400px;
   flex-direction: column;
   align-items: center;
 }
