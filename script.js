@@ -3,10 +3,18 @@ const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 const searchBtn = document.querySelector(".search-btn")
 const refreshBtn = document.querySelector(".refresh-btn")
+const createEventBtn = document.querySelector(".create-event")
+const participantsPageDone = document.querySelector(".finishPpage")
+const editParticipants=document.querySelector(".delete-edit_participant")
+participantsPageDone.addEventListener("click",()=>{
+    editP(0)});
+editParticipants.addEventListener("click",()=>{
+    editP(1)})
+createEventBtn.addEventListener("click",createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
-var participantsList = ["Nimai", "Nithya", "Ananth", "Kartikeya"];
+var participantsList = ["hell"];
 const eventsList = ["Kartikeya", "Nimai", "Ananth"];
 
 function closePop() {
@@ -32,9 +40,8 @@ function addPToList() {
     var pBox = document.createElement("div")
     pBox.classList.add('added-p');
     if (parName != "") {
-        participantsList.push(parName)
-        
-
+        participantsList.push(parName);
+        console.log(participantsList);
         pBox.innerHTML = `
         <div class="addedp-name">${parName}</div>
                         <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
@@ -94,6 +101,13 @@ function searchFilter() {
     searchBar.value = "";
 }
 
+// =========================================================
+
+/*
+ *  author : nimaiparsa 
+ *  dont touch
+ */
+
 // to display the participants in the popup
 function displayParticipants(n) {
     let container = document.querySelector('.event-participants-container-' + n);
@@ -131,10 +145,7 @@ function toggleSettings(n) {
 }
 
 // functions to nav through popups =====
-/*
- *  author : nimaiparsa 
- *  dont touch
- */
+
 let slideCounter = 0;
 function setEventPosition() {
     const popups = document.querySelectorAll('.pop-up-event');
@@ -169,4 +180,18 @@ function goPrev() {
 function updateBtns() {
 
 }
-// ======================================
+// ==============================================================================
+
+function editP(flag){
+    var participantsPage=document.getElementsByClassName("participants_n_tripname")[0];
+    if(flag==1){
+        participantsPage.style.display='flex';
+    }
+    else{
+        participantsPage.style.display='none';
+    }
+}
+function createEvent(){
+    var createEventPage=document.getElementsByClassName("create-event-page")[0];
+        createEventPage.style.display='flex';
+}
