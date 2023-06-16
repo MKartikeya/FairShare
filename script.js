@@ -6,7 +6,6 @@ const refreshBtn = document.querySelector(".refresh-btn")
 const createEventBtn = document.querySelector(".create-event")
 const participantsPageDone = document.querySelector(".finishPpage")
 const editParticipants=document.querySelector(".delete-edit_participant")
-let slideCounter = 0;
 participantsPageDone.addEventListener("click",()=>{
     editP(0)});
 editParticipants.addEventListener("click",()=>{
@@ -15,7 +14,7 @@ createEventBtn.addEventListener("click",createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
-var participantsList = ["Nimai", "Nithya", "Ananth", "Kartikeya"];
+var participantsList = [];
 const eventsList = ["Kartikeya", "Nimai", "Ananth"];
 
 function closePop() {
@@ -41,20 +40,19 @@ function addPToList() {
     var pBox = document.createElement("div")
     pBox.classList.add('added-p');
     if (parName != "") {
-        participantsList.push(parName)
-
-
+        participantsList.push(parName);
+        console.log(participantsList);
         pBox.innerHTML = `
-                        <div class="addedp-name">${parName}</div>
+        <div class="addedp-name">${parName}</div>
                         <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
-        addedPList.append(pBox)
-        console.log(addedPList)
-        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
-            removeFromPList(event);
-            var index = participantsList.indexOf(parName)
-            if (index >= 0) {
-                console.log("yess");
-                participantsList.splice(index, 1);
+                        addedPList.append(pBox)
+                        console.log(addedPList)
+                        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
+                            removeFromPList(event);
+                            var index = participantsList.indexOf(parName)
+                            if (index >= 0) {
+                                console.log("yess");
+                                participantsList.splice(index, 1);
             }
         })
     }
@@ -103,24 +101,30 @@ function searchFilter() {
     searchBar.value = "";
 }
 
+// =========================================================
 
+/*
+ *  author : nimaiparsa 
+ *  dont touch
+ */
+
+// to display the participants in the popup
 function displayParticipants(n) {
     let container = document.querySelector('.event-participants-container-' + n);
     container.innerHTML = "";
     for (let name of participantsList) {
         container.innerHTML += `<div class="event-participant" id="${name}">
-            <input type="checkbox" class="participant-checkbox">
-            <h3 class="event-participant-name">${name}</h3>
-            <div class="participant-contribution-container">
-            <input class="participant-contribution">   
-            </div>
-            </div>`;
+        <input type="checkbox" class="participant-checkbox">
+        <h3 class="event-participant-name">${name}</h3>
+        <div class="participant-contribution-container">
+        <input class="participant-contribution">   
+        </div>
+        </div>`;
         console.log(name);
     }
 }
 // to check if func is working
-displayParticipants(1);
-displayParticipants(2);
+
 
 // function to display advanced settings
 function toggleSettings(n) {
@@ -140,6 +144,8 @@ function toggleSettings(n) {
 }
 
 // functions to nav through popups =====
+
+let slideCounter = 0;
 function setEventPosition() {
     const popups = document.querySelectorAll('.pop-up-event');
     popups.forEach((popup, index) => (
@@ -152,6 +158,7 @@ function setEventPosition() {
 setEventPosition();
 function goNext() {
     const popups = document.querySelectorAll('.pop-up-event');
+    if (slideCounter >= 1) return;
     slideCounter++; 
     popups.forEach((popup) => {
         popup.style.transform = `translateX(-${slideCounter * 100}%)`
@@ -161,13 +168,19 @@ function goNext() {
 
 function goPrev() {
     const popups = document.querySelectorAll('.pop-up-event');
+    if (slideCounter <= 0) return;
     slideCounter--; 
     popups.forEach((popup) => {
         popup.style.transform = `translateX(-${slideCounter * 100}%)`
     })
     console.log(popups);
 }
-// ======================================
+
+// work in progress
+function updateBtns() {
+
+}
+// ==============================================================================
 
 function editP(flag){
     var participantsPage=document.getElementsByClassName("participants_n_tripname")[0];
@@ -181,4 +194,6 @@ function editP(flag){
 function createEvent(){
     var createEventPage=document.getElementsByClassName("create-event-page")[0];
         createEventPage.style.display='flex';
+    displayParticipants(1);
+    displayParticipants(2);
 }
