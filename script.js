@@ -14,7 +14,7 @@ createEventBtn.addEventListener("click",createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
-var participantsList = ["hell"];
+var participantsList = [];
 const eventsList = ["Kartikeya", "Nimai", "Ananth"];
 
 function closePop() {
@@ -124,8 +124,7 @@ function displayParticipants(n) {
     }
 }
 // to check if func is working
-displayParticipants(1);
-displayParticipants(2);
+
 
 // function to display advanced settings
 function toggleSettings(n) {
@@ -177,6 +176,7 @@ function goPrev() {
     console.log(popups);
 }
 
+// work in progress
 function updateBtns() {
 
 }
@@ -194,4 +194,6 @@ function editP(flag){
 function createEvent(){
     var createEventPage=document.getElementsByClassName("create-event-page")[0];
         createEventPage.style.display='flex';
+    displayParticipants(1);
+    displayParticipants(2);
 }
