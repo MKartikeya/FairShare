@@ -3,6 +3,7 @@ const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 const searchBtn = document.querySelector(".search-btn")
 const refreshBtn = document.querySelector(".refresh-btn")
+let slideCounter = 0;
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
@@ -95,8 +96,8 @@ function searchFilter() {
 }
 
 
-function displayParticipants() {
-    let container = document.querySelector('.event-participants-container');
+function displayParticipants(n) {
+    let container = document.querySelector('.event-participants-container-' + n);
     container.innerHTML = "";
     for (let name of participantsList) {
         container.innerHTML += `<div class="event-participant" id="${name}">
@@ -110,11 +111,12 @@ function displayParticipants() {
     }
 }
 // to check if func is working
-displayParticipants();
+displayParticipants(1);
+displayParticipants(2);
 
 // function to display advanced settings
-function toggleSettings() {
-    let text = document.getElementById('settings');
+function toggleSettings(n) {
+    let text = document.getElementById('settings' + n);
     let inputs = document.querySelectorAll('.participant-contribution');
     if (text.style.color != 'green') {
         inputs.forEach((input) => {
@@ -128,3 +130,33 @@ function toggleSettings() {
         text.style.color = 'white';
     }
 }
+
+// functions to nav through popups =====
+function setEventPosition() {
+    const popups = document.querySelectorAll('.pop-up-event');
+    popups.forEach((popup, index) => (
+        popup.style.left = `${index * 100}%`
+    )) 
+    popups.forEach((popup, index) => (
+        popup.style.top = `${-index * 100}%`
+    )) 
+}
+setEventPosition();
+function goNext() {
+    const popups = document.querySelectorAll('.pop-up-event');
+    slideCounter++; 
+    popups.forEach((popup) => {
+        popup.style.transform = `translateX(-${slideCounter * 100}%)`
+    })
+    console.log(popups);
+}
+
+function goPrev() {
+    const popups = document.querySelectorAll('.pop-up-event');
+    slideCounter--; 
+    popups.forEach((popup) => {
+        popup.style.transform = `translateX(-${slideCounter * 100}%)`
+    })
+    console.log(popups);
+}
+// ======================================

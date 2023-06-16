@@ -268,15 +268,31 @@ hr {
   align-items: center;
 }
 
-.pop-up {
+
+.pop-up,
+.pop-up-event {
   width: 40vw;
+  height: 80vh;
   min-width: 500px;
   background-color: #00000052;
-  height: 80vh;
   border-radius: 14px;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
+  transition: 1s;
+  position: relative;
+  top: 0;
+}
+
+.pop-up-window {
+  overflow: hidden;
+  width: 40vw;
+  height: 80vh;
+  width: 40vw;
+  height: 80vh;
+  min-width: 500px;
+  background-color: #00000052;
+  border-radius: 14px;
   box-shadow: 2px 2px 100px 15px #7f55ff;
 }
 
@@ -414,7 +430,8 @@ hr {
   gap: 10px;
 }
 
-.event-name-input-container {
+.event-name-input-container-1,
+.event-name-input-container-2 {
   height: 250px;
   display: flex;
   align-items: center;
@@ -425,7 +442,11 @@ hr {
   font-family: "Roboto", sans-serif;
 }
 
-.event-name-input-container input {
+.event-name-input-container-2 {
+  height: 100px;
+}
+
+.event-name-input-container-1 input {
   width: 90%;
   height: 50px;
   border-radius: 10px;
@@ -433,18 +454,24 @@ hr {
   margin-bottom: 0.5rem;
 }
 
-.event-name-input-container h3 {
+.event-name-input-container-1 h3,
+.event-name-input-container-2 h3 {
   width: 90%;
   margin-bottom: 5px;
   margin-top: 1rem;
 }
 
-.event-participants-container {
+.event-participants-container-1,
+.event-participants-container-2 {
   width: 50%;
   height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.event-participants-container-2 {
+  height: 550px;
 }
 
 .event-participant {
@@ -496,6 +523,25 @@ hr {
   font-family: "Roboto", sans-serif;
 }
 
+.events-settings a {
+  text-decoration: underline;
+  color: white;
+  cursor: pointer;
+}
+
+.event-btn {
+  width: 30px;
+  height: 30px;
+  background-color: #383838;
+  border: none;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.event-btn:hover {
+  transform: scale(1.2);
+}
+
 .search-container {
   display: flex;
   flex-direction: row;
@@ -526,21 +572,6 @@ hr {
   color: white;
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
-}
-
-.events-settings a {
-  text-decoration: underline;
-  color: white;
-  cursor: pointer;
-}
-
-.event-btn {
-  width: 30px;
-  height: 30px;
-  background-color: #383838;
-  border: none;
-  border-radius: 15px;
-  color: #fff;
 }
 
 .getStarted {
