@@ -485,10 +485,10 @@ hr {
 .event-participants-container-1,
 .event-participants-container-2 {
   width: 50%;
-  display: flex;
+  /* display: flex; */
   height: 400px;
-  flex-direction: column;
-  align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .event-participants-container-2 {
@@ -498,10 +498,12 @@ hr {
 .event-participant {
   width: 90%;
   height: 45px;
+  margin: 0 1em;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+
 }
 
 .event-participant-name {
