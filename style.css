@@ -799,3 +799,32 @@ hr {
   border-radius: 20px;
   min-width: 160px;
 }
+
+/* =========================================== */
+/* Custom Scroll Bar */
+
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.25em;
+  background: rgb(59, 59, 59);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(95, 95, 95);
+}
+
+@supports (scrollbar-color: rgb(59, 59, 59), black) {
+  * {
+    scrollbar-color: rgb(59, 59, 59), black;
+  }
+}
+
+/* =========================================== */
