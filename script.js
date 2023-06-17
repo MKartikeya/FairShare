@@ -5,12 +5,14 @@ const searchBtn = document.querySelector(".search-btn")
 const refreshBtn = document.querySelector(".refresh-btn")
 const createEventBtn = document.querySelector(".create-event")
 const participantsPageDone = document.querySelector(".finishPpage")
-const editParticipants=document.querySelector(".delete-edit_participant")
-participantsPageDone.addEventListener("click",()=>{
-    editP(0)});
-editParticipants.addEventListener("click",()=>{
-    editP(1)})
-createEventBtn.addEventListener("click",createEvent)
+const editParticipants = document.querySelector(".delete-edit_participant")
+participantsPageDone.addEventListener("click", () => {
+    editP(0)
+});
+editParticipants.addEventListener("click", () => {
+    editP(1)
+})
+createEventBtn.addEventListener("click", createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
@@ -39,20 +41,20 @@ function addPToList() {
     inputField.value = "";
     var pBox = document.createElement("div")
     pBox.classList.add('added-p');
-    if (parName != "") {
+    if (parName != "" && !participantsList.includes(parName)) {
         participantsList.push(parName);
         console.log(participantsList);
         pBox.innerHTML = `
         <div class="addedp-name">${parName}</div>
                         <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
-                        addedPList.append(pBox)
-                        console.log(addedPList)
-                        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
-                            removeFromPList(event);
-                            var index = participantsList.indexOf(parName)
-                            if (index >= 0) {
-                                console.log("yess");
-                                participantsList.splice(index, 1);
+        addedPList.append(pBox)
+        console.log(addedPList)
+        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
+            removeFromPList(event);
+            var index = participantsList.indexOf(parName)
+            if (index >= 0) {
+                console.log("yess");
+                participantsList.splice(index, 1);
             }
         })
     }
@@ -105,7 +107,7 @@ function searchFilter() {
 
 /*
  *  author : nimaiparsa 
- *  dont touch
+ *  dont touch my gurl
  */
 
 // to display the participants in the popup
@@ -150,16 +152,16 @@ function setEventPosition() {
     const popups = document.querySelectorAll('.pop-up-event');
     popups.forEach((popup, index) => (
         popup.style.left = `${index * 100}%`
-    )) 
+    ))
     popups.forEach((popup, index) => (
         popup.style.top = `${-index * 100}%`
-    )) 
+    ))
 }
 setEventPosition();
 function goNext() {
     const popups = document.querySelectorAll('.pop-up-event');
     if (slideCounter >= 1) return;
-    slideCounter++; 
+    slideCounter++;
     popups.forEach((popup) => {
         popup.style.transform = `translateX(-${slideCounter * 100}%)`
     })
@@ -169,7 +171,7 @@ function goNext() {
 function goPrev() {
     const popups = document.querySelectorAll('.pop-up-event');
     if (slideCounter <= 0) return;
-    slideCounter--; 
+    slideCounter--;
     popups.forEach((popup) => {
         popup.style.transform = `translateX(-${slideCounter * 100}%)`
     })
@@ -182,37 +184,36 @@ function updateBtns() {
 }
 // ==============================================================================
 
-function editP(flag){
-    var participantsPage=document.getElementsByClassName("participants_n_tripname")[0];
-    if(flag==1){
-        participantsPage.style.display='flex';
+function editP(flag) {
+    var participantsPage = document.getElementsByClassName("participants_n_tripname")[0];
+    if (flag == 1) {
+        participantsPage.style.display = 'flex';
     }
-    else{
-        participantsPage.style.display='none';
+    else {
+        // Create an XMLHttpRequest object
+        const xhr = new XMLHttpRequest();
+
+        // Prepare the data to be sent
+        const data = new FormData();
+        data.append('participantsList', JSON.stringify(participantsList));
+
+        // Set up the AJAX request
+        xhr.open('POST', 'server.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText); // Handle the response from PHP
+            }
+        };
+
+        // Send the request
+        xhr.send(data);
+
+        participantsPage.style.display = 'none';
     }
 }
-function createEvent(){
-    var createEventPage=document.getElementsByClassName("create-event-page")[0];
-        createEventPage.style.display='flex';
+function createEvent() {
+    var createEventPage = document.getElementsByClassName("create-event-page")[0];
+    createEventPage.style.display = 'flex';
     displayParticipants(1);
     displayParticipants(2);
 }
-
-//Database
-const {createPool} = require ('mysql');
-
-const pool = createPool({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "FairShare",
-    connectionLimit: 20
-})
-
-pool.query('select * from Events', (err,result,fields)=>{
-    if(err){
-        return console.log(err);
-    }else{
-        return console.log(result)
-    }
-})

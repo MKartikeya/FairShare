@@ -1,3 +1,5 @@
+<?php include("server.php");?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +62,6 @@
                     </div>
                 </div>
                 <button class="next getStarted finishPpage">Next</button>
-
             </div>
         </div>
     </div>
