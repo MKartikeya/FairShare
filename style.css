@@ -338,6 +338,7 @@ hr {
   font-weight: 700;
   overflow-y: scroll;
   margin-bottom: 30px;
+  max-height: 40%;
 }
 
 .trip-name-input {

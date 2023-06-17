@@ -197,3 +197,22 @@ function createEvent(){
     displayParticipants(1);
     displayParticipants(2);
 }
+
+//Database
+const {createPool} = require ('mysql');
+
+const pool = createPool({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "FairShare",
+    connectionLimit: 20
+})
+
+pool.query('select * from Events', (err,result,fields)=>{
+    if(err){
+        return console.log(err);
+    }else{
+        return console.log(result)
+    }
+})
