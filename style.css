@@ -486,10 +486,10 @@ hr {
 .event-participants-container-1,
 .event-participants-container-2 {
   width: 50%;
-  display: flex;
+  /* display: flex; */
   height: 400px;
-  flex-direction: column;
-  align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .event-participants-container-2 {
@@ -499,10 +499,12 @@ hr {
 .event-participant {
   width: 90%;
   height: 45px;
+  margin: 0 1em;
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+
 }
 
 .event-participant-name {
@@ -800,3 +802,32 @@ hr {
   border-radius: 20px;
   min-width: 160px;
 }
+
+/* =========================================== */
+/* Custom Scroll Bar */
+
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.25em;
+  background: rgb(59, 59, 59);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(95, 95, 95);
+}
+
+@supports (scrollbar-color: rgb(59, 59, 59), black) {
+  * {
+    scrollbar-color: rgb(59, 59, 59), black;
+  }
+}
+
+/* =========================================== */
