@@ -821,6 +821,7 @@ hr {
   background: rgb(95, 95, 95);
 }
 
+/* browser support */
 @supports (scrollbar-color: rgb(59, 59, 59), black) {
   * {
     scrollbar-color: rgb(59, 59, 59), black;
