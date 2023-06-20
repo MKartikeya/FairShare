@@ -1,3 +1,5 @@
+<?php include("server.php");?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +62,6 @@
                     </div>
                 </div>
                 <button class="next getStarted finishPpage">Next</button>
-
             </div>
         </div>
     </div>
@@ -129,7 +130,7 @@
                     <div class="search-container">
                         <i style="font-size:24px" class="fa refresh-btn">&#xf021;</i>
                         <input type="text" class="search-bar" placeholder="search">
-                        <button class="search-btn"><i style="font-size:24px" class="fa">&#xf002;</i></button>
+                        <button class="search-btn"><i style="font-size:25px" class="fa">&#xf002;</i></button>
                     </div>
                 </div>
                 <div class="event-list">

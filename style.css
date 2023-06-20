@@ -338,6 +338,7 @@ hr {
   font-weight: 700;
   overflow-y: scroll;
   margin-bottom: 30px;
+  max-height: 40%;
 }
 
 .trip-name-input {
@@ -569,7 +570,8 @@ hr {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.3rem;
+  width: 80%;
 }
 
 .not-found {
@@ -582,11 +584,12 @@ hr {
 }
 
 .refresh-btn {
-  color: #3f00f2;
+  min-width: 5%;
+  color: #ffffff;
 }
 
 .search-btn {
-  color: #3f00f2;
+  color: #ffffff;
   background-color: transparent;
   border: none;
 }
