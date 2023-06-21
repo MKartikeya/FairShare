@@ -17,6 +17,8 @@ foreach ($values as $value) {
   mysqli_query($mysql, $query);
 }
 
+
 // Close the database connection
 mysqli_close($mysql);
 ?>
+

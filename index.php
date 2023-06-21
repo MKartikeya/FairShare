@@ -31,7 +31,7 @@
 
     <!-- pop-ups -->
 
-    <div class="pop-up-container participants_n_tripname" style="display: flex;">
+    <div class="pop-up-container participants_n_tripname" style="display: none;">
         <div class="pop-up-window">
             <div class="pop-up">
                 <div class="trip-name-input">

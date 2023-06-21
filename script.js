@@ -1,3 +1,26 @@
+var participantsList = [];
+fetchEntries();
+function updatePList(){
+    console.log(participantsList)
+    participantsList.forEach((parName)=>{
+
+        var pBox = document.createElement("div");
+        pBox.classList.add('added-p');
+        pBox.innerHTML = `
+        <div class="addedp-name">${parName}</div>
+        <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
+        addedPList.append(pBox)
+        console.log(addedPList)
+        pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
+            removeFromPList(event);
+            var index = participantsList.indexOf(parName)
+            if (index >= 0) {
+                console.log("yess");
+                participantsList.splice(index, 1);
+            }
+        })
+    })
+}
 const bgWelcome = document.querySelector(".bg-welcome");
 const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
@@ -16,7 +39,6 @@ createEventBtn.addEventListener("click", createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
-var participantsList = [];
 const eventsList = ["Kartikeya", "Nimai", "Ananth"];
 
 function closePop() {
@@ -46,7 +68,7 @@ function addPToList() {
         console.log(participantsList);
         pBox.innerHTML = `
         <div class="addedp-name">${parName}</div>
-                        <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
+        <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
         addedPList.append(pBox)
         console.log(addedPList)
         pBox.getElementsByClassName('newp-remove')[0].addEventListener('click', (event) => {
@@ -106,9 +128,9 @@ function searchFilter() {
 // =========================================================
 
 /*
- *  author : nimaiparsa 
- *  dont touch my gurl
- */
+*  author : nimaiparsa 
+*  dont touch my gurl
+*/
 
 // to display the participants in the popup
 function displayParticipants(n) {
@@ -152,35 +174,35 @@ function setEventPosition() {
     const popups = document.querySelectorAll('.pop-up-event');
     popups.forEach((popup, index) => (
         popup.style.left = `${index * 100}%`
-    ))
-    popups.forEach((popup, index) => (
-        popup.style.top = `${-index * 100}%`
-    ))
-}
-setEventPosition();
-function goNext() {
-    const popups = document.querySelectorAll('.pop-up-event');
-    if (slideCounter >= 1) return;
-    slideCounter++;
-    popups.forEach((popup) => {
-        popup.style.transform = `translateX(-${slideCounter * 100}%)`
-    })
-    console.log(popups);
-}
-
-function goPrev() {
-    const popups = document.querySelectorAll('.pop-up-event');
-    if (slideCounter <= 0) return;
-    slideCounter--;
-    popups.forEach((popup) => {
-        popup.style.transform = `translateX(-${slideCounter * 100}%)`
-    })
+        ))
+        popups.forEach((popup, index) => (
+            popup.style.top = `${-index * 100}%`
+            ))
+        }
+        setEventPosition();
+        function goNext() {
+            const popups = document.querySelectorAll('.pop-up-event');
+            if (slideCounter >= 1) return;
+            slideCounter++;
+            popups.forEach((popup) => {
+                popup.style.transform = `translateX(-${slideCounter * 100}%)`
+            })
+            console.log(popups);
+        }
+        
+        function goPrev() {
+            const popups = document.querySelectorAll('.pop-up-event');
+            if (slideCounter <= 0) return;
+            slideCounter--;
+            popups.forEach((popup) => {
+                popup.style.transform = `translateX(-${slideCounter * 100}%)`
+            })
     console.log(popups);
 }
 
 // work in progress
 function updateBtns() {
-
+    
 }
 // ==============================================================================
 
@@ -192,11 +214,11 @@ function editP(flag) {
     else {
         // Create an XMLHttpRequest object
         const xhr = new XMLHttpRequest();
-
+        
         // Prepare the data to be sent
         const data = new FormData();
         data.append('participantsList', JSON.stringify(participantsList));
-
+        
         // Set up the AJAX request
         xhr.open('POST', 'participants.php', true);
         xhr.onload = function () {
@@ -204,10 +226,10 @@ function editP(flag) {
                 console.log(xhr.responseText); // Handle the response from PHP
             }
         };
-
+        
         // Send the request
         xhr.send(data);
-
+        
         participantsPage.style.display = 'none';
     }
 }
@@ -218,3 +240,56 @@ function createEvent() {
     displayParticipants(1);
     displayParticipants(2);
 }
+
+
+///////////// Do not touch nimai's gurl once more
+// var xhr = new XMLHttpRequest(); // Create new XMLHttpRequest object
+
+// xhr.onreadystatechange = function() {
+    //   if (xhr.readyState === XMLHttpRequest.DONE) {
+        //     if (xhr.status === 200) {
+            //       var rows = JSON.parse(xhr.responseText); // Parse the response
+            
+            //       // Process the rows data
+            //       displayRows(rows);
+            //     } else {
+                //       console.error('Error:', xhr.status);
+                //     }
+                //   }
+                // };
+                
+                // xhr.open('GET', 'participants.php', true); // Set up the request
+                // xhr.send(); // Send the request
+                
+                function fetchEntries() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'fetch_entries.php', true);
+                    xhr.send();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                var entries = JSON.parse(this.responseText);
+                                // console.log(entries instanceof Array);
+                                displayEntries(entries);
+                                console.log(participantsList)
+                                updatePList();
+                                if(participantsList.length==0){
+                                    editP(1)
+                                }
+                            } else {
+                                console.error('hdeeeeeeeeeeeeeeeeeee');
+                            }
+                        }
+                    };
+                }
+                
+                // Function to display entries on the page
+                function displayEntries(entries) {
+                    
+                    entries.forEach(function (entry) {
+                        participantsList.push(entry)
+                    });
+                }
+                
+                // Fetch entries when the page loads
+                
