@@ -7,6 +7,9 @@ if(!$mysql){
 // Retrieve the values sent from JavaScript
 $values = json_decode($_POST['participantsList']);
 
+$query = "TRUNCATE TABLE Participants";
+mysqli_query($mysql, $query);
+
 // Prepare and execute the INSERT statement for each value
 foreach ($values as $value) {
   $value = mysqli_real_escape_string($mysql, $value); // Sanitize the value
