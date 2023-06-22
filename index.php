@@ -75,7 +75,7 @@
                         <h3 class="event-input-title">Event Name</h3>
                         <input type="text" class="event-name-input" placeholder="Event Name">
                         <h3 class="event-input-title">Amount</h3>
-                        <input type="text" class="event-name-input" placeholder="Amount">
+                        <input type="text" class="event-name-input event-amount-input" placeholder="Amount">
                         <h3 class="event-input-title">Who Paid?</h3>
                     </div>
 

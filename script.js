@@ -21,6 +21,7 @@ function updatePList(){
         })
     })
 }
+// const eventPFinishBtn=document.querySelector("")
 const bgWelcome = document.querySelector(".bg-welcome");
 const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
@@ -29,6 +30,7 @@ const refreshBtn = document.querySelector(".refresh-btn")
 const createEventBtn = document.querySelector(".create-event")
 const participantsPageDone = document.querySelector(".finishPpage")
 const editParticipants = document.querySelector(".delete-edit_participant")
+var isAdvanced=0;
 participantsPageDone.addEventListener("click", () => {
     editP(0)
 });
@@ -39,7 +41,7 @@ createEventBtn.addEventListener("click", createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
-const eventsList = ["Kartikeya", "Nimai", "Ananth"];
+const eventsList = [];
 
 function closePop() {
     bgWelcome.classList.add("remove");
@@ -138,10 +140,10 @@ function displayParticipants(n) {
     container.innerHTML = "";
     for (let name of participantsList) {
         container.innerHTML += `<div class="event-participant" id="${name}">
-        <input type="checkbox" class="participant-checkbox">
+        <input type="checkbox" class="participant-checkbox" id="${name+3+n}">
         <h3 class="event-participant-name">${name}</h3>
         <div class="participant-contribution-container">
-        <input class="participant-contribution">   
+        <input class="participant-contribution" id="${name+n}">   
         </div>
         </div>`;
         console.log(name);
@@ -152,6 +154,7 @@ function displayParticipants(n) {
 
 // function to display advanced settings
 function toggleSettings(n) {
+    isAdvanced=1
     let text = document.getElementById('settings' + n);
     let inputs = document.querySelectorAll('.participant-contribution');
     if (text.style.color != 'green') {
@@ -171,23 +174,29 @@ function toggleSettings(n) {
 
 let slideCounter = 0;
 function setEventPosition() {
+    slideCounter=0;
     const popups = document.querySelectorAll('.pop-up-event');
     popups.forEach((popup, index) => (
         popup.style.left = `${index * 100}%`
         ))
         popups.forEach((popup, index) => (
             popup.style.top = `${-index * 100}%`
-            ))
-        }
-        setEventPosition();
+        ))
+        popups.forEach((popup) => {
+            popup.style.transform = `translateX(0)`
+        })
+    }
+    // setEventPosition();
         function goNext() {
             const popups = document.querySelectorAll('.pop-up-event');
-            if (slideCounter >= 1) return;
+            if (slideCounter >= 1) {
+                eventPageDone();
+            };
             slideCounter++;
             popups.forEach((popup) => {
                 popup.style.transform = `translateX(-${slideCounter * 100}%)`
             })
-            console.log(popups);
+            // console.log(popups);
         }
         
         function goPrev() {
@@ -197,7 +206,7 @@ function setEventPosition() {
             popups.forEach((popup) => {
                 popup.style.transform = `translateX(-${slideCounter * 100}%)`
             })
-    console.log(popups);
+    // console.log(popups);
 }
 
 // work in progress
@@ -237,29 +246,13 @@ function editP(flag) {
 function createEvent() {
     var createEventPage = document.getElementsByClassName("create-event-page")[0];
     createEventPage.style.display = 'flex';
+    setEventPosition();
     displayParticipants(1);
     displayParticipants(2);
 }
 
 
 ///////////// Do not touch nimai's gurl once more
-// var xhr = new XMLHttpRequest(); // Create new XMLHttpRequest object
-
-// xhr.onreadystatechange = function() {
-    //   if (xhr.readyState === XMLHttpRequest.DONE) {
-        //     if (xhr.status === 200) {
-            //       var rows = JSON.parse(xhr.responseText); // Parse the response
-            
-            //       // Process the rows data
-            //       displayRows(rows);
-            //     } else {
-                //       console.error('Error:', xhr.status);
-                //     }
-                //   }
-                // };
-                
-                // xhr.open('GET', 'participants.php', true); // Set up the request
-                // xhr.send(); // Send the request
                 
                 function fetchEntries() {
                     var xhr = new XMLHttpRequest();
@@ -292,4 +285,58 @@ function createEvent() {
                 }
                 
                 // Fetch entries when the page loads
-                
+//2D Array of data
+const eventsData=[];
+eventsList.forEach(()=>{
+    var row=[];
+    participantsList.forEach(()=>{row.push(0)})
+    eventsData.push(row)
+})
+
+
+function eventPageDone(){
+    var eventName=document.getElementsByClassName("event-name-input")[0].value;
+    var totalAmount=Number(document.getElementsByClassName("event-amount-input")[0].value);
+    eventsList.push(eventName)
+    console.log(eventsList)
+    displayEvents()
+    let index=0;
+    var row=[];
+    participantsList.forEach(()=>{row.push(0)})
+    eventsData.push(row)
+    if(isAdvanced){
+        participantsList.forEach((name)=>{
+            var paidAmount=document.getElementById(`${name+1}`).value;
+            var toPayAmount=document.getElementById(`${name+2}`).value;
+            eventsData[eventsList.indexOf(eventName)][index]=paidAmount-toPayAmount;
+            index++;
+        })
+    }
+    else{
+        var paidParticipants=[]
+        var toPayParticipants=[]
+        participantsList.forEach((name)=>{
+            if(document.getElementById(`${name+3+1}`).checked){
+                paidParticipants.push(name)
+            }
+            if(document.getElementById(`${name+3+2}`).checked){
+                toPayParticipants.push(name)
+            }
+        })
+        var indAmountPaid=totalAmount/paidParticipants.length;
+        var indAmounttoPay=totalAmount/toPayParticipants.length;
+        paidParticipants.forEach((name)=>{
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid;
+        })
+        toPayParticipants.forEach((name)=>{
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
+        })
+    }
+        console.log(eventsData)
+
+    var createEventPage = document.getElementsByClassName("create-event-page")[0];
+    createEventPage.style.display = 'none';
+    document.getElementsByClassName("event-name-input")[0].value="";
+    document.getElementsByClassName("event-amount-input")[0].value="";
+   
+}
