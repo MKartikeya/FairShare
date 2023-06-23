@@ -85,7 +85,19 @@ function addPToList() {
 }
 function removeFromPList(event) {
     var buttonClicked = event.target;
-    buttonClicked.parentElement.remove()
+    var name=buttonClicked.parentElement.getElementsByClassName("addedp-name")[0].innerHTML;
+    var pos=participantsList.indexOf(name);
+    var isInvolved=0,index=0;
+    eventsData.forEach(()=>{
+        if(eventsData[index][pos]!=0) {isInvolved=1;}
+        index++;
+    })
+    if(isInvolved){
+        editP(0)
+        document.querySelector(".delete-p-page").style.display='flex';
+        document.getElementsByClassName("p-delete-continue")[0].addEventListener("click",()=>{document.querySelector(".delete-p-page").style.display='none';})
+    }
+    else{buttonClicked.parentElement.remove()}
 }
 function displayEvents() {
     var eventList = document.getElementsByClassName("event-list")[0];
@@ -296,51 +308,77 @@ eventsList.forEach(() => {
 })
 
 
-function eventPageDone() {
-    var eventName = document.getElementsByClassName("event-name-input")[0].value;
-    var totalAmount = Number(document.getElementsByClassName("event-amount-input")[0].value);
+function eventPageDone(){
+    var eventName=document.getElementsByClassName("event-name-input")[0].value;
+    var totalAmount=Number(document.getElementsByClassName("event-amount-input")[0].value);
+    if(isNaN(totalAmount)){
+        alert("You entered Invalid amount!!")
+        return;
+    }
     eventsList.push(eventName)
     console.log(eventsList)
     displayEvents()
-    let index = 0;
-    var row = [];
-    participantsList.forEach(() => { row.push(0) })
+    let index=0;
+    var row=[];
+    participantsList.forEach(()=>{row.push(0)})
     eventsData.push(row)
-    if (isAdvanced) {
-        participantsList.forEach((name) => {
-            var paidAmount = document.getElementById(`${name + 1}`).value;
-            var toPayAmount = document.getElementById(`${name + 2}`).value;
-            eventsData[eventsList.indexOf(eventName)][index] = paidAmount - toPayAmount;
+    if(isAdvanced){
+        var isEntered=0;
+        participantsList.forEach((name)=>{
+            var paidAmount=document.getElementById(`${name+1}`).value;
+            var toPayAmount=document.getElementById(`${name+2}`).value;
+            if(paidAmount!=null || toPayAmount!=null) isEntered=1;
+            eventsData[eventsList.indexOf(eventName)][index]=paidAmount-toPayAmount;
             index++;
         })
-    }
-    else {
-        var paidParticipants = []
-        var toPayParticipants = []
-        participantsList.forEach((name) => {
-            if (document.getElementById(`${name + 3 + 1}`).checked) {
+        if(isEntered){
+            var paidParticipants=[]
+        var toPayParticipants=[]
+        participantsList.forEach((name)=>{
+            if(document.getElementById(`${name+3+1}`).checked){
                 paidParticipants.push(name)
             }
-            if (document.getElementById(`${name + 3 + 2}`).checked) {
+            if(document.getElementById(`${name+3+2}`).checked){
                 toPayParticipants.push(name)
             }
         })
-        var indAmountPaid = totalAmount / paidParticipants.length;
-        var indAmounttoPay = totalAmount / toPayParticipants.length;
-        paidParticipants.forEach((name) => {
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmountPaid;
+        var indAmountPaid=totalAmount/paidParticipants.length;
+        var indAmounttoPay=totalAmount/toPayParticipants.length;
+        paidParticipants.forEach((name)=>{
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid;
         })
-        toPayParticipants.forEach((name) => {
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -= indAmounttoPay;
+        toPayParticipants.forEach((name)=>{
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
+        })
+        }
+    }
+    else{
+        var paidParticipants=[]
+        var toPayParticipants=[]
+        participantsList.forEach((name)=>{
+            if(document.getElementById(`${name+3+1}`).checked){
+                paidParticipants.push(name)
+            }
+            if(document.getElementById(`${name+3+2}`).checked){
+                toPayParticipants.push(name)
+            }
+        })
+        var indAmountPaid=totalAmount/paidParticipants.length;
+        var indAmounttoPay=totalAmount/toPayParticipants.length;
+        paidParticipants.forEach((name)=>{
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid;
+        })
+        toPayParticipants.forEach((name)=>{
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
         })
     }
-    console.log(eventsData)
+        console.log(eventsData)
 
     var createEventPage = document.getElementsByClassName("create-event-page")[0];
     createEventPage.style.display = 'none';
-    document.getElementsByClassName("event-name-input")[0].value = "";
-    document.getElementsByClassName("event-amount-input")[0].value = "";
-
+    document.getElementsByClassName("event-name-input")[0].value="";
+    document.getElementsByClassName("event-amount-input")[0].value="";
+   
 }
 
 // functions to display event-wise results

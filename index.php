@@ -105,6 +105,22 @@
         </div>
     </div>
 
+    <div class="pop-up-container delete-p-page" style="display: none;">
+        <div class="pop-up-window delete-p-popup">
+            <h1 class="p-delete-heading">FairShare</h1>
+            <p class="p-delete-alert">
+                The Participant that you are trying to delete is involved in the following events.Please edit them to delete the participant.
+            </p>
+            <div class="p-delete-btns">
+                <!-- <button class="p-delete-cancel">
+                    Cancel
+                </button> -->
+                <button class="p-delete-continue">
+                    Continue
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- pop-ups end -->
     
     <div class="dashboard">

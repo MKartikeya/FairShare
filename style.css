@@ -808,6 +808,32 @@ hr {
   min-width: 160px;
 }
 
+.p-delete-alert{
+  color: rgb(93, 0, 255);
+  font-size: 1.7rem;
+}
+.delete-p-popup{
+  height: auto;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.p-delete-heading{
+  color: white;
+  font-size: 3rem;
+}
+.p-delete-continue{
+  width: 8rem;
+  background: transparent;
+  border: 3px solid rgb(17, 255, 0);
+  color: rgb(0, 255, 0);
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+
 /* =========================================== */
 /* Custom Scroll Bar */
 
