@@ -1,4 +1,4 @@
-<?php include("server.php");?>
+<?php include("server.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,14 +91,6 @@
                     </div>
                    
                 </div>
-                <!-- <div class="pop-up-event">
-                    <div class="event-name-input-container-2">
-                        <h3 class="event-input-title">Results</h3>
-                    </div>
-                    <div class="event-participants-container-2">
-    
-                    </div>
-                </div> -->
             </div>
             <div class="event-next-page">
                 <div class="next-previous">
@@ -119,7 +111,7 @@
         <div class="nav-bar">
             <div class="Logo"></div>
             <button class="Show-result">Show Result</button>
-            <button class="Create-new">Crete New</button>
+            <button class="Create-new">Create New</button>
             <button class="Delete-present">Delete Present</button>
             <button class="About-us">About Us</button>
         </div>
@@ -136,6 +128,41 @@
                 <div class="event-list">
                 </div>
                 <div class="not-found nothing-close">No such Event found</div>
+            </div>
+            <div class="display-area">
+                <div class="display-graph-container">
+                    <div class="graph-positive">
+                        
+                    </div>
+                    <div class="graph-negative">
+                        
+                    </div>
+                </div>
+                <div class="display-net">
+                    <div class="net-head">
+                        <h1>Participant</h1>
+                        <h1>Net</h1>
+                    </div>
+                    <div class="net-body">
+                        <div class="event-result">
+                            <h1 class="event-result-text">Name</h1>
+                            <h1 class="event-result-text positive-result">+50</h1>
+                        </div>
+                        <div class="event-result">
+                            <h1 class="event-result-text">Name2</h1>
+                            <h1 class="event-result-text negative-result">-50</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-spent">
+                    <div class="spent-head">
+                        <h1>Participant</h1>
+                        <h1>Spent</h1>
+                    </div>
+                    <div class="spent-body">
+
+                    </div>
+                </div>
             </div>
             <div class="tools-container">
                 <p class="tools-text">Tools</p>

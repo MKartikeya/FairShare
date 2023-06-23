@@ -1,8 +1,8 @@
 var participantsList = [];
 fetchEntries();
-function updatePList(){
+function updatePList() {
     console.log(participantsList)
-    participantsList.forEach((parName)=>{
+    participantsList.forEach((parName) => {
 
         var pBox = document.createElement("div");
         pBox.classList.add('added-p');
@@ -30,7 +30,7 @@ const refreshBtn = document.querySelector(".refresh-btn")
 const createEventBtn = document.querySelector(".create-event")
 const participantsPageDone = document.querySelector(".finishPpage")
 const editParticipants = document.querySelector(".delete-edit_participant")
-var isAdvanced=0;
+var isAdvanced = 0;
 participantsPageDone.addEventListener("click", () => {
     editP(0)
 });
@@ -93,8 +93,10 @@ function displayEvents() {
     notFound.classList.add("nothing-close")
     eventList.innerHTML = ""
     eventsList.forEach((value) => {
-        var event = document.createElement("div");
+        var event = document.createElement("button");
         event.classList.add("event");
+        event.setAttribute('id', `${value}`);
+        event.setAttribute('onclick', `displayEventResults('${value}')`);
         event.innerHTML = `<p class="event-p">${value}</p>`
         eventList.append(event)
     })
@@ -140,10 +142,10 @@ function displayParticipants(n) {
     container.innerHTML = "";
     for (let name of participantsList) {
         container.innerHTML += `<div class="event-participant" id="${name}">
-        <input type="checkbox" class="participant-checkbox" id="${name+3+n}">
+        <input type="checkbox" class="participant-checkbox" id="${name + 3 + n}">
         <h3 class="event-participant-name">${name}</h3>
         <div class="participant-contribution-container">
-        <input class="participant-contribution" id="${name+n}">   
+        <input class="participant-contribution" id="${name + n}">   
         </div>
         </div>`;
         console.log(name);
@@ -154,7 +156,7 @@ function displayParticipants(n) {
 
 // function to display advanced settings
 function toggleSettings(n) {
-    isAdvanced=1
+    isAdvanced = 1
     let text = document.getElementById('settings' + n);
     let inputs = document.querySelectorAll('.participant-contribution');
     if (text.style.color != 'green') {
@@ -174,44 +176,44 @@ function toggleSettings(n) {
 
 let slideCounter = 0;
 function setEventPosition() {
-    slideCounter=0;
+    slideCounter = 0;
     const popups = document.querySelectorAll('.pop-up-event');
     popups.forEach((popup, index) => (
         popup.style.left = `${index * 100}%`
-        ))
-        popups.forEach((popup, index) => (
-            popup.style.top = `${-index * 100}%`
-        ))
-        popups.forEach((popup) => {
-            popup.style.transform = `translateX(0)`
-        })
-    }
-    // setEventPosition();
-        function goNext() {
-            const popups = document.querySelectorAll('.pop-up-event');
-            if (slideCounter >= 1) {
-                eventPageDone();
-            };
-            slideCounter++;
-            popups.forEach((popup) => {
-                popup.style.transform = `translateX(-${slideCounter * 100}%)`
-            })
-            // console.log(popups);
-        }
-        
-        function goPrev() {
-            const popups = document.querySelectorAll('.pop-up-event');
-            if (slideCounter <= 0) return;
-            slideCounter--;
-            popups.forEach((popup) => {
-                popup.style.transform = `translateX(-${slideCounter * 100}%)`
-            })
+    ))
+    popups.forEach((popup, index) => (
+        popup.style.top = `${-index * 100}%`
+    ))
+    popups.forEach((popup) => {
+        popup.style.transform = `translateX(0)`
+    })
+}
+// setEventPosition();
+function goNext() {
+    const popups = document.querySelectorAll('.pop-up-event');
+    if (slideCounter >= 1) {
+        eventPageDone();
+    };
+    slideCounter++;
+    popups.forEach((popup) => {
+        popup.style.transform = `translateX(-${slideCounter * 100}%)`
+    })
+    // console.log(popups);
+}
+
+function goPrev() {
+    const popups = document.querySelectorAll('.pop-up-event');
+    if (slideCounter <= 0) return;
+    slideCounter--;
+    popups.forEach((popup) => {
+        popup.style.transform = `translateX(-${slideCounter * 100}%)`
+    })
     // console.log(popups);
 }
 
 // work in progress
 function updateBtns() {
-    
+
 }
 // ==============================================================================
 
@@ -223,11 +225,11 @@ function editP(flag) {
     else {
         // Create an XMLHttpRequest object
         const xhr = new XMLHttpRequest();
-        
+
         // Prepare the data to be sent
         const data = new FormData();
         data.append('participantsList', JSON.stringify(participantsList));
-        
+
         // Set up the AJAX request
         xhr.open('POST', 'participants.php', true);
         xhr.onload = function () {
@@ -235,10 +237,10 @@ function editP(flag) {
                 console.log(xhr.responseText); // Handle the response from PHP
             }
         };
-        
+
         // Send the request
         xhr.send(data);
-        
+
         participantsPage.style.display = 'none';
     }
 }
@@ -253,90 +255,146 @@ function createEvent() {
 
 
 ///////////// Do not touch nimai's gurl once more
-                
-                function fetchEntries() {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('GET', 'fetch_entries.php', true);
-                    xhr.send();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState === 4) {
-                            if (xhr.status === 200) {
-                                var entries = JSON.parse(this.responseText);
-                                // console.log(entries instanceof Array);
-                                displayEntries(entries);
-                                console.log(participantsList)
-                                updatePList();
-                                if(participantsList.length==0){
-                                    editP(1)
-                                }
-                            } else {
-                                console.error('hdeeeeeeeeeeeeeeeeeee');
-                            }
-                        }
-                    };
+
+function fetchEntries() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetch_entries.php', true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var entries = JSON.parse(this.responseText);
+                // console.log(entries instanceof Array);
+                displayEntries(entries);
+                console.log(participantsList)
+                updatePList();
+                if (participantsList.length == 0) {
+                    editP(1)
                 }
-                
-                // Function to display entries on the page
-                function displayEntries(entries) {
-                    
-                    entries.forEach(function (entry) {
-                        participantsList.push(entry)
-                    });
-                }
-                
-                // Fetch entries when the page loads
+            } else {
+                console.error('hdeeeeeeeeeeeeeeeeeee');
+            }
+        }
+    };
+}
+
+// Function to display entries on the page
+function displayEntries(entries) {
+
+    entries.forEach(function (entry) {
+        participantsList.push(entry)
+    });
+}
+
+// Fetch entries when the page loads
 //2D Array of data
-const eventsData=[];
-eventsList.forEach(()=>{
-    var row=[];
-    participantsList.forEach(()=>{row.push(0)})
+const eventsData = [];
+eventsList.forEach(() => {
+    var row = [];
+    participantsList.forEach(() => { row.push(0) })
     eventsData.push(row)
 })
 
 
-function eventPageDone(){
-    var eventName=document.getElementsByClassName("event-name-input")[0].value;
-    var totalAmount=Number(document.getElementsByClassName("event-amount-input")[0].value);
+function eventPageDone() {
+    var eventName = document.getElementsByClassName("event-name-input")[0].value;
+    var totalAmount = Number(document.getElementsByClassName("event-amount-input")[0].value);
     eventsList.push(eventName)
     console.log(eventsList)
     displayEvents()
-    let index=0;
-    var row=[];
-    participantsList.forEach(()=>{row.push(0)})
+    let index = 0;
+    var row = [];
+    participantsList.forEach(() => { row.push(0) })
     eventsData.push(row)
-    if(isAdvanced){
-        participantsList.forEach((name)=>{
-            var paidAmount=document.getElementById(`${name+1}`).value;
-            var toPayAmount=document.getElementById(`${name+2}`).value;
-            eventsData[eventsList.indexOf(eventName)][index]=paidAmount-toPayAmount;
+    if (isAdvanced) {
+        participantsList.forEach((name) => {
+            var paidAmount = document.getElementById(`${name + 1}`).value;
+            var toPayAmount = document.getElementById(`${name + 2}`).value;
+            eventsData[eventsList.indexOf(eventName)][index] = paidAmount - toPayAmount;
             index++;
         })
     }
-    else{
-        var paidParticipants=[]
-        var toPayParticipants=[]
-        participantsList.forEach((name)=>{
-            if(document.getElementById(`${name+3+1}`).checked){
+    else {
+        var paidParticipants = []
+        var toPayParticipants = []
+        participantsList.forEach((name) => {
+            if (document.getElementById(`${name + 3 + 1}`).checked) {
                 paidParticipants.push(name)
             }
-            if(document.getElementById(`${name+3+2}`).checked){
+            if (document.getElementById(`${name + 3 + 2}`).checked) {
                 toPayParticipants.push(name)
             }
         })
-        var indAmountPaid=totalAmount/paidParticipants.length;
-        var indAmounttoPay=totalAmount/toPayParticipants.length;
-        paidParticipants.forEach((name)=>{
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid;
+        var indAmountPaid = totalAmount / paidParticipants.length;
+        var indAmounttoPay = totalAmount / toPayParticipants.length;
+        paidParticipants.forEach((name) => {
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmountPaid;
         })
-        toPayParticipants.forEach((name)=>{
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
+        toPayParticipants.forEach((name) => {
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -= indAmounttoPay;
         })
     }
-        console.log(eventsData)
+    console.log(eventsData)
 
     var createEventPage = document.getElementsByClassName("create-event-page")[0];
     createEventPage.style.display = 'none';
-    document.getElementsByClassName("event-name-input")[0].value="";
-    document.getElementsByClassName("event-amount-input")[0].value="";
-   
+    document.getElementsByClassName("event-name-input")[0].value = "";
+    document.getElementsByClassName("event-amount-input")[0].value = "";
+
 }
+
+// functions to display event-wise results
+// =========================================================
+
+/*
+*  author : nimaiparsa 
+*  dont touch my gurl
+*/
+
+function displayEventResults(event) {
+    const graphPositive = document.getElementsByClassName('graph-positive')[0];
+    const graphNegative = document.getElementsByClassName('graph-negative')[0];
+    const spent = document.getElementsByClassName('spent-body')[0];
+    const net = document.getElementsByClassName('net-body')[0];
+    graphPositive.innerHTML = "";
+    graphNegative.innerHTML = "";
+    spent.innerHTML = "";
+    net.innerHTML = "";
+
+    let index = eventsList.indexOf(event);
+    // let index = 0;
+
+    console.log(event);
+    console.log(eventsList[0]);
+
+    let maxPrice = 0;
+    for (let i of eventsData[index])
+        maxPrice = Math.max(maxPrice, Math.abs(i));
+
+    let posCount = 0;
+    for (let i of eventsData[index])
+        posCount += (i > 0);
+
+    for (let i = 0; i < posCount; i++)
+        graphNegative.innerHTML += `<div class="invisible-bar"></div>`;
+
+    for (let member of eventsData[index]) {
+        if (member > 0) {
+            graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 80}%;'></div>`;
+            console.log(member);
+        } else if (member < 0) {
+            graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 80}%;'></div>`;
+        }
+    }
+
+    for (let member in eventsData[index]) {
+        net.innerHTML += `<div class="event-result">
+        <h1 class="event-result-text">${participantsList[member]}</h1>
+        <h1 class="event-result-text ${(eventsData[index][member] >= 0 ? 'positive-result': 'negative-result')}">
+        ${(eventsData[index][member] >= 0 ? '+': '') + eventsData[index][member]}</h1>
+        </div>`;
+    }
+}
+
+
+// =========================================================
