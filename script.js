@@ -286,7 +286,7 @@ function fetchParticipants() {
                     editP(1)
                 }
             } else {
-                console.error('Fetching paricipants error');
+                console.error('Fetching paricipants error!');
             }
         }
     };
@@ -300,14 +300,36 @@ function fetchEvents() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 var entries = JSON.parse(this.responseText);
-                // console.log(entries instanceof Array);
                 displayEventEntries(entries);
                 displayEvents();
             } else {
-                console.error('Fetching events error');
+                console.error('Fetching events error!');
             }
         }
     };
+}
+
+function fetchEventData(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetch_eventData.php', true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var entries = JSON.parse(this.responseText);
+                displayEventDataEntries(entries);
+            } else {
+                console.error('Fetching eventsData error!');
+            }
+        }
+    };
+}
+
+function displayEventDataEntries(entries) {
+
+    entries.forEach(function (entry) {
+        eventsData.push(Object.values(entry));
+    });
 }
 
 function displayEventEntries(entries) {
@@ -328,6 +350,8 @@ function displayParticipantEntries(entries) {
 // Fetch entries when the page loads
 //2D Array of data
 const eventsData = [];
+fetchEventData();
+
 eventsList.forEach(() => {
     var row = [];
     participantsList.forEach(() => { row.push(0) })
