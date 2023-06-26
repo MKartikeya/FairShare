@@ -1,5 +1,5 @@
 var participantsList = [];
-fetchEntries();
+fetchParticipants();
 function updatePList() {
     console.log(participantsList)
     participantsList.forEach((parName) => {
@@ -41,7 +41,9 @@ createEventBtn.addEventListener("click", createEvent)
 getStarted.addEventListener("click", closePop)
 refreshBtn.addEventListener("click", displayEvents)
 searchBtn.addEventListener("click", searchFilter)
+
 const eventsList = [];
+fetchEvents();
 
 function closePop() {
     bgWelcome.classList.add("remove");
@@ -266,32 +268,57 @@ function createEvent() {
 }
 
 
-///////////// Do not touch nimai's gurl once more
+// Do not touch nimai's gurl once more
 
-function fetchEntries() {
+function fetchParticipants() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'fetch_entries.php', true);
+    xhr.open('GET', 'fetch_participants.php', true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 var entries = JSON.parse(this.responseText);
                 // console.log(entries instanceof Array);
-                displayEntries(entries);
+                displayParticipantEntries(entries);
                 console.log(participantsList)
                 updatePList();
                 if (participantsList.length == 0) {
                     editP(1)
                 }
             } else {
-                console.error('hdeeeeeeeeeeeeeeeeeee');
+                console.error('Fetching paricipants error');
             }
         }
     };
 }
 
+function fetchEvents() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetch_events.php', true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var entries = JSON.parse(this.responseText);
+                // console.log(entries instanceof Array);
+                displayEventEntries(entries);
+                displayEvents();
+            } else {
+                console.error('Fetching events error');
+            }
+        }
+    };
+}
+
+function displayEventEntries(entries) {
+
+    entries.forEach(function (entry) {
+        eventsList.push(entry)
+    });
+}
+
 // Function to display entries on the page
-function displayEntries(entries) {
+function displayParticipantEntries(entries) {
 
     entries.forEach(function (entry) {
         participantsList.push(entry)
@@ -372,13 +399,36 @@ function eventPageDone(){
             eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
         })
     }
-        console.log(eventsData)
+    console.log(eventsData);
 
     var createEventPage = document.getElementsByClassName("create-event-page")[0];
     createEventPage.style.display = 'none';
     document.getElementsByClassName("event-name-input")[0].value="";
     document.getElementsByClassName("event-amount-input")[0].value="";
-   
+
+    //Database for events
+    const xhr = new XMLHttpRequest();
+    const dataEventName = new FormData();
+    dataEventName.append('eventsList', JSON.stringify(eventsList));
+    xhr.open('POST', 'events.php', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            console.log(xhr.responseText); // Handle the response from PHP
+        }
+    };
+    xhr.send(dataEventName);
+
+
+    const req = new XMLHttpRequest();
+    const dataEventData = new FormData();
+    dataEventData.append('eventsData',JSON.stringify(eventsData));
+    req.open('POST', 'eventsData.php', true);
+    req.onload = function () {
+        if (req.status === 200) {
+            console.log(req.responseText); // Handle the response from PHP
+        }
+    };
+    req.send(dataEventData);
 }
 
 // functions to display event-wise results
