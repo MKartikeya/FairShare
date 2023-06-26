@@ -85,19 +85,19 @@ function addPToList() {
 }
 function removeFromPList(event) {
     var buttonClicked = event.target;
-    var name=buttonClicked.parentElement.getElementsByClassName("addedp-name")[0].innerHTML;
-    var pos=participantsList.indexOf(name);
-    var isInvolved=0,index=0;
-    eventsData.forEach(()=>{
-        if(eventsData[index][pos]!=0) {isInvolved=1;}
+    var name = buttonClicked.parentElement.getElementsByClassName("addedp-name")[0].innerHTML;
+    var pos = participantsList.indexOf(name);
+    var isInvolved = 0, index = 0;
+    eventsData.forEach(() => {
+        if (eventsData[index][pos] != 0) { isInvolved = 1; }
         index++;
     })
-    if(isInvolved){
+    if (isInvolved) {
         editP(0)
-        document.querySelector(".delete-p-page").style.display='flex';
-        document.getElementsByClassName("p-delete-continue")[0].addEventListener("click",()=>{document.querySelector(".delete-p-page").style.display='none';})
+        document.querySelector(".delete-p-page").style.display = 'flex';
+        document.getElementsByClassName("p-delete-continue")[0].addEventListener("click", () => { document.querySelector(".delete-p-page").style.display = 'none'; })
     }
-    else{buttonClicked.parentElement.remove()}
+    else { buttonClicked.parentElement.remove() }
 }
 function displayEvents() {
     var eventList = document.getElementsByClassName("event-list")[0];
@@ -308,80 +308,80 @@ eventsList.forEach(() => {
 })
 
 
-function eventPageDone(){
-    var eventName=document.getElementsByClassName("event-name-input")[0].value;
-    var totalAmount=Number(document.getElementsByClassName("event-amount-input")[0].value);
-    if(isNaN(totalAmount)){
+function eventPageDone() {
+    var eventName = document.getElementsByClassName("event-name-input")[0].value;
+    var totalAmount = Number(document.getElementsByClassName("event-amount-input")[0].value);
+    if (isNaN(totalAmount)) {
         alert("You entered Invalid amount!!")
         return;
     }
     eventsList.push(eventName)
     console.log(eventsList)
     displayEvents()
-    let index=0;
-    var row=[];
-    participantsList.forEach(()=>{row.push(0)})
+    let index = 0;
+    var row = [];
+    participantsList.forEach(() => { row.push(0) })
     eventsData.push(row)
-    if(isAdvanced){
-        var isEntered=0;
-        participantsList.forEach((name)=>{
-            var paidAmount=document.getElementById(`${name+1}`).value;
-            var toPayAmount=document.getElementById(`${name+2}`).value;
-            if(paidAmount!=null || toPayAmount!=null) isEntered=1;
-            eventsData[eventsList.indexOf(eventName)][index]=paidAmount-toPayAmount;
+    if (isAdvanced) {
+        var isEntered = 0;
+        participantsList.forEach((name) => {
+            var paidAmount = document.getElementById(`${name + 1}`).value;
+            var toPayAmount = document.getElementById(`${name + 2}`).value;
+            if (paidAmount != null || toPayAmount != null) isEntered = 1;
+            eventsData[eventsList.indexOf(eventName)][index] = paidAmount - toPayAmount;
             index++;
         })
-        if(isEntered){
-            var paidParticipants=[]
-        var toPayParticipants=[]
-        participantsList.forEach((name)=>{
-            if(document.getElementById(`${name+3+1}`).checked){
-                paidParticipants.push(name)
-            }
-            if(document.getElementById(`${name+3+2}`).checked){
-                toPayParticipants.push(name)
-            }
-        })
-        var indAmountPaid=totalAmount/paidParticipants.length;
-        var indAmounttoPay=totalAmount/toPayParticipants.length;
-        paidParticipants.forEach((name)=>{
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid;
-        })
-        toPayParticipants.forEach((name)=>{
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
-        })
+        if (isEntered) {
+            var paidParticipants = []
+            var toPayParticipants = []
+            participantsList.forEach((name) => {
+                if (document.getElementById(`${name + 3 + 1}`).checked) {
+                    paidParticipants.push(name)
+                }
+                if (document.getElementById(`${name + 3 + 2}`).checked) {
+                    toPayParticipants.push(name)
+                }
+            })
+            var indAmountPaid = totalAmount / paidParticipants.length;
+            var indAmounttoPay = totalAmount / toPayParticipants.length;
+            paidParticipants.forEach((name) => {
+                eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmountPaid;
+            })
+            toPayParticipants.forEach((name) => {
+                eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -= indAmounttoPay;
+            })
         }
     }
-    else{
-        var paidParticipants=[]
-        var toPayParticipants=[]
-        participantsList.forEach((name)=>{
-            if(document.getElementById(`${name+3+1}`).checked){
+    else {
+        var paidParticipants = []
+        var toPayParticipants = []
+        participantsList.forEach((name) => {
+            if (document.getElementById(`${name + 3 + 1}`).checked) {
                 paidParticipants.push(name)
             }
-            if(document.getElementById(`${name+3+2}`).checked){
+            if (document.getElementById(`${name + 3 + 2}`).checked) {
                 toPayParticipants.push(name)
             }
         })
-        var indAmountPaid=totalAmount/paidParticipants.length;
-        var indAmounttoPay=totalAmount/toPayParticipants.length;
-        paidParticipants.forEach((name)=>{
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid;
+        var indAmountPaid = totalAmount / paidParticipants.length;
+        var indAmounttoPay = totalAmount / toPayParticipants.length;
+        paidParticipants.forEach((name) => {
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmountPaid;
         })
-        toPayParticipants.forEach((name)=>{
-            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=indAmounttoPay;
+        toPayParticipants.forEach((name) => {
+            eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -= indAmounttoPay;
         })
     }
-        console.log(eventsData)
+    console.log(eventsData)
 
     var createEventPage = document.getElementsByClassName("create-event-page")[0];
     createEventPage.style.display = 'none';
-    document.getElementsByClassName("event-name-input")[0].value="";
-    document.getElementsByClassName("event-amount-input")[0].value="";
-   
+    document.getElementsByClassName("event-name-input")[0].value = "";
+    document.getElementsByClassName("event-amount-input")[0].value = "";
+
 }
 
-// functions to display event-wise results
+// functions to display event-wise results and final results
 // =========================================================
 
 /*
@@ -400,7 +400,6 @@ function displayEventResults(event) {
     net.innerHTML = "";
 
     let index = eventsList.indexOf(event);
-    // let index = 0;
 
     console.log(event);
     console.log(eventsList[0]);
@@ -428,11 +427,70 @@ function displayEventResults(event) {
     for (let member in eventsData[index]) {
         net.innerHTML += `<div class="event-result">
         <h1 class="event-result-text">${participantsList[member]}</h1>
-        <h1 class="event-result-text ${(eventsData[index][member] >= 0 ? 'positive-result': 'negative-result')}">
-        ${(eventsData[index][member] >= 0 ? '+': '') + eventsData[index][member]}</h1>
+        <h1 class="event-result-text ${(eventsData[index][member] >= 0 ? 'positive-result' : 'negative-result')}">
+        ${(eventsData[index][member] >= 0 ? '+' : '') + eventsData[index][member]}</h1>
         </div>`;
     }
 }
 
+function showResults() {
+    const totalNet = [];
+    for (let member in participantsList) {
+        totalNet.push(0);
+        for (let event in eventsList)
+            totalNet[member] += eventsData[event][member];
+    }
 
+    const positive = [], negative = [];
+    for (let i in totalNet) {
+        if (totalNet[i] >= 0) positive.push([totalNet[i], i]);
+        else negative.push([totalNet[i], i]);
+    }
+    console.log(negative);
+    // return;
+    const pay = new Array(participantsList.length);
+    const receive = new Array(participantsList.length);
+    while (negative.length) {
+        while (negative[negative.length - 1][0] < 0) {
+            let neg = negative[negative.length - 1];
+            let pos = positive[positive.length - 1];
+            if (pos[0] > neg[0]) {
+                pay[neg[1]].push(neg[0], pos[1])
+                receive[pos[1]].push(neg[0], neg[1])
+                positive[positive.length - 1] += neg[0];
+                negative.pop();
+                continue;
+            }
+            pay[neg[1]].push(pos[0], pos[1]);
+            receive[pos[1]].push(pos[0], neg[1]);
+            negative[negative.length - 1] += pos[0];
+            positive.pop();
+        }
+    }
+
+    const finalPay = document.getElementById('final-pay');
+    const finalReceive = document.getElementById('final-receive');
+
+    finalPay.innerHTML = "";
+    finalReceive.innerHTML = "";
+
+    for (let i in pay) {
+        if (pay[i].length == 0) continue;
+
+        let finalParent = `<div class="final-parent">`;
+        finalParent += `<div class="final-child" style="font-size: 1em;">
+        <button id='drop-down'>></button>
+        <p>${participantsList[i]} <span style='color:chartreuse;'>pays ${totalNet[i]}</span></p>
+        </div>`;
+
+        for (let member of pay[i]) {
+            finalParent += `<div class="final-child">
+            <p>${participantsList[i]} <span style='color:chartreuse; '>pays ${member[0]}</span> to ${member[1]}</p>
+            </div>`;
+        }
+
+        finalParent += `</div>`;
+        finalPay += finalParent;
+    }
+}
 // =========================================================

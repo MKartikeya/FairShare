@@ -8,12 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FairShare</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type='text/css' href="style.css">
+    <link rel="stylesheet" type='text/css' href="style2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fontawesome.com/icons/filter?f=classic&s=solid&an=bounce&pc=%231a5181">
 </head>
 
 <body>
+    <script src="script.js"></script>
     <div class="bg-welcome remove">
         <div class="text-container ">
 
@@ -89,14 +91,14 @@
                     </div>
                     <div class="event-participants-container-2">
                     </div>
-                   
+
                 </div>
             </div>
             <div class="event-next-page">
                 <div class="next-previous">
                     <button class="event-btn" onclick="goPrev()">
-                        <</button>
-                    <button class="event-btn" onclick="goNext()">></button>
+                        << /button>
+                            <button class="event-btn" onclick="goNext()">></button>
                 </div>
                 <div class="events-settings">
                     <a onclick="toggleSettings(1)" id="settings1">Advanced Settings</a>
@@ -122,7 +124,7 @@
         </div>
     </div>
     <!-- pop-ups end -->
-    
+
     <div class="dashboard">
         <div class="nav-bar">
             <div class="Logo"></div>
@@ -148,11 +150,26 @@
             <div class="display-area">
                 <div class="display-graph-container">
                     <div class="graph-positive">
-                        
+
                     </div>
                     <div class="graph-negative">
-                        
+
                     </div>
+                </div>
+                <div id="final-pay" class="display-final">
+                    
+                </div>
+                <div id="final-receive" class="display-final">
+                    <div class="final-parent">
+                        <div class="final-child" style="font-size: 1em;">
+                            <button id='drop-down'>></button>
+                            <p>Nimai <span style='color:chartreuse;'>pays 50</span></p>
+                        </div>
+                        <div class="final-child">
+                            <p>Nimai <span style='color:chartreuse; '>pays 50</span> to me</p>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="display-net">
                     <div class="net-head">
@@ -187,13 +204,13 @@
                     <!-- <button class="add-participant">Add Participants</button> -->
                     <button class="edit-events">Edit Events</button>
                     <button class="delete-edit_participant">Edit Participants</button>
-                    <button class="show-result">Show Result</button>
+                    <button class="show-result" onclick="showResults()">Show Result</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    
 </body>
 
 </html>
