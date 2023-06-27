@@ -516,49 +516,47 @@ function showResults() {
             totalNet[member] += eventsData[event][member];
     }
 
-    const positive = new Array(), negative = new Array();
+    let positive = new Array(), negative = new Array();
     for (let i = 0; i < totalNet.length; i++) {
-        if (totalNet[i] >= 0) positive.push([totalNet[i], i]);
-        else negative.push([totalNet[i], i]);
-        console.log(negative);
-        console.log(positive);
-        console.log(totalNet[i]);
+        if (totalNet[i] > 0) positive.push([totalNet[i], i]);
+        else if (totalNet[i] < 0) negative.push([totalNet[i], i]);
     }
     // return
     const pay = new Array(participantsList.length);
     const receive = new Array(participantsList.length);
     for (let i = 0; i < participantsList.length; i++) {
         pay[i] = new Array();
-    }
-    for (let i = 0; i < participantsList.length; i++) {
         receive[i] = new Array();
     }
 
-
     while (negative.length && positive.length) {
-        let neg = negative[negative.length - 1];
-        let pos = positive[positive.length - 1];
-        if (positive[positive.length - 1][0] > negative[negative.length - 1][0]) {
-            pay[negative[negative.length - 1][1]].push(negative[negative.length - 1][0], positive[positive.length - 1][1])
-            receive[positive[positive.length - 1][1]].push(negative[negative.length - 1][0], negative[negative.length - 1][1])
+        console.log(negative[negative.length - 1][0])
+        console.log(negative[negative.length - 1][1])
+        console.log(positive[positive.length - 1][0])
+        console.log(positive[positive.length - 1][1])
+
+        if (positive[positive.length - 1][0] > -negative[negative.length - 1][0]) {
+            pay[negative[negative.length - 1][1]].push([-negative[negative.length - 1][0], positive[positive.length - 1][1]]);
+            receive[positive[positive.length - 1][1]].push([-negative[negative.length - 1][0], negative[negative.length - 1][1]]);
             positive[positive.length - 1][0] += negative[negative.length - 1][0];
             negative.pop();
             continue;
-        } else if (positive[positive.length - 1][0] == negative[negative.length - 1][0]) {
-            pay[negative[negative.length - 1][1]].push(negative[negative.length - 1][0], positive[positive.length - 1][1])
-            receive[positive[positive.length - 1][1]].push(negative[negative.length - 1][0], negative[negative.length - 1][1])
+        } else if (positive[positive.length - 1][0] == -negative[negative.length - 1][0]) {
+            pay[negative[negative.length - 1][1]].push([-negative[negative.length - 1][0], positive[positive.length - 1][1]]);
+            receive[positive[positive.length - 1][1]].push([-negative[negative.length - 1][0], negative[negative.length - 1][1]]);
+            console.log(positive);
+            console.log(negative.length);
             positive.pop();
             negative.pop();
             continue;
         }
-        pay[negative[negative.length - 1][1]].push(positive[positive.length - 1][0], positive[positive.length - 1][1]);
-        receive[positive[positive.length - 1][1]].push(positive[positive.length - 1][0], negative[negative.length - 1][1]);
+        pay[negative[negative.length - 1][1]].push([positive[positive.length - 1][0], positive[positive.length - 1][1]]);
+        receive[positive[positive.length - 1][1]].push([positive[positive.length - 1][0], negative[negative.length - 1][1]]);
         negative[negative.length - 1][0] += positive[positive.length - 1][0];
         positive.pop();
     }
 
     console.log(pay);
-
     console.log(totalNet);
 
     let finalPay = document.getElementById('final-pay');
@@ -572,19 +570,52 @@ function showResults() {
 
         let finalParent = `<div class="final-parent">`;
         finalParent += `<div class="final-child" style="font-size: 1em;">
-        <button id='drop-down'>></button>
-        <p>${participantsList[i]} <span style='color:chartreuse;'>pays ${totalNet[i]}</span></p>
+        <button id='drop-down' onclick="dropDownResult('${i}p')">></button>
+        <p>${participantsList[i]} <span style='color:red;'>pays ${-totalNet[i]}</span></p>
         </div>`;
 
+        finalParent += `<div class='child-container' id='${i}p' style="display: none">`
         for (let member of pay[i]) {
             finalParent += `<div class="final-child">
-            <p>${participantsList[i]} <span style='color:chartreuse; '>pays ${member[0]}</span> to ${member[1]}</p>
+            <p>${participantsList[i]} <span style='color:red;'>pays ${member[0]}</span> to ${participantsList[member[1]]}</p>
             </div>`;
         }
 
         finalParent += `</div>`;
+        finalParent += `</div>`;
         finalPay.innerHTML += finalParent;
     }
+
+    for (let i = 0; i < receive.length; i++) {
+        if (receive[i].length == 0) continue;
+
+        let finalParent = `<div class="final-parent">`;
+        finalParent += `<div class="final-child" style="font-size: 1em;">
+        <button id='drop-down' onclick="dropDownResult('${i}r')">></button>
+        <p>${participantsList[i]} <span style='color:chartreuse;'>receives ${totalNet[i]}</span></p>
+        </div>`;
+
+        finalParent += `<div class='child-container' id='${i}r' style="display: none">`
+        for (let member of receive[i]) {
+            finalParent += `<div class="final-child">
+            <p>${participantsList[i]} <span style='color:chartreuse; '>receives ${member[0]}</span> from ${participantsList[member[1]]}</p>
+            </div>`;
+        }
+
+        finalParent += `</div>`;
+        finalParent += `</div>`;
+        finalReceive.innerHTML += finalParent;
+    }
+    console.log(finalPay.innerHTML)
+    console.log(finalReceive.innerHTML)
+}
+
+function dropDownResult(id) {
+    const childContainer = document.getElementById(id);
+    if (childContainer.style.display == 'none')
+        childContainer.style.display = 'block';
+    else    
+        childContainer.style.display = 'none';
 }
 
 // =========================================================

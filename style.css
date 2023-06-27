@@ -889,8 +889,8 @@ hr {
   width: 90%;
   max-width: 800px;
   height: auto;
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 50px;
+  /* margin-bottom: 50px; */
 }
 
 .spent-head,
@@ -965,6 +965,11 @@ hr {
 .final-child p {
     display: inline-block;
     margin: 0.5em 1em;
+}
+
+.child-container {
+  width: 100%;
+  height: auto;
 }
 
 #drop-down {

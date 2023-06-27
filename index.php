@@ -162,8 +162,10 @@
                             <button id='drop-down'>></button>
                             <p>Nimai <span style='color:chartreuse;'>pays 50</span></p>
                         </div>
+                        <div class="child-container">
                         <div class="final-child">
                             <p>Nimai <span style='color:chartreuse; '>pays 50</span> to me</p>
+                        </div>
                         </div>
                     </div>
 
