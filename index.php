@@ -152,6 +152,24 @@
                         
                     </div>
                 </div>
+
+                <div id="final-pay" class="display-final">
+
+                </div>
+                <div id="final-receive" class="display-final">
+                    <div class="final-parent">
+                        <div class="final-child" style="font-size: 1em;">
+                            <button id='drop-down'>></button>
+                            <p>Nimai <span style='color:chartreuse;'>pays 50</span></p>
+                        </div>
+                        <div class="final-child">
+                            <p>Nimai <span style='color:chartreuse; '>pays 50</span> to me</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
                 <div class="display-net">
                     <div class="net-head">
                         <h1>Participant</h1>
@@ -185,7 +203,7 @@
                     <!-- <button class="add-participant">Add Participants</button> -->
                     <button class="edit-events">Edit Events</button>
                     <button class="delete-edit_participant">Edit Participants</button>
-                    <button class="show-result">Show Result</button>
+                    <button class="show-result" onclick="showResults()">Show Result</button>
                 </div>
             </div>
         </div>
