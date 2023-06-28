@@ -196,7 +196,7 @@
                 <div class="tools-content">
                     <button class="create-event">Create Event</button>
                     <!-- <button class="add-participant">Add Participants</button> -->
-                    <button class="edit-events">Edit Events</button>
+                    <button class="edit-events">Edit Event</button>
                     <button class="delete-edit_participant">Edit Participants</button>
                     <button class="show-result" onclick="showResults()">Show Result</button>
                 </div>

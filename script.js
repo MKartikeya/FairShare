@@ -496,6 +496,9 @@ function displayEventResults(event) {
         ${(eventsData[index][member] >= 0 ? '+' : '') + eventsData[index][member]}</h1>
         </div>`;
     }
+
+    const editEv = document.querySelector(".edit-events");
+    editEv.addEventListener("click", editEvent(event));
 }
 
 function showResults() {
@@ -648,3 +651,7 @@ function dropDownResult(id) {
 }
 
 // =========================================================
+
+function editEvent(event){
+    console.log(event);
+}
