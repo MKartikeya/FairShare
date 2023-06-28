@@ -31,6 +31,7 @@
 
     <div class="pop-up-container participants_n_tripname" style="display: none;">
         <div class="pop-up-window">
+        <i style="font-size:24px" class="fa close-popup-btn">&#xf00d;</i>
             <div class="pop-up">
                 <div class="trip-name-input">
                     <p class="trip-title font">Trip Name</p>
@@ -60,6 +61,7 @@
 
     <div class="pop-up-container create-event-page" style="display: none;">
         <div class="pop-up-window">
+        <i style="font-size:24px" class="fa close-popup-btn">&#xf00d;</i>
             <div class="pop-up-slide-window">
                 <div class="pop-up-event">
                     <div class="event-name-input-container-1">

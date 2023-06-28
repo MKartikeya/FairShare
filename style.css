@@ -7,7 +7,14 @@
   padding: 0;
   box-sizing: border-box;
 }
+.close-popup-btn{
 
+  color: white;
+  overflow: hidden;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
 .bg-welcome {
   background-image: url(https://images.pexels.com/photos/2885320/pexels-photo-2885320.jpeg);
   width: 100vw;
@@ -311,6 +318,7 @@ hr {
   box-shadow: 2px 2px 100px 15px #7f55ff;
   display: flex;
   flex-direction: column;
+  position: relative;
   align-items: center;
 }
 
@@ -978,6 +986,8 @@ hr {
     align-items: center;
     padding: 0 1em;
 }
+
+
 
 /* =========================================== */
 
