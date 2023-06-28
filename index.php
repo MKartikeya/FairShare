@@ -49,14 +49,7 @@
                         </div>
                     </div>
                     <div class="addedp-list">
-                        <div class="added-p">
-                            <div class="addedp-name">Alice</div>
-                            <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>
-                        </div>
-                        <div class="added-p">
-                            <div class="addedp-name">Bob</div>
-                            <i style="font-size:24px " class="fa newp-remove" id="reomveBob">&#xf068;</i>
-                        </div>
+                        
                     </div>
                 </div>
                 <button class="next getStarted finishPpage">Next</button>

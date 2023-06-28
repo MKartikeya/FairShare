@@ -415,6 +415,7 @@ hr {
 .newp-add {
   border: 2px solid #00ff2ae4;
   color: #00ff2ae4;
+  overflow: hidden;
 }
 
 .newp-remove {
