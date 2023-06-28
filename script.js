@@ -1,5 +1,7 @@
-const eventsData = [];
+let eventsData = new Array();
 const eventsList = [];
+let paidData = new Array();
+let toPayData = new Array();
 var participantsList = [];
 eventsList.forEach(() => {
   var row = [];
@@ -7,6 +9,8 @@ eventsList.forEach(() => {
     row.push(0);
   });
   eventsData.push(row);
+  paidData.push(row)
+  toPayData.push(row)
 });
 window.addEventListener("load", (event) => {
   fetchParticipants();
@@ -24,7 +28,6 @@ function updatePList() {
         <div class="addedp-name">${parName}</div>
         <i style="font-size:24px " class="fa newp-remove" id="reomveAlice">&#xf068;</i>`;
     addedPList.append(pBox);
-    console.log(addedPList);
     pBox
       .getElementsByClassName("newp-remove")[0]
       .addEventListener("click", (event) => {
@@ -58,7 +61,6 @@ getStarted.addEventListener("click", closePop);
 refreshBtn.addEventListener("click", displayEvents);
 searchBtn.addEventListener("click", searchFilter);
 function closePopUp(event){
-    console.log("eneterefef")
     var buttonClicked=event.target;
     var popup=buttonClicked.parentElement.parentElement;
     popup.style.display='none';
@@ -70,7 +72,6 @@ displayEvents();
 const addPbtn = document.querySelector(".newp-add");
 addPbtn.addEventListener("click", addPToList);
 function addPToList() {
-  console.log("entered");
   var inputField = document.querySelector(".newp-name");
   var parName = inputField.value;
   inputField.value = "";
@@ -80,8 +81,9 @@ function addPToList() {
   }
   var index = 0;
   eventsData.forEach(() => {
-    console.log("i pushed a string");
     eventsData[index].push("0");
+    paidData[index].push("0");
+    toPayData[index].push("0");
     index++;
   });
 }
@@ -101,7 +103,6 @@ function removeFromPList(event) {
   });
   if (isInvolved) {
     editP(0);
-    console.log("He is involved");
     document.querySelector(".delete-p-page").style.display = "flex";
     document
       .getElementsByClassName("p-delete-continue")[0]
@@ -113,6 +114,8 @@ function removeFromPList(event) {
     var index = 0;
     eventsData.forEach(() => {
       eventsData[index].splice(pos, 1);
+      paidData[index].splice(pos, 1);
+      toPayData[index].splice(pos, 1);
       index++;
     });
     participantsList.splice(pos, 1);
@@ -181,7 +184,6 @@ function displayParticipants(n) {
         <input class="participant-contribution" id="${name + n}">   
         </div>
         </div>`;
-    console.log(name);
   }
 }
 // to check if func is working
@@ -297,7 +299,6 @@ function fetchParticipants() {
         var entries = JSON.parse(this.responseText);
         // console.log(entries instanceof Array);
         displayParticipantEntries(entries);
-        console.log(participantsList);
         updatePList();
         if (participantsList.length == 0) {
           editP(1);
@@ -419,19 +420,22 @@ function eventPageDone() {
     //initislising and entering into events list ***should be done only if it is valid;
     eventsList.push(eventName);
     displayEvents();
-    var row = [];
+    let row = new Array();
     participantsList.forEach(() => {
       row.push(0);
     });
     eventsData.push(row);
-
+    paidData.push(row.slice()); // create a copy of row
+    toPayData.push(row.slice()); // create a copy of row
     paidParticipants.forEach((name) => {
         var paidAmount = Number(document.getElementById(`${name + 1}`).value);
         eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=paidAmount
+        paidData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=paidAmount
       });
       toPayParticipants.forEach((name) => {
         var toPayAmount = Number(document.getElementById(`${name + 2}`).value);
         eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=toPayAmount
+        toPayData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=toPayAmount
       });
     toggleSettings(1)
   } else {
@@ -439,23 +443,25 @@ function eventPageDone() {
     eventsList.push(eventName);
     displayEvents();
     let index = 0;
-    var row = [];
+    let row = new Array();
     participantsList.forEach(() => {
       row.push(0);
     });
     eventsData.push(row);
+    paidData.push(row.slice()); // create a copy of row
+    toPayData.push(row.slice()); // create a copy of row
+    console.log(paidData)
+    // toPayData.push(row);
 
     var indAmountPaid = totalAmount / paidParticipants.length;
     var indAmounttoPay = totalAmount / toPayParticipants.length;
     paidParticipants.forEach((name) => {
-      eventsData[eventsList.indexOf(eventName)][
-        participantsList.indexOf(name)
-      ] += indAmountPaid;
+      eventsData[eventsList.indexOf(eventName)][ participantsList.indexOf(name)] +=indAmountPaid;
+      paidData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid
     });
     toPayParticipants.forEach((name) => {
-      eventsData[eventsList.indexOf(eventName)][
-        participantsList.indexOf(name)
-      ] -= indAmounttoPay;
+      eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -=indAmounttoPay;
+      toPayData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmounttoPay
     });
   }
 //   console.log(eventsData);
@@ -510,8 +516,8 @@ function displayEventResults(event) {
   let index = eventsList.indexOf(event);
   // let index = 0;
 
-  console.log(event);
-  console.log(eventsList[0]);
+  // console.log(event);
+  // console.log(eventsList[0]);
 
   let maxPrice = 0;
   for (let i of eventsData[index]) maxPrice = Math.max(maxPrice, Math.abs(i));
@@ -527,7 +533,7 @@ function displayEventResults(event) {
       graphPositive.innerHTML += `<div class="positive-bar" style='height:${
         (member / maxPrice) * 80
       }%;'></div>`;
-      console.log(member);
+      // console.log(member);
     } else if (member < 0) {
       graphNegative.innerHTML += `<div class="negative-bar" style='height:${
         -(member / maxPrice) * 80
