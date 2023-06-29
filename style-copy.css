@@ -209,7 +209,7 @@ hr {
   margin: 9px 0;
   height: 40px;
   width: 90%;
-  border-radius: 20px;
+  border-radius: 6px;
   background-color: #3f00f2;
   overflow: hidden;
 }
@@ -233,26 +233,45 @@ hr {
 
 .search-bar {
   background-color: #d9d9d9;
-  width: 90%;
+  width: 80%;
   height: 45px;
   border-radius: 20px;
   padding-left: 10px;
   border: none;
+  margin-left: 1em;
+}
+
+.search-bar:focus {
+  outline: none;
 }
 
 .search-container {
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   /* gap: 0.3rem; */
-  width: 100%;
-  height: 80px;
+  width: 95%;
+  height: 45px;
+  border-radius: 50px;
+  background-color: #d9d9d9;
+}
+
+.search-container:focus {
+  border: 1px solid black;
 }
 
 .search-btn {
-  color: #ffffff;
-  background-color: transparent;
+  color: black;
   border: none;
+  margin-right: 0.5em;
+  background-color: #d9d9d9;
+}
+
+.refresh-btn {
+  min-width: 5%;
+  color: black;
+  margin-right: 0.5em;
+  background-color: #d9d9d9;
 }
 
 /* ===================================================== */
@@ -588,22 +607,17 @@ hr {
   font-size: 1.5rem;
 }
 
-.nothing-close {
-  display: none;
-}
-
-.refresh-btn {
-  min-width: 5%;
-  color: #ffffff;
-}
-
-
-
 .event-p {
   color: white;
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
+  text-align: center;
 }
+
+.nothing-close {
+  display: none;
+}
+
 
 .getStarted {
   padding: 10px 20px;
