@@ -811,3 +811,11 @@ function dropDownResult(id) {
 }
 
 // =========================================================
+
+function editEvents(){
+  //call createEvent()
+  //set all values and check boxes and call 
+  //two ways
+  //1)modifying eventPage done such that it wont create another row and add again into eventsList
+  //2)deleting this event and calling eventPageDone normally
+}
