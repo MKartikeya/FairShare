@@ -16,6 +16,8 @@ window.addEventListener("load", (event) => {
   fetchParticipants();
   fetchEvents();
   fetchEventData();
+  fetchPaidData();
+  fetchToPaidData();
   console.log("page is fully loaded");
 });
 function updatePList() {
@@ -343,6 +345,50 @@ function fetchEventData() {
   };
 }
 
+function fetchPaidData(){
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "fetch_paidData.php", true);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var entries = JSON.parse(this.responseText);
+        displayPaidDataEntries(entries);
+      } else {
+        console.error("Fetching paidData error!");
+      }
+    }
+  };
+}
+
+function fetchToPaidData(){
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "fetch_toPayData.php", true);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var entries = JSON.parse(this.responseText);
+        displayToPayDataEntries(entries);
+      } else {
+        console.error("Fetching toPayData error!");
+      }
+    }
+  };
+}
+
+function displayToPayDataEntries(entries){
+  entries.forEach(function (entry) {
+    toPayData.push(Object.values(entry));
+  });
+}
+
+function displayPaidDataEntries(entries){
+  entries.forEach(function (entry) {
+    paidData.push(Object.values(entry));
+  });
+}
+
 function displayEventDataEntries(entries) {
   entries.forEach(function (entry) {
     eventsData.push(Object.values(entry));
@@ -487,6 +533,7 @@ function updateEventsDb() {
   };
   xhr.send(dataEventName);
 
+  //Database for eventsData
   const req = new XMLHttpRequest();
   const dataEventData = new FormData();
   dataEventData.append("eventsData", JSON.stringify(eventsData));
@@ -497,6 +544,30 @@ function updateEventsDb() {
     }
   };
   req.send(dataEventData);
+
+  //Database for paidData
+  const request = new XMLHttpRequest();
+  const dataPaidData = new FormData();
+  dataPaidData.append("paidData", JSON.stringify(paidData));
+  request.open("POST", "paidData.php", true);
+  request.onload = function () {
+    if (request.status === 200) {
+      console.log(request.responseText); // Handle the response from PHP
+    }
+  };
+  request.send(dataPaidData);
+
+  //Database for toPayData
+  const r = new XMLHttpRequest();
+  const dataToPayData = new FormData();
+  dataToPayData.append("toPayData", JSON.stringify(toPayData));
+  r.open("POST", "toPayData.php", true);
+  r.onload = function () {
+    if (r.status === 200) {
+      console.log(r.responseText); // Handle the response from PHP
+    }
+  };
+  r.send(dataToPayData);
 }
 
 // functions to display event-wise results and final results
