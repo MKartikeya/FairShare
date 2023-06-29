@@ -365,7 +365,7 @@ function eventPageDone() {
         participantsList.forEach((name) => {
             var paidAmount = document.getElementById(`${name + 1}`).value;
             var toPayAmount = document.getElementById(`${name + 2}`).value;
-            if (paidAmount == null || toPayAmount == null) alert("You've left few amount fields empty!!");
+            // if (paidAmount == null || toPayAmount == null) alert("You've left few amount fields empty!!");
             eventsData[eventsList.indexOf(eventName)][index] = paidAmount - toPayAmount;
             index++;
         })
