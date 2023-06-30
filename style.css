@@ -293,8 +293,10 @@ hr {
 } */
 
 .pop-up-container {
+  /* filter: blur(40px); */
+  backdrop-filter: blur(10px);
   position: absolute;
-  background-color: #00000065;
+  background-color: #00000090;
   top: 0;
   min-height: 100%;
   width: 100%;
@@ -360,21 +362,23 @@ hr {
   border: 2px solid rgba(255, 255, 255, 0.501);
   border-radius: 4px;
   color: white;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   width: 100%;
 }
 
 .add-participants-list {
-  margin-top: 5px;
+  /* margin-top: 1rem; */
   color: white;
-  width: 50%;
+  width: 60%;
+  padding: 1rem;
   font-family: 'Poppins', sans-serif;
   text-align: left;
   font-size: 28px;
   font-weight: 700;
+  padding-top: 0.5rem;
   overflow-y: scroll;
-  margin-bottom: 30px;
-  max-height: 40%;
+  /* margin-bottom: 30px; */
+  max-height: 50%;
 }
 
 .trip-name-input {
@@ -382,14 +386,18 @@ hr {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 60%;
+  padding: 1rem;
+  overflow: hidden;
 }
 
 .trip-title {
+  overflow: hidden;
   width: 100%;
-  margin-bottom: 20px;
-  margin-top: 65px;
-  font-size: 38px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  font-size: 2.3rem;
+  color: #00fbff !important;
   font-weight: bolder;
 }
 
@@ -399,25 +407,28 @@ hr {
 }
 
 .addp-title {
-  font-size: 28px;
-  width: 50%;
-  margin-top: 40px;
-  padding-bottom: 10px;
+  font-size: 1.8rem;
+  width: 60%;
+  /* margin-top: 3rem; */
+  padding: 1rem;
+  overflow: hidden;
+  color: #00fbff ;
+  height: 50px;
 }
 
 .new-participant {
   width: 100%;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
   height: 70px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .newp-name {
-  width: 80%;
+  width: 85%;
   margin-left: 3px;
   background: transparent;
   padding: 13px;
@@ -428,12 +439,8 @@ hr {
 
 .newp-add,
 .newp-remove {
-  background: transparent;
-  border: 2px solid #73727de4;
-  border-radius: 4px;
-  height: 100%;
-  padding: 15px 15px;
-  font-size: 40px;
+border:none ;
+overflow: hidden !important;
 }
 
 .newp-btns {
@@ -445,17 +452,16 @@ hr {
 }
 
 .newp-add {
-  border: 2px solid #00ff2ae4;
-  color: #00ff2ae4;
+  color: #2eff51e4;
+
   overflow: hidden;
 }
 
 .newp-remove {
-  border: 2px solid #ff1100e4;
-  color: #ff1100e4;
+  overflow: hidden;
 }
 
-.newp-add:hover {
+/* .newp-add:hover {
   transform: scale(0.8);
   transition: all 0.3s ease-in-out;
   box-shadow: 2px 2px 14px 4px #51ff00;
@@ -465,21 +471,23 @@ hr {
   transform: scale(0.8);
   transition: all 0.3s ease-in-out;
   box-shadow: 2px 2px 14px 4px #ff1100e4;
-}
+} */
 
 .added-p {
   display: flex;
   flex-direction: row;
   gap: 10px;
   margin-left: 3px;
+  align-items: center;
 }
 
 .addedp-name {
-  border: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.669);
   padding: 10px;
   font-size: 23px;
   border-radius: 4px;
-  width: 80%;
+  width: 85%;
+  color: rgb(247, 241, 255);
 }
 
 .addedp-list {
@@ -502,7 +510,10 @@ hr {
   font-family: 'Poppins', sans-serif;
   margin-top: 3em;
 }
-
+.event-input-title{
+  font-size: 1.8rem;
+  color: #bf00ff;
+}
 .event-name-input-container-2 {
   height: 100px;
 }
