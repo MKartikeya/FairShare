@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+* {
+  margin: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.aboutUsPage {
+    background: black;
+    min-height: 600px;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+body{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: #000000;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+}
+/* Nav-bar styling ====================================*/
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  justify-content: space-between;
+  height: 80px;
+  width: 100%;
+  border-bottom: 2px solid #302f38;
+}
+
+.logo {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-size: 2rem;
+  height: 1.3em;
+  overflow: hidden;
+  margin-left: 4em;
+  font-weight: 800;
+}
+
+.nav-tab-container {
+  margin-right: 4em;
+  list-style: none;
+}
+
+.nav-tab {
+  color: white;
+  display: inline-block;
+  padding: 0.2em 0em;
+  margin: 0 0.8em;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nav-tab:hover {
+  border-bottom: 3px solid white;
+  padding-top: 0;
+}
+
+.selected-tab {
+  background-image: linear-gradient(to right, #00E0FF, #8F00FF);
+  border-radius: 25px;
+  padding: 0.25em 1em;
+}
+
+.selected-tab:hover {
+  padding: 0.25em 1em;
+  border: none;
+}
+
+/*=====================================================*/
+
+.aboutUsPage .card{
+    width: 330px;
+    height: 416px;
+    padding: 60px 30px;
+    margin: 50px;
+    background: #01014a7b;
+    box-shadow: 2px 2px 30px 15px #7f55ff;,
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.aboutUsPage .card .content{
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.aboutUsPage .card .content .imgBox{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.aboutUsPage .card .content .imgBox img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.aboutUsPage .card .content .contentBox h4{
+    color: #ffffff;
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.aboutUsPage .card .content .contentBox h5{
+    color: #6c758f;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.aboutUsPage .card .content .sci{
+    margin-top: 20px;
+}
+
+.aboutUsPage .card .content .sci a{
+    text-decoration: none;
+    color: #6c758f;
+    font-size: 30px;
+    margin: 10px;
+    transition: color 0.4s;
+}
+
+.aboutUsPage .card .content .sci a:hover{
+    color: #0196e3;
+}
+
+.text{
+  background: black;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 4rem;
+  color: #d9d9d9;
+  width: 100%;
+  height: 250px;
+  padding-top: 1em;
+}
