@@ -36,8 +36,8 @@ function updatePList() {
   });
 }
 // const eventPFinishBtn=document.querySelector("")
-const bgWelcome = document.querySelector(".bg-welcome");
-const getStarted = document.querySelector(".getStarted");
+// const bgWelcome = document.querySelector(".bg-welcome");
+// const getStarted = document.querySelector(".getStarted");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 const searchBtn = document.querySelector(".search-btn");
 const refreshBtn = document.querySelector(".refresh-btn");
@@ -46,27 +46,27 @@ const participantsPageDone = document.querySelector(".finishPpage");
 const editParticipants = document.querySelector(".delete-edit_participant");
 
 var isAdvanced = 0;
-var closePopUpBtn=document.querySelector(".close-popup-btn")
-closePopUpBtn.addEventListener("click",(event)=>{closePopUp(event)})
+var closePopUpBtn = document.querySelector(".close-popup-btn")
+// closePopUpBtn.addEventListener("click", (event) => { closePopUp(event) })
 participantsPageDone.addEventListener("click", () => {
   editP(0);
 });
 editParticipants.addEventListener("click", () => {
-    // const closePopUpBtn=document.querySelector(".close-popup-btn")
-    // closePopUpBtn.addEventListener("click",(event)=>{closePopUp(event)})
+  // const closePopUpBtn=document.querySelector(".close-popup-btn")
+  // closePopUpBtn.addEventListener("click",(event)=>{closePopUp(event)})
   editP(1);
 });
 createEventBtn.addEventListener("click", createEvent);
-getStarted.addEventListener("click", closePop);
+// getStarted.addEventListener("click", closePop);
 refreshBtn.addEventListener("click", displayEvents);
 searchBtn.addEventListener("click", searchFilter);
-function closePopUp(event){
-    var buttonClicked=event.target;
-    var popup=buttonClicked.parentElement.parentElement;
-    popup.style.display='none';
+function closePopUp(event) {
+  var buttonClicked = event.target;
+  var popup = buttonClicked.parentElement.parentElement;
+  popup.style.display = 'none';
 }
 function closePop() {
-  bgWelcome.classList.add("remove");
+  // bgWelcome.classList.add("remove");
 }
 displayEvents();
 const addPbtn = document.querySelector(".newp-add");
@@ -176,9 +176,8 @@ function displayParticipants(n) {
   container.innerHTML = "";
   for (let name of participantsList) {
     container.innerHTML += `<div class="event-participant" id="${name}">
-        <input type="checkbox" class="participant-checkbox" id="${
-          name + 3 + n
-        }">
+        <input type="checkbox" class="participant-checkbox" id="${name + 3 + n
+      }">
         <h3 class="event-participant-name">${name}</h3>
         <div class="participant-contribution-container">
         <input class="participant-contribution" id="${name + n}">   
@@ -244,7 +243,7 @@ function goPrev() {
 }
 
 // work in progress
-function updateBtns() {}
+function updateBtns() { }
 // ==============================================================================
 
 function editP(flag) {
@@ -276,6 +275,8 @@ function editP(flag) {
     if (eventsList.length > 0) {
       updateEventsDb();
     }
+    // added by nimai
+    updateNet();
   }
 }
 
@@ -286,8 +287,6 @@ function createEvent() {
   displayParticipants(1);
   displayParticipants(2);
 }
-
-// Do not touch nimai's gurl once more
 
 function fetchParticipants() {
   var xhr = new XMLHttpRequest();
@@ -308,6 +307,7 @@ function fetchParticipants() {
       }
     }
   };
+  updateNet(); // added by nimai
 }
 
 function fetchEvents() {
@@ -325,6 +325,7 @@ function fetchEvents() {
       }
     }
   };
+  updateNet(); // added by nimai
 }
 
 function fetchEventData() {
@@ -341,6 +342,7 @@ function fetchEventData() {
       }
     }
   };
+  updateNet(); // added by nimai
 }
 
 function displayEventDataEntries(entries) {
@@ -371,9 +373,10 @@ function eventPageDone() {
     alert("You entered Invalid amount!!");
     return;
   }
-  //to validate paid amounts//
 
-  //getting the list of participants involved:
+  // to validate paid amounts //
+
+  // getting the list of participants involved:
   var paidParticipants = [];
   var toPayParticipants = [];
   participantsList.forEach((name) => {
@@ -386,29 +389,29 @@ function eventPageDone() {
   });
 
   if (isAdvanced) {
-    
 
-    //chesking validity
+
+    //checking validity
     var paidSum = 0,
       toPaySum = 0;
     paidParticipants.forEach((name) => {
       var paidAmount = Number(document.getElementById(`${name + 1}`).value);
-      if(isNaN(paidAmount)){
-        alert("Invalid amount entered for"+ `${name}` +"!!");
+      if (isNaN(paidAmount)) {
+        alert("Invalid amount entered for" + `${name}` + "!!");
         return;
       }
       paidSum += paidAmount;
     });
     toPayParticipants.forEach((name) => {
       var toPayAmount = Number(document.getElementById(`${name + 2}`).value);
-      if(isNaN(toPayAmount)){
-        alert("Invalid amount entered for"+ `${name}` +"!!");
+      if (isNaN(toPayAmount)) {
+        alert("Invalid amount entered for" + `${name}` + "!!");
         return;
       }
       toPaySum += toPayAmount;
     });
     if (paidSum != totalAmount) {
-        goPrev()
+      goPrev()
       alert("The paid Amount doesn't sum up.Please recheck the values!!");
       return;
     }
@@ -416,8 +419,8 @@ function eventPageDone() {
       alert("The to pay Amount doesn't sum up.Please recheck the values!!");
       return;
     }
-    //will proceed into entering into eventsData after 
-    //initislising and entering into events list ***should be done only if it is valid;
+    // will proceed into entering into eventsData after 
+    // initialising and entering into events list ***should be done only if it is valid;
     eventsList.push(eventName);
     displayEvents();
     let row = new Array();
@@ -428,15 +431,15 @@ function eventPageDone() {
     paidData.push(row.slice()); // create a copy of row
     toPayData.push(row.slice()); // create a copy of row
     paidParticipants.forEach((name) => {
-        var paidAmount = Number(document.getElementById(`${name + 1}`).value);
-        eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=paidAmount
-        paidData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=paidAmount
-      });
-      toPayParticipants.forEach((name) => {
-        var toPayAmount = Number(document.getElementById(`${name + 2}`).value);
-        eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]-=toPayAmount
-        toPayData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=toPayAmount
-      });
+      var paidAmount = Number(document.getElementById(`${name + 1}`).value);
+      eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += paidAmount
+      paidData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += paidAmount
+    });
+    toPayParticipants.forEach((name) => {
+      var toPayAmount = Number(document.getElementById(`${name + 2}`).value);
+      eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -= toPayAmount
+      toPayData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += toPayAmount
+    });
     toggleSettings(1)
   } else {
     //initislising and entering into events list ***should be done only if it is valid;
@@ -451,20 +454,18 @@ function eventPageDone() {
     paidData.push(row.slice()); // create a copy of row
     toPayData.push(row.slice()); // create a copy of row
     console.log(paidData)
-    // toPayData.push(row);
 
     var indAmountPaid = totalAmount / paidParticipants.length;
     var indAmounttoPay = totalAmount / toPayParticipants.length;
     paidParticipants.forEach((name) => {
-      eventsData[eventsList.indexOf(eventName)][ participantsList.indexOf(name)] +=indAmountPaid;
-      paidData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmountPaid
+      eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmountPaid;
+      paidData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmountPaid
     });
     toPayParticipants.forEach((name) => {
-      eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -=indAmounttoPay;
-      toPayData[eventsList.indexOf(eventName)][participantsList.indexOf(name)]+=indAmounttoPay
+      eventsData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] -= indAmounttoPay;
+      toPayData[eventsList.indexOf(eventName)][participantsList.indexOf(name)] += indAmounttoPay
     });
   }
-//   console.log(eventsData);
 
   var createEventPage = document.getElementsByClassName("create-event-page")[0];
   createEventPage.style.display = "none";
@@ -497,6 +498,8 @@ function updateEventsDb() {
     }
   };
   req.send(dataEventData);
+  // added by nimai 
+  updateNet();
 }
 
 // functions to display event-wise results and final results
@@ -514,10 +517,6 @@ function displayEventResults(event) {
   graphNegative.innerHTML = "";
 
   let index = eventsList.indexOf(event);
-  // let index = 0;
-
-  // console.log(event);
-  // console.log(eventsList[0]);
 
   let maxPrice = 0;
   for (let i of eventsData[index]) maxPrice = Math.max(maxPrice, Math.abs(i));
@@ -530,33 +529,32 @@ function displayEventResults(event) {
 
   for (let member of eventsData[index]) {
     if (member > 0) {
-      graphPositive.innerHTML += `<div class="positive-bar" style='height:${
-        (member / maxPrice) * 80
-      }%;'></div>`;
-      // console.log(member);
+      graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 90
+        }%;'></div>`;
     } else if (member < 0) {
-      graphNegative.innerHTML += `<div class="negative-bar" style='height:${
-        -(member / maxPrice) * 80
-      }%;'></div>`;
+      graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 90
+        }%;'></div>`;
     }
   }
-  const spent = document.getElementsByClassName("spent-body")[0];
-  const net = document.getElementsByClassName("net-body")[0];
+  const spent = document.getElementsByClassName("display-spent")[0];
   spent.innerHTML = "";
-  net.innerHTML = "";
+  let temp = document.createElement('div');
+  temp.classList.add('spent-body');
+  spent.innerHTML += ` <div class="spent-head">
+  <h1 class="spent-name">Participant</h1>
+  <h1 class="spent-paid">Paid</h1>
+  <h1 class="spent-to-pay">To be Paid</h1>
+  </div>
+  `;
 
-  for (let member in eventsData[index]) {
-    net.innerHTML += `<div class="event-result">
-        <h1 class="event-result-text">${participantsList[member]}</h1>
-        <h1 class="event-result-text ${
-          eventsData[index][member] >= 0 ? "positive-result" : "negative-result"
-        }">
-        ${
-          (eventsData[index][member] >= 0 ? "+" : "") +
-          eventsData[index][member]
-        }</h1>
-        </div>`;
+  for (let member = 0; member < participantsList.length; member++) {
+    temp.innerHTML += `<div class="event-result">
+    <h1 class="spent-name">${participantsList[member]}</h1>
+    <h1 class="spent-paid">${paidData[index][member]}</h1>
+    <h1 class="spent-to-pay">${toPayData[index][member]}</h1>
+    </div>`
   }
+  spent.append(temp);
 }
 
 function showResults() {
@@ -582,10 +580,6 @@ function showResults() {
   }
 
   while (negative.length && positive.length) {
-    console.log(negative[negative.length - 1][0]);
-    console.log(negative[negative.length - 1][1]);
-    console.log(positive[positive.length - 1][0]);
-    console.log(positive[positive.length - 1][1]);
 
     if (positive[positive.length - 1][0] > -negative[negative.length - 1][0]) {
       pay[negative[negative.length - 1][1]].push([
@@ -610,8 +604,7 @@ function showResults() {
         -negative[negative.length - 1][0],
         negative[negative.length - 1][1],
       ]);
-      console.log(positive);
-      console.log(negative.length);
+
       positive.pop();
       negative.pop();
       continue;
@@ -628,9 +621,6 @@ function showResults() {
     positive.pop();
   }
 
-  console.log(pay);
-  console.log(totalNet);
-
   let finalPay = document.getElementById("final-pay");
   let finalReceive = document.getElementById("final-receive");
 
@@ -645,15 +635,14 @@ function showResults() {
         <button id='drop-down' onclick="dropDownResult('${i}p')">></button>
         <p>${participantsList[i]} <span style='color:red;'>pays ${-totalNet[
       i
-    ]}</span></p>
+      ]}</span></p>
         </div>`;
 
     finalParent += `<div class='child-container' id='${i}p' style="display: none">`;
     for (let member of pay[i]) {
       finalParent += `<div class="final-child">
-            <p>${participantsList[i]} <span style='color:red;'>pays ${
-        member[0]
-      }</span> to ${participantsList[member[1]]}</p>
+            <p>${participantsList[i]} <span style='color:red;'>pays ${member[0]
+        }</span> to ${participantsList[member[1]]}</p>
             </div>`;
     }
 
@@ -674,11 +663,9 @@ function showResults() {
     finalParent += `<div class='child-container' id='${i}r' style="display: none">`;
     for (let member of receive[i]) {
       finalParent += `<div class="final-child">
-            <p>${
-              participantsList[i]
-            } <span style='color:chartreuse; '>receives ${
-        member[0]
-      }</span> from ${participantsList[member[1]]}</p>
+            <p>${participantsList[i]
+        } <span style='color:chartreuse; '>receives ${member[0]
+        }</span> from ${participantsList[member[1]]}</p>
             </div>`;
     }
 
@@ -705,14 +692,12 @@ function showResults() {
 
   for (let member of totalNet) {
     if (member > 0) {
-      graphPositive.innerHTML += `<div class="positive-bar" style='height:${
-        (member / maxPrice) * 80
-      }%;'></div>`;
+      graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 80
+        }%;'></div>`;
       console.log(member);
     } else if (member < 0) {
-      graphNegative.innerHTML += `<div class="negative-bar" style='height:${
-        -(member / maxPrice) * 80
-      }%;'></div>`;
+      graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 80
+        }%;'></div>`;
     }
   }
 
@@ -724,12 +709,63 @@ function showResults() {
   for (let member in totalNet) {
     net.innerHTML += `<div class="event-result">
         <h1 class="event-result-text">${participantsList[member]}</h1>
-        <h1 class="event-result-text ${
-          totalNet[member] >= 0 ? "positive-result" : "negative-result"
-        }">
+        <h1 class="event-result-text ${totalNet[member] >= 0 ? "positive-result" : "negative-result"
+      }">
         ${(totalNet[member] >= 0 ? "+" : "") + totalNet[member]}</h1>
         </div>`;
   }
+}
+
+function updateNet() {
+  const net = document.getElementsByClassName('display-net')[0];
+  console.log(participantsList.length)
+  if (participantsList.length == 0) {
+    return;
+  }
+
+  net.innerHTML = "";
+  net.innerHTML += `
+    <div class="net-head">
+      <h1>Participant</h1>
+      <h1>Net</h1>
+    </div>`;
+
+  const temp = document.createElement('div');
+  temp.classList.add('net-body');
+  if (eventsData.length == 0) {
+    participantsList.forEach((value) => {
+      temp.innerHTML += `<div class="event-result">
+      <h1 class="event-result-text">${value}</h1>
+      <h1 class="event-result-text positive-result">+0</h1>
+      </div>`;
+    });
+
+    net.append(temp);
+    return;
+  }
+  const totalNet = Array(participantsList.length);
+  for (let member = 0; member < participantsList.length; member++) {
+    totalNet[member] = 0;
+    for (let event = 0; event < eventsList.length; event++)
+      totalNet[member] += Number(eventsData[event][member]);
+  }
+
+  participantsList.forEach((value, index) => {
+    if (totalNet[index] >= 0) {
+      temp.innerHTML += `<div class="event-result">
+      <h1 class="event-result-text">${value}</h1>
+      <h1 class="event-result-text positive-result">+${totalNet[index]}</h1>
+      </div>`;
+    }
+    else {
+      temp.innerHTML += `<div class="event-result">
+      <h1 class="event-result-text">${value}</h1>
+      <h1 class="event-result-text negative-result">${totalNet[index]}</h1>
+      </div>`;
+    }
+  });
+
+  net.append(temp);
 }
 
 function dropDownResult(id) {

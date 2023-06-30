@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FairShare</title>
-    <link rel="stylesheet" href="style-copy.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fontawesome.com/icons/filter?f=classic&s=solid&an=bounce&pc=%231a5181">
 </head>
@@ -71,8 +71,8 @@
             <div class="event-next-page">
                 <div class="next-previous">
                     <button class="event-btn" onclick="goPrev()">
-                        << /button>
-                            <button class="event-btn" onclick="goNext()">></button>
+                        &#x27E8;</button>
+                    <button class="event-btn" onclick="goNext()">&#12297;</button>
                 </div>
                 <div class="events-settings">
                     <a onclick="toggleSettings(1)" id="settings1">Advanced Settings</a>
@@ -128,74 +128,57 @@
                     </div>
                 </div>
                 <div class="event-list">
-                    <button class="event"><p class="event-p">hi</p></button>
+                    <button class="event">
+                        <p class="event-p">Transport</p>
+                    </button>
+                    <button class="event">
+                        <p class="event-p">Ice Cream</p>
+                    </button>
+                    <button class="event">
+                        <p class="event-p">Bowling</p>
+                    </button>
+                    <button class="event">
+                        <p class="event-p">Lake</p>
+                    </button>
                 </div>
                 <div class="not-found nothing-close">No such Event found</div>
             </div>
-            <div class="display-area">
-                <div class="display-graph-container">
-                    <div class="graph-positive">
 
-                    </div>
-                    <div class="graph-negative">
-
-                    </div>
-                </div>
-
-                <div id="final-pay" class="display-final">
-
-                </div>
-                <div id="final-receive" class="display-final">
-                    <div class="final-parent">
-                        <div class="final-child" style="font-size: 1em;">
-                            <button id='drop-down'>></button>
-                            <p>Nimai <span style='color:chartreuse;'>pays 50</span></p>
-                        </div>
-                        <div class="child-container">
-                            <div class="final-child">
-                                <p>Nimai <span style='color:chartreuse; '>pays 50</span> to me</p>
+            <div class="main-column">
+                <div class="graph-event-data-container">
+                    <div class="display-graph-container">
+                        <div class="display-graph">
+                            <div class="graph-positive">
+                             
+                            </div>
+                            <div class="graph-negative">
+                               
                             </div>
                         </div>
                     </div>
-
-                </div>
-
-
-                <div class="display-net">
-                    <div class="net-head">
-                        <h1>Participant</h1>
-                        <h1>Net</h1>
-                    </div>
-                    <div class="net-body">
-                        <div class="event-result">
-                            <h1 class="event-result-text">Name</h1>
-                            <h1 class="event-result-text positive-result">+50</h1>
-                        </div>
-                        <div class="event-result">
-                            <h1 class="event-result-text">Name2</h1>
-                            <h1 class="event-result-text negative-result">-50</h1>
-                        </div>
+                    <div class="event-data">
+                        
                     </div>
                 </div>
                 <div class="display-spent">
-                    <div class="spent-head">
-                        <h1>Participant</h1>
-                        <h1>Spent</h1>
-                    </div>
-                    <div class="spent-body">
+                   
+                </div>
+            </div>
+            <div class="side-column">
+                <div class="display-net">
 
+                </div>
+                <div class="tools-container">
+                    <p class="tools-text">Tools</p>
+                    <div class="tools-content">
+                        <button class="create-event tools">Create Event</button>
+                        <button class="tools">Edit Events</button>
+                        <button class="delete-edit_participant tools">Edit Participants</button>
+                        <button class="tools" onclick="showResults()">Show Result</button>
                     </div>
                 </div>
             </div>
-            <div class="tools-container">
-                <p class="tools-text">Tools</p>
-                <div class="tools-content">
-                    <button class="create-event">Create Event</button>
-                    <button class="edit-events">Edit Events</button>
-                    <button class="delete-edit_participant">Edit Participants</button>
-                    <button class="show-result" onclick="showResults()">Show Result</button>
-                </div>
-            </div>
+
         </div>
     </div>
 
