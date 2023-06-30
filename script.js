@@ -16,6 +16,8 @@ window.addEventListener("load", (event) => {
   fetchParticipants();
   fetchEvents();
   fetchEventData();
+  fetchPaidData();
+  fetchToPaidData();
   console.log("page is fully loaded");
 });
 function updatePList() {
@@ -345,6 +347,50 @@ function fetchEventData() {
   updateNet(); // added by nimai
 }
 
+function fetchPaidData(){
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "fetch_paidData.php", true);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var entries = JSON.parse(this.responseText);
+        displayPaidDataEntries(entries);
+      } else {
+        console.error("Fetching paidData error!");
+      }
+    }
+  };
+}
+
+function fetchToPaidData(){
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "fetch_toPayData.php", true);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var entries = JSON.parse(this.responseText);
+        displayToPayDataEntries(entries);
+      } else {
+        console.error("Fetching toPayData error!");
+      }
+    }
+  };
+}
+
+function displayToPayDataEntries(entries){
+  entries.forEach(function (entry) {
+    toPayData.push(Object.values(entry));
+  });
+}
+
+function displayPaidDataEntries(entries){
+  entries.forEach(function (entry) {
+    paidData.push(Object.values(entry));
+  });
+}
+
 function displayEventDataEntries(entries) {
   entries.forEach(function (entry) {
     eventsData.push(Object.values(entry));
@@ -488,6 +534,7 @@ function updateEventsDb() {
   };
   xhr.send(dataEventName);
 
+  //Database for eventsData
   const req = new XMLHttpRequest();
   const dataEventData = new FormData();
   dataEventData.append("eventsData", JSON.stringify(eventsData));
@@ -498,8 +545,6 @@ function updateEventsDb() {
     }
   };
   req.send(dataEventData);
-  // added by nimai 
-  updateNet();
 }
 
 // functions to display event-wise results and final results
@@ -776,3 +821,11 @@ function dropDownResult(id) {
 }
 
 // =========================================================
+
+function editEvents(){
+  //call createEvent()
+  //set all values and check boxes and call 
+  //two ways
+  //1)modifying eventPage done such that it wont create another row and add again into eventsList
+  //2)deleting this event and calling eventPageDone normally
+}
