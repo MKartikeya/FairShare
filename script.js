@@ -545,6 +545,7 @@ function updateEventsDb() {
     }
   };
   req.send(dataEventData);
+  updateNet();
 }
 
 // functions to display event-wise results and final results
@@ -556,6 +557,7 @@ function updateEventsDb() {
  */
 
 function displayEventResults(event) {
+  updateNet();
   const graphPositive = document.getElementsByClassName("graph-positive")[0];
   const graphNegative = document.getElementsByClassName("graph-negative")[0];
   graphPositive.innerHTML = "";
