@@ -564,6 +564,7 @@ function displayEventResults(event) {
   graphNegative.innerHTML = "";
 
   let index = eventsList.indexOf(event);
+  // const posBars = [];
 
   let maxPrice = 0;
   for (let i of eventsData[index]) maxPrice = Math.max(maxPrice, Math.abs(i));
@@ -583,6 +584,13 @@ function displayEventResults(event) {
         }%;'></div>`;
     }
   }
+  // const pos = document.querySelectorAll('.positive-bar');
+  // pos.forEach((value, index) => {
+  //   value.style.height = (posBars[index] + '%');
+  //   console.log(posBars[index] + '%');
+  // });
+
+
   const spent = document.getElementsByClassName("display-spent")[0];
   spent.innerHTML = "";
   let temp = document.createElement('div');
