@@ -561,6 +561,32 @@ function updateEventsDb() {
 var mychart;
 function displayEventResults(event) {
   updateNet();
+  // const graphPositive = document.getElementsByClassName("graph-positive")[0];
+  // const graphNegative = document.getElementsByClassName("graph-negative")[0];
+  // graphPositive.innerHTML = "";
+  // graphNegative.innerHTML = "";
+
+  // let index = eventsList.indexOf(event);
+  // // const posBars = [];
+
+  // let maxPrice = 0;
+  // for (let i of eventsData[index]) maxPrice = Math.max(maxPrice, Math.abs(i));
+
+  // let posCount = 0;
+  // for (let i of eventsData[index]) posCount += i > 0;
+
+  // for (let i = 0; i < posCount; i++)
+  //   graphNegative.innerHTML += `<div class="invisible-bar"></div>`;
+
+  // for (let member of eventsData[index]) {
+  //   if (member > 0) {
+  //     graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 90
+  //       }%;'></div>`;
+  //   } else if (member < 0) {
+  //     graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 90
+  //       }%;'></div>`;
+  //   }
+  // }
 
   const barColors = [];
   const barValues = [];
@@ -862,7 +888,7 @@ function updateNet() {
       labels: eventsList,
       datasets: [{
         label: 'Events',
-      
+        data: eventNet,
       }]
     },
     options: {
