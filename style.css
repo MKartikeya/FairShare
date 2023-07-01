@@ -183,6 +183,7 @@ hr {
   flex-direction: row;
   width: 100%;
   min-height: 92vh;
+  max-height: 800px;
 }
 
 /* event-list styling ================================== */
@@ -200,13 +201,16 @@ hr {
 
 .event-list {
   width: 100%;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+  max-height: 300px;
 }
 
 .event {
   margin: 0.4em;
+  margin-left: 1.8em;
   height: 40px;
   width: 90%;
   border-radius: 6px;
@@ -600,7 +604,7 @@ overflow: hidden !important;
 }
 
 .events-settings a {
-  text-decoration: underline;
+  text-decoration: none;
   color: white;
   cursor: pointer;
 }
@@ -683,6 +687,10 @@ overflow: hidden !important;
 .nav-tab:hover {
   border-bottom: 3px solid white;
   padding-top: 0;
+}
+
+.nav-tab a {
+  text-decoration: none;
 }
 
 .selected-tab {
@@ -817,7 +825,7 @@ overflow: hidden !important;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .side-column {
@@ -897,6 +905,7 @@ overflow: hidden !important;
   width: 38.5%;
   height: 300px;
   background-color: #141417;
+  /* background-color: white; */
   border-radius: 20px;
   margin-right: 1.3em;
   margin-left: 1em;
@@ -905,6 +914,16 @@ overflow: hidden !important;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  margin: 0.5em 0;
+  width: auto;
+}
+
+#myChartBar {
+  margin: 0 1em;
 }
 
 .event-data-head {
@@ -929,7 +948,7 @@ overflow: hidden !important;
 .display-net {
   overflow-y: auto;
   height: 490px;
-  margin: 1em 1.3em 0 0;
+  margin: 1em 1.3em 1em 0;
 }
 
 .display-spent {

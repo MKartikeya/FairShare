@@ -1,3 +1,5 @@
+// import Chart
+
 let eventsData = new Array();
 const eventsList = [];
 let paidData = new Array();
@@ -556,40 +558,52 @@ function updateEventsDb() {
  *  dont touch my gurl
  */
 
+var mychart;
 function displayEventResults(event) {
   updateNet();
-  const graphPositive = document.getElementsByClassName("graph-positive")[0];
-  const graphNegative = document.getElementsByClassName("graph-negative")[0];
-  graphPositive.innerHTML = "";
-  graphNegative.innerHTML = "";
 
+  const barColors = [];
+  const barValues = [];
+  const barData = [];
   let index = eventsList.indexOf(event);
-  // const posBars = [];
-
-  let maxPrice = 0;
-  for (let i of eventsData[index]) maxPrice = Math.max(maxPrice, Math.abs(i));
-
-  let posCount = 0;
-  for (let i of eventsData[index]) posCount += i > 0;
-
-  for (let i = 0; i < posCount; i++)
-    graphNegative.innerHTML += `<div class="invisible-bar"></div>`;
-
-  for (let member of eventsData[index]) {
-    if (member > 0) {
-      graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 90
-        }%;'></div>`;
-    } else if (member < 0) {
-      graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 90
-        }%;'></div>`;
+  for (let i = 0; i < participantsList.length; i++) {
+    if (eventsData[index][i] > 0) {
+      barValues.push(participantsList[i]);
+      barColors.push('#24FF00');
+      barData.push(eventsData[index][i]);
+    } else if (eventsData[index][i] < 0) {
+      barValues.push(participantsList[i]);
+      barColors.push('#D80000');
+      barData.push(eventsData[index][i]);
     }
   }
-  // const pos = document.querySelectorAll('.positive-bar');
-  // pos.forEach((value, index) => {
-  //   value.style.height = (posBars[index] + '%');
-  //   console.log(posBars[index] + '%');
-  // });
 
+
+  const ctx = document.getElementById('myChartBar');
+
+  if (mychart != null)
+    mychart.destroy();
+
+  mychart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: barValues,
+      datasets: [{
+        label: 'Net',
+        data: barData,
+        borderWidth: 1,
+        backgroundColor: barColors
+        // barWidth: 0.1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 
   const spent = document.getElementsByClassName("display-spent")[0];
   spent.innerHTML = "";
@@ -771,6 +785,7 @@ function showResults() {
   }
 }
 
+var mypie;
 function updateNet() {
   const net = document.getElementsByClassName('display-net')[0];
   console.log(participantsList.length)
@@ -824,7 +839,7 @@ function updateNet() {
 
   net.append(temp);
 
-  const eventDiv = document.getElementsByClassName('event-data')[0];
+  const eventDiv = document.querySelector('#myChartPie').getContext("2d");
   if (eventsList.length == 0) return;
 
   const temp2 = document.createElement('div');
@@ -838,24 +853,22 @@ function updateNet() {
     });
   });
 
-  eventDiv.innerHTML = "";
-  eventDiv.innerHTML += `
-    <div class="event-data-head">
-      <h1>Event</h1>
-      <h1>Spent</h1>
-    </div>`;
+  if (mypie != null)
+    mypie.destroy();
 
-  eventNet.forEach((value, index) => {
-    temp2.innerHTML += `<div class="event-result">
-        <h1 class="event-result-text">${eventsList[index]}</h1>
-        <h1 class="event-result-text positive-result">${value}</h1>
-        </div>`;
-
+  mypie = new Chart(eventDiv, {
+    type: 'polarArea',
+    data:  {
+      labels: eventsList,
+      datasets: [{
+        label: 'Events',
+      
+      }]
+    },
+    options: {
+      
+    }
   });
-
-  eventDiv.append(temp2);
-  console.log(temp2.innerHTML);
-  console.log(paidData);
 }
 
 function dropDownResult(id) {
