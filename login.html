@@ -1,24 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Part</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="login-wrapper">
-        <div class="login-bg">
-            <div class="login-box">
-                <h2 class="signin-heading">Sign In</h2>
-                        <form id="loginform" class="input-box">
-                            <input class="boxes" id="email" type="email" placeholder="Email or phone number">
-                            <input class="boxes" id="password" type="password" placeholder="Password">
-                            <button type="submit" onclick="writeData()" class="signin-btn boxes" >Sign In</button>
-                        </form>
-            </div>
+      <div class="login-bg">
+        <div class="nav-bar">
+          <span class="logo">FairShare</span>
+          <ul class="nav-tab-container">
+            <li class="nav-tab">Home</li>
+            <li class="nav-tab">
+              <a href="./index.html" style="color: white">Dashboard</a>
+            </li>
+            <li class="nav-tab">Create New</li>
+            <li class="nav-tab selected-tab">About Us</li>
+          </ul>
         </div>
+        <div class="content-box">
+          <div class="left">
+            <h1 class="frontp-heading">FairShare</h1>
+            <div class="typing">
+              <div class="animated-text">Hey! <span></span></div>
+            </div>
+            <p class="nonsense">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet voluptatem deleniti enim praesentium delectus temporibus natus suscipit iure, laborum ipsam exercitationem, optio rem sint. Error enim explicabo quo delectus temporibus ipsam consequuntur dignissimos! Autem eligendi voluptatem, molestiae fuga praesentium facere sit hic sint saepe mollitia nisi temporibus odit voluptates harum, inventore atque perspiciatis officiis voluptate asperiores sunt dolore reprehenderit fugit? Harum dignissimos reiciendis illum voluptatibus possimus praesentium incidunt neque in, nihil omnis cupiditate ab, at porro culpa, debitis autem maiores vitae ea ex dolores tenetur facilis molestiae architecto? Iure, praesentium debitis? Eveniet beatae optio possimus soluta sequi reprehenderit deleniti quia.</p>
+          </div>
+          <div class="right"></div>
+        </div>
+        <div class="timeline">
+            <div class="line"></div>
+            <div class="section">
+                <div class="bead"></div>
+                <div class="content">
+                    <h2 class="instruction-title">Start by adding Participants</h2>
+                    <div class="img-instructions">
+                        <img src="/images/Screenshot from 2023-07-01 13-35-23.png" class="addp-image" alt="">
+                        <ul class="instruction-steps">
+                            <li>1)Add the trip name in the place holder</li>
+                            <li>2)Type participant name and click on the add button to add the participant.</li>
+                            <li>3)Click on the remove button beside participant to remove.</li>
+                            <li>4)Click next to save the participants added.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="bead"></div>
+                <div class="content">
+                    <h2>Doesn't matter</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi nesciunt ipsa labore illum deserunt beatae quasi at reprehenderit molestias. Odio.</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="bead"></div>
+                <div class="content">
+                    <h2>Doesn't matter</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi nesciunt ipsa labore illum deserunt beatae quasi at reprehenderit molestias. Odio.</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="bead"></div>
+                <div class="content">
+                    <h2>Doesn't matter</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi nesciunt ipsa labore illum deserunt beatae quasi at reprehenderit molestias. Odio.</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="bead"></div>
+                <div class="content">
+                    <h2>Doesn't matter</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi nesciunt ipsa labore illum deserunt beatae quasi at reprehenderit molestias. Odio.</p>
+                </div>
+            </div>
+            <div class="section">
+                <div class="bead"></div>
+                <div class="content">
+                    <h2>Doesn't matter</h2>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi nesciunt ipsa labore illum deserunt beatae quasi at reprehenderit molestias. Odio.</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="login">
+          <div class="login-box">
+            <h2 class="signin-heading">Sign In</h2>
+            <form id="loginform" class="input-box">
+              <input
+                class="boxes"
+                id="email"
+                type="email"
+                placeholder="Email or phone number"
+              />
+              <input
+                class="boxes"
+                id="password"
+                type="password"
+                placeholder="Password"
+              />
+              <button
+                type="submit"
+                onclick="writeData()"
+                class="signin-btn boxes"
+              >
+                Sign In
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+    <script src="timeline.js"></script>
+  </body>
 </html>

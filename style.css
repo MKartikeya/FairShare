@@ -55,7 +55,7 @@ h1 {
   font-size: 60px;
   top: 0;
   /* animation: up 10s linear  down 10s linear infinite; */
-  animation: upAndDown 30s ease-in-out infinite;
+  /* animation: upAndDown 30s ease-in-out infinite; */
 }
 
 p {
@@ -401,7 +401,7 @@ hr {
   margin-top: 3rem;
   margin-bottom: 2rem;
   font-size: 2.3rem;
-  color: #00fbff !important;
+  color: #0196e3!important;
   font-weight: bolder;
 }
 
@@ -416,7 +416,7 @@ hr {
   /* margin-top: 3rem; */
   padding: 1rem;
   overflow: hidden;
-  color: #00fbff ;
+  color: #0196e3 ;
   height: 50px;
 }
 
@@ -457,12 +457,13 @@ overflow: hidden !important;
 
 .newp-add {
   color: #2eff51e4;
-
   overflow: hidden;
 }
 
 .newp-remove {
   overflow: hidden;
+  color: red;
+  font-size: 35px!important
 }
 
 /* .newp-add:hover {

@@ -6,7 +6,11 @@
     box-sizing: border-box;
 }
 .login-bg{
-    height: 100vh;
+    background-color: rgb(15, 0, 37);
+}
+.login{
+    /* height: 100vh; */
+    padding:4rem;
     width: 100%;
     /* background: linear-gradient(to bottom,rgba(60, 1, 128, 0.71),rgb(37, 1, 90),rgb(27, 0, 44),rgb(11, 0, 24),black) */
     background: linear-gradient(to bottom, #00E0FF, #6200ff,rgb(78, 1, 150));
@@ -58,6 +62,283 @@
     font-weight: bolder;
     align-items: center;
     height: 50px;    
+}
+.nav-bar{
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+.content-box{
+    /* background-color: #8000ff36; */
+    background-color: rgb(14, 3, 30);
+    height: 100vh;
+    /* width: 100%; */
+    margin: 40px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+    font-family: 'Poppins', sans-serif;
+}
+.right{
+    position: relative;
+    display: inline;
+}
+.right::after{
+    content: '';
+    width: 15px;
+    height: 65%;
+    background-color: rgb(255, 0, 187);
+    position: absolute;
+    left: 40px;
+    top: 90px;
+    border-radius: 4px;
+}
+.left{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 20%;
+    position: relative;
+    /* border-right: 10px solid white; */
+    padding-bottom: 0;
+}
+.right{
+    width: 35%;
+    display: inline;
+    position: relative;
+
+}
+.right::before{
+    background-color: white;
+    color: white;
+    width: 20px;
+    height: 100px;
+    display: block;
+    position: absolute;
+    /* left: 50vw;
+    top: 40vh; */
+}
+.typing{
+    display: flex;
+    position: absolute;
+    margin-left: 4%;
+    top: 18rem;
+}
+.frontp-heading{
+    margin-top:10%;
+    font-size: 6rem;
+    color: white;
+    font-weight: bolder;
+    background: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* border-right: 16px solid rgb(113, 231, 255); */
+    /* padding-right: 20px; */
+}
+.nonsense{
+    margin-top: 8rem;
+    width: 130%;
+    font-size: 1.3rem;
+    color: rgba(240, 248, 255, 0.842);
+
+}
+.animated-text{
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+    color: white;
+}
+
+.animated-text span{
+    position: relative;
+}
+
+.animated-text span::before{
+    content: "Youtuber";
+    background: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 50;
+    animation: words 20s infinite;
+}
+
+.animated-text span::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    z-index: 200;
+    border-left: 8px solid #50e8ff;
+    background-color: rgb(14, 3, 30);
+    right: -8px;
+    animation: cursor .8s infinite, typing 20s steps(14) infinite;
+}
+.container{
+    color: white;
+    width: 50%;
+    position: relative;
+    padding: 10px 50px;
+    animation: movedown 1s linear forwards;
+}
+.left-container{
+    left:0
+}
+.right-container{
+    left: 50%;
+}
+.text-box2{
+    width: 100%!important;
+    position: relative;
+    background-color: #000000ad;
+    border-radius: 4px;
+    padding: 10px 15px;
+}
+.timeline{
+    position: relative;
+    /* max-width: 1200px; */
+    /* margin: 100px auto; */
+    overflow: hidden;
+    max-height: none;
+}
+.section{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: 600ms ease;
+    position: relative;
+    z-index: 100;
+    margin: 50px 0;
+    padding: 1rem;
+    border-radius: 1rem;
+    align-items: center;
+    min-height: 300px;
+}
+
+.section:nth-child(odd){
+    flex-direction: row-reverse;
+    transform: translateX(100%);
+}
+.show-me:nth-child(n){
+    transform: none;
+    opacity: 1;
+}
+.instruction-title{
+    color: aqua;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+}
+.bead{
+    position: absolute;
+    display: block;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    background-color: #00E0FF;
+}
+.content{
+    width: 40%;
+    background-color: rgba(255, 255, 255, 0.083);
+    min-height: 20rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-width: 4px; /* Set the desired border width */
+    border-style: solid; /* Set the border style to solid */
+    border-image: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182)); /* Set the linear gradient */
+    border-image-slice: 1; /* Ensure the gradient covers the entire border */
+    /* box-shadow: 2px 2px 50px 1px #7f55ff; */
+    
+}
+.content::after{
+    content: '';
+     border-image: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182)); /* Set the linear gradient */
+    border-radius: 15px;
+}
+.addp-image{
+    width: 60%;
+}
+.img-instructions{
+    display: flex;
+    flex-direction: row;
+}
+.instruction-steps{
+    width: 40%;
+    padding: 1rem;
+    color: rgb(84, 89, 252);
+    font-size: 1.2rem;
+    list-style: circle;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-weight: bolder;
+}
+
+.line{
+    position: absolute;
+    z-index: 200;
+    width: 5px;
+    left: 49.9%;
+    background-color: rgb(0, 229, 255);
+    display: none;
+    top: 100vh;
+    bottom: 0px;
+    /* height: 500px; */
+    top: 0px;
+    border-radius: 2.5px;
+}
+.line::before,line::after{
+    position: absolute;
+    display: block;
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    left: 50%;
+    top: 200px;
+    transform: translateX(-50%);
+}
+.line::after{
+    bottom: 200px;
+}
+
+@keyframes cursor {
+    to{
+        border-left: 2px solid #ff7f5000;
+    }
+}
+
+@keyframes words {
+    0%,20%{
+        content: "Gone for a Trip?";
+    }
+    21%,40%{
+        content: "Finding it difficult to split expenses?";
+    }
+    41%,60%{
+        content: "To make your work easy";
+    }
+    61%,80%{
+        content: "Here is FairShare";
+    }
+    81%,100%{
+        content: "Get started.";
+    }
+}
+
+@keyframes typing {
+    10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+        width: 0;
+    }
+    5%,20%,25%,40%,45%,60%,65%,80%,85%{
+        width: calc(100% + 8px);
+    }
 }
 @media screen and (max-width:1000px) {
     .login-box{
