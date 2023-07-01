@@ -8,6 +8,7 @@
     <title>FairShare</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://fontawesome.com/icons/filter?f=classic&s=solid&an=bounce&pc=%231a5181">
 </head>
 
@@ -136,18 +137,21 @@
             <div class="main-column">
                 <div class="graph-event-data-container">
                     <div class="display-graph-container">
-                        <div class="display-graph">
+                        <!-- <div class="display-graph">
                             <div class="graph-positive">
                              
                             </div>
                             <div class="graph-negative">
                                
                             </div>
-                            <!-- <div class="positive-cover"></div> -->
-                        </div>
+                        </div> -->
+
+
+                        <canvas id="myChartBar"></canvas>
+
                     </div>
                     <div class="event-data">
-
+                        <canvas id="myChartPie"></canvas>
                     </div>
                 </div>
                 <div class="display-spent">

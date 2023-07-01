@@ -70,6 +70,10 @@ body{
   cursor: pointer;
 }
 
+.nav-bar a {
+  text-decoration: none;
+}
+
 .nav-tab:hover {
   border-bottom: 3px solid white;
   padding-top: 0;
