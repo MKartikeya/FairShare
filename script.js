@@ -347,7 +347,7 @@ function fetchEventData() {
   updateNet(); // added by nimai
 }
 
-function fetchPaidData(){
+function fetchPaidData() {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "fetch_paidData.php", true);
   xhr.send();
@@ -363,7 +363,7 @@ function fetchPaidData(){
   };
 }
 
-function fetchToPaidData(){
+function fetchToPaidData() {
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "fetch_toPayData.php", true);
   xhr.send();
@@ -379,13 +379,13 @@ function fetchToPaidData(){
   };
 }
 
-function displayToPayDataEntries(entries){
+function displayToPayDataEntries(entries) {
   entries.forEach(function (entry) {
     toPayData.push(Object.values(entry));
   });
 }
 
-function displayPaidDataEntries(entries){
+function displayPaidDataEntries(entries) {
   entries.forEach(function (entry) {
     paidData.push(Object.values(entry));
   });
@@ -797,6 +797,8 @@ function updateNet() {
 
     net.append(temp);
     return;
+
+
   }
   const totalNet = Array(participantsList.length);
   for (let member = 0; member < participantsList.length; member++) {
@@ -821,6 +823,39 @@ function updateNet() {
   });
 
   net.append(temp);
+
+  const eventDiv = document.getElementsByClassName('event-data')[0];
+  if (eventsList.length == 0) return;
+
+  const temp2 = document.createElement('div');
+  temp2.classList.add('net-body');
+
+  const eventNet = Array(eventsList.length);
+  eventsList.forEach((value, index) => {
+    eventNet[index] = 0;
+    paidData[index].forEach((val) => {
+      eventNet[index] += val;
+    });
+  });
+
+  eventDiv.innerHTML = "";
+  eventDiv.innerHTML += `
+    <div class="event-data-head">
+      <h1>Event</h1>
+      <h1>Spent</h1>
+    </div>`;
+
+  eventNet.forEach((value, index) => {
+    temp2.innerHTML += `<div class="event-result">
+        <h1 class="event-result-text">${eventsList[index]}</h1>
+        <h1 class="event-result-text positive-result">${value}</h1>
+        </div>`;
+
+  });
+
+  eventDiv.append(temp2);
+  console.log(temp2.innerHTML);
+  console.log(paidData);
 }
 
 function dropDownResult(id) {
@@ -832,7 +867,7 @@ function dropDownResult(id) {
 
 // =========================================================
 
-function editEvents(){
+function editEvents() {
   //call createEvent()
   //set all values and check boxes and call 
   //two ways

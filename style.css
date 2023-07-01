@@ -894,7 +894,13 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.event-data-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 .display-net,
@@ -938,13 +944,20 @@ hr {
 
 .spent-head h1,
 .net-head h1,
+.event-data-head h1,
 .event-result-text {
   font-size: 1.5rem;
   color: #00ddff;
   font-family: 'Poppins', sans-serif;
   margin: 0 30px;
   animation: none;
+  overflow: hidden;
   padding: 1em 0;
+}
+
+.event-data-head h1 {
+  margin: 0;
+  padding: 0.6em 1em;
 }
 
 .net-body,
@@ -1078,6 +1091,10 @@ hr {
 }
 
 .net-body::-webkit-scrollbar-track {
+  background-color: #141417;
+}
+
+.spent-body::-webkit-scrollbar-track {
   background-color: #141417;
 }
 /* browser support */
