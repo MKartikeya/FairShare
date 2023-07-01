@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.login-bg{
+    height: 100vh;
+    width: 100%;
+    /* background: linear-gradient(to bottom,rgba(60, 1, 128, 0.71),rgb(37, 1, 90),rgb(27, 0, 44),rgb(11, 0, 24),black) */
+    background: linear-gradient(to bottom, #00E0FF, #6200ff,rgb(78, 1, 150));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-wrapper{
+    /* background-color: ; */
+}
+.login-box{
+    background-color: rgba(0, 0, 0, 0.737);
+    max-height: 80vh;
+    min-width: 35%;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    /* min-width: 500px; */
+}
+.signin-heading{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: rgb(179, 0, 255);
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+.input-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 5rem;
+}
+.boxes{
+    width: 55%;
+    /* min-width: 300px; */
+    height: 40px;
+    border-radius: 10px;
+    border :none;
+    padding: 10px;
+    font-size: 1rem;
+    outline: none;
+    filter: blur();
+    background-color:rgba(255, 255, 255, 0.823) ;
+}
+.signin-btn{
+    background-color: #00E0FF;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    align-items: center;
+    height: 50px;    
+}
+@media screen and (max-width:1000px) {
+    .login-box{
+        max-width: 95%;
+        width: 70%;
+    }
+    .boxes{
+        width: 65%;
+        max-width: 80%;
+    }
+}
+@media screen and (max-width:600px) {
+    .login-box{
+        max-width: 95%;
+        width: 90%;
+    }
+    .boxes{
+        width: 70%;
+        max-width: 80%;
+    }
+}
