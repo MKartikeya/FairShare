@@ -28,7 +28,7 @@ function updatePList() {
     pBox.classList.add("added-p");
     pBox.innerHTML = `
         <div class="addedp-name">${parName}</div>
-        <i class="fa fa-minus-square newp-remove" style="font-size: 40px!important;color: red !important;"></i>`;
+        <i style="font-size:35px" class="fa newp-remove">&#xf146;</i>`;
     addedPList.append(pBox);
     pBox
       .getElementsByClassName("newp-remove")[0]

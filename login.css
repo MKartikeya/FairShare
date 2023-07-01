@@ -6,7 +6,11 @@
     box-sizing: border-box;
 }
 .login-bg{
-    height: 100vh;
+    background-color: rgb(15, 0, 37);
+}
+.login{
+    /* height: 100vh; */
+    padding:4rem;
     width: 100%;
     /* background: linear-gradient(to bottom,rgba(60, 1, 128, 0.71),rgb(37, 1, 90),rgb(27, 0, 44),rgb(11, 0, 24),black) */
     background: linear-gradient(to bottom, #00E0FF, #6200ff,rgb(78, 1, 150));
@@ -58,6 +62,150 @@
     font-weight: bolder;
     align-items: center;
     height: 50px;    
+}
+.nav-bar{
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+.content-box{
+    /* background-color: #8000ff36; */
+    background-color: rgb(25, 4, 46);
+    height: 100vh;
+    /* width: 100%; */
+    margin: 40px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+    font-family: 'Poppins', sans-serif;
+}
+.right{
+    position: relative;
+    display: inline;
+}
+.right::after{
+    content: '';
+    width: 15px;
+    height: 65%;
+    background-color: rgb(255, 0, 187);
+    position: absolute;
+    left: 40px;
+    top: 90px;
+    border-radius: 4px;
+}
+.left{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-left: 20%;
+    position: relative;
+    /* border-right: 10px solid white; */
+    padding-bottom: 0;
+}
+.right{
+    width: 35%;
+    display: inline;
+    position: relative;
+
+}
+.right::before{
+    background-color: white;
+    color: white;
+    width: 20px;
+    height: 100px;
+    display: block;
+    position: absolute;
+    /* left: 50vw;
+    top: 40vh; */
+}
+.typing{
+    display: flex;
+    position: absolute;
+    margin-left: 4%;
+    top: 18rem;
+}
+.frontp-heading{
+    margin-top:10%;
+    font-size: 6rem;
+    color: white;
+    font-weight: bolder;
+    background: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* border-right: 16px solid rgb(113, 231, 255); */
+    /* padding-right: 20px; */
+}
+.nonsense{
+    margin-top: 8rem;
+    width: 130%;
+    font-size: 1.3rem;
+    color: rgba(240, 248, 255, 0.842);
+
+}
+.animated-text{
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+    color: white;
+}
+
+.animated-text span{
+    position: relative;
+}
+
+.animated-text span::before{
+    content: "Youtuber";
+    background: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 50;
+    animation: words 20s infinite;
+}
+
+.animated-text span::after{
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    z-index: 200;
+    border-left: 8px solid #50e8ff;
+    background-color: rgb(25, 4, 46);
+    right: -8px;
+    animation: cursor .8s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+    to{
+        border-left: 2px solid #ff7f5000;
+    }
+}
+
+@keyframes words {
+    0%,20%{
+        content: "Gone for a Trip?";
+    }
+    21%,40%{
+        content: "Finding it difficult to split expenses";
+    }
+    41%,60%{
+        content: "To make your work easy";
+    }
+    61%,80%{
+        content: "Here is FairSare";
+    }
+    81%,100%{
+        content: "Get started";
+    }
+}
+
+@keyframes typing {
+    10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+        width: 0;
+    }
+    5%,20%,25%,40%,45%,60%,65%,80%,85%{
+        width: calc(100% + 8px);
+    }
 }
 @media screen and (max-width:1000px) {
     .login-box{
