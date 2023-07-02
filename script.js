@@ -426,11 +426,18 @@ function eventPageDone() {
   var totalAmount = Number(
     document.getElementsByClassName("event-amount-input")[0].value
   );
-  if(eventName=="" || eventsList.indexOf(eventName)!=-1){
+  if(eventName==""){
   alert("You haven't entered event name or event name already used.!"  )
   // slideCounter++;
   goPrev()
   return;
+}
+if(eventsList.indexOf(eventName)!=-1){
+  let index=eventsList.indexOf(eventName)
+  eventsList.splice(index,1);
+  eventsData.splice(index,1);
+  paidData.splice(index,1);
+  toPayData.splice(index,1);
 }
   if (isNaN(totalAmount) || totalAmount==0) {
     alert("You entered Invalid amount!!");
@@ -912,13 +919,32 @@ function editEvents() {
     alert('Select an Event first')
     return;
   };
+  createEvent();
   console.log(currentEvent);
-
-  // createEvent();
-  // console.log(index)
   var eventName = document.getElementsByClassName("event-name-input")[0];
-  eventName.value = name;
-  console.log(eventsList.indexOf(name), name)
+  eventName.value = currentEvent;
+  let index=0,totalAmount=0;
+  toggleSettings(1)
+  paidData[eventsList.indexOf(currentEvent)].forEach((value)=>{
+    if(value!='0') {
+      var name=participantsList[index];
+      document.getElementById(`${name + 3 + 1}`).checked=true;
+      document.getElementById(`${name + 1}`).value=value;
+      totalAmount+=Number(value)
+    }
+    index++;
+  })
+  index=0;
+  toPayData[eventsList.indexOf(currentEvent)].forEach((value)=>{
+    if(value!='0') {
+      var name=participantsList[index];
+      document.getElementById(`${name + 3 + 2}`).checked=true;
+      document.getElementById(`${name + 2}`).value=value;
+    }
+    index++;
+  })
+  index=0;
+  document.getElementsByClassName("event-amount-input")[0].value=totalAmount;
   // console.log(eventsList[index],eventName)
 }
 
