@@ -758,7 +758,7 @@ function showResults() {
     for (let j of receive[i]) {
       temp += `<p>${participantsList[i]}
       <span class="positive-result">receive ${j[0]}</span>
-      frome ${participantsList[j[1]]}
+      from ${participantsList[j[1]]}
       </p>`
     }
     temp.innerHTML += `</div>`;
