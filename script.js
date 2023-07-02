@@ -3,7 +3,7 @@ var slideCounter = 0;
 var tripName = document.getElementsByClassName("trip-name")[0].value;
 let eventsData = new Array();
 const eventsList = [];
-var editStatus=0;
+var editStatus = 0;
 let paidData = new Array();
 let toPayData = new Array();
 var participantsList = [];
@@ -434,13 +434,13 @@ function eventPageDone() {
     return;
   }
 
-if(eventsList.indexOf(eventName)!=-1 ){
-  let index=eventsList.indexOf(eventName)
-  eventsList.splice(index,1);
-  eventsData.splice(index,1);
-  paidData.splice(index,1);
-  toPayData.splice(index,1);
-}
+  if (eventsList.indexOf(eventName) != -1) {
+    let index = eventsList.indexOf(eventName)
+    eventsList.splice(index, 1);
+    eventsData.splice(index, 1);
+    paidData.splice(index, 1);
+    toPayData.splice(index, 1);
+  }
   if (isNaN(totalAmount) || totalAmount == 0) {
     alert("You entered Invalid amount!!");
     // slideCounter++;
@@ -573,6 +573,31 @@ function updateEventsDb() {
     }
   };
   req.send(dataEventData);
+
+  //Database for paidData
+  const request = new XMLHttpRequest();
+  const dataPaidData = new FormData();
+  dataPaidData.append("paidData", JSON.stringify(paidData));
+  request.open("POST", "paidData.php", true);
+  request.onload = function () {
+    if (request.status === 200) {
+      console.log(request.responseText); // Handle the response from PHP
+    }
+  };
+  request.send(dataPaidData);
+
+  //Database for toPayData
+  const r = new XMLHttpRequest();
+  const dataToPayData = new FormData();
+  dataToPayData.append("toPayData", JSON.stringify(toPayData));
+  r.open("POST", "toPayData.php", true);
+  r.onload = function () {
+    if (r.status === 200) {
+      console.log(r.responseText); // Handle the response from PHP
+    }
+  };
+  r.send(dataToPayData);
+
   updateNet();
 }
 
@@ -914,38 +939,38 @@ function editEvents() {
     alert('Select an Event first')
     return;
   };
-  editStatus=1
+  editStatus = 1
   createEvent();
   console.log(currentEvent);
   var eventName = document.getElementsByClassName("event-name-input")[0];
   eventName.value = currentEvent;
-  let index=0,totalAmount=0;
+  let index = 0, totalAmount = 0;
   toggleSettings(1)
-  paidData[eventsList.indexOf(currentEvent)].forEach((value)=>{
-    if(value!='0') {
-      var name=participantsList[index];
-      document.getElementById(`${name + 3 + 1}`).checked=true;
-      document.getElementById(`${name + 1}`).value=value;
-      totalAmount+=Number(value)
+  paidData[eventsList.indexOf(currentEvent)].forEach((value) => {
+    if (value != '0') {
+      var name = participantsList[index];
+      document.getElementById(`${name + 3 + 1}`).checked = true;
+      document.getElementById(`${name + 1}`).value = value;
+      totalAmount += Number(value)
     }
     index++;
   })
-  index=0;
-  toPayData[eventsList.indexOf(currentEvent)].forEach((value)=>{
-    if(value!='0') {
-      var name=participantsList[index];
-      document.getElementById(`${name + 3 + 2}`).checked=true;
-      document.getElementById(`${name + 2}`).value=value;
+  index = 0;
+  toPayData[eventsList.indexOf(currentEvent)].forEach((value) => {
+    if (value != '0') {
+      var name = participantsList[index];
+      document.getElementById(`${name + 3 + 2}`).checked = true;
+      document.getElementById(`${name + 2}`).value = value;
     }
     index++;
   })
-  index=0;
-  editStatus=0;
-  document.getElementsByClassName("event-amount-input")[0].value=totalAmount;
+  index = 0;
+  editStatus = 0;
+  document.getElementsByClassName("event-amount-input")[0].value = totalAmount;
   // console.log(eventsList[index],eventName)
 }
 
-function createNew(){
+function createNew() {
   let text = `Do you want to discard the present trip and create a new Trip!!`;
   if (confirm(text) == true) {
     const xhr = new XMLHttpRequest();
