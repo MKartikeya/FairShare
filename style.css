@@ -504,23 +504,27 @@ overflow: hidden !important;
 
 .event-name-input-container-1,
 .event-name-input-container-2 {
-  height: 250px;
+  /* height: 250px; */
   display: flex;
   align-items: center;
   justify-content: center;
   width: 80%;
   max-width: 400px;
   flex-direction: column;
+  gap: 0.5rem;
   color: #d9d9d9;
   font-family: 'Poppins', sans-serif;
   margin-top: 3em;
 }
 .event-input-title{
-  font-size: 1.8rem;
-  color: #bf00ff;
+  font-size: 2rem;
+  color: #0196e3;
+  /* hei */
+  /* height: 200px; */
+  margin-bottom: 1rem;
 }
 .event-name-input-container-2 {
-  height: 100px;
+  height: 120px;
 }
 
 .event-name-input-container-1 input {
@@ -529,6 +533,11 @@ overflow: hidden !important;
   border-radius: 10px;
   padding: 0 1em;
   margin-bottom: 0.5rem;
+  transform: translateY(20%);
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.849);
+  font-size: 1.2rem;
+  border: 2px solid rgba(255, 255, 255, 0.204);
 }
 
 .event-name-input-container-1 h3,

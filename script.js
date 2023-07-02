@@ -1,3 +1,4 @@
+var slideCounter = 0;
 // import Chart
 
 let eventsData = new Array();
@@ -212,7 +213,6 @@ function toggleSettings(n) {
 
 // functions to nav through popups =====
 
-let slideCounter = 0;
 function setEventPosition() {
   slideCounter = 0;
   const popups = document.querySelectorAll(".pop-up-event");
@@ -226,7 +226,7 @@ function setEventPosition() {
 function goNext() {
   const popups = document.querySelectorAll(".pop-up-event");
   if (slideCounter >= 1) {
-    slideCounter--;
+    // slideCounter--;
     eventPageDone();
   }
   slideCounter++;
@@ -238,7 +238,9 @@ function goNext() {
 
 function goPrev() {
   const popups = document.querySelectorAll(".pop-up-event");
-  if (slideCounter <= 0) return;
+  console.log("wnrered ",slideCounter)
+  if (slideCounter <= 0){ console.log("here"); return};
+  console.log(slideCounter)
   slideCounter--;
   popups.forEach((popup) => {
     popup.style.transform = `translateX(-${slideCounter * 100}%)`;
@@ -257,6 +259,10 @@ function editP(flag) {
   if (flag == 1) {
     participantsPage.style.display = "flex";
   } else {
+    if(participantsList.length<2) {
+      alert("Atleast two participants are required!")
+      return;
+    }
     // Create an XMLHttpRequest object
     const xhr = new XMLHttpRequest();
 
@@ -417,8 +423,16 @@ function eventPageDone() {
   var totalAmount = Number(
     document.getElementsByClassName("event-amount-input")[0].value
   );
-  if (isNaN(totalAmount)) {
+  if(eventName=="" || eventsList.indexOf(eventName)!=-1){
+  alert("You haven't entered event name or event name already used.!"  )
+  // slideCounter++;
+  goPrev()
+  return;
+}
+  if (isNaN(totalAmount) || totalAmount==0) {
     alert("You entered Invalid amount!!");
+    // slideCounter++;
+    goPrev()
     return;
   }
 
