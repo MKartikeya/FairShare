@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.root {
+  background: black;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.655);
+  justify-content: space-between;
+  height: 80px;
+  border-bottom: 2px solid #302f38;
+}
+
+.logo {
+  font-family: "Poppins", sans-serif;
+  /* color: white; */
+  font-size: 2rem;
+  height: 1.3em;
+  overflow: hidden;
+  margin-left: 4em;
+  font-weight: 800;
+
+  background: linear-gradient(to right, #00e0ff, #0088ff, rgb(255, 24, 182));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-tab-container {
+  margin-right: 4em;
+  list-style: none;
+}
+
+.nav-tab {
+  color: white;
+  display: inline-block;
+  padding: 0.2em 0em;
+  margin: 0 0.8em;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nav-tab a {
+  text-decoration: none;
+  color: white;
+}
+
+.not-selected:hover {
+  border-bottom: 3px solid white;
+  margin-top: 0;
+}
+
+.selected-tab {
+  background-image: linear-gradient(to right, #00e0ff, #8f00ff);
+  border-radius: 25px;
+  padding: 0.25em 1em;
+}
+
+.nav-menu {
+  display: none;
+}
+
+#menu-close {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  .nav-tab-container {
+    position: absolute;
+    margin: 0;
+    margin-right: 1em;
+    top: 1em;
+    right: 0;
+    background: #302f38e8;
+    border-radius: 2em;
+    width: 80%;
+    max-width: 300px;
+    display: none;
+  }
+
+  .nav-tab {
+    margin: 3em 2em;
+    margin-top: 0;
+    display: block;
+    width: auto;
+  }
+
+  .nav-menu {
+    display: block;
+    position: absolute;
+    top: 1.5em;
+    right: 3em;
+
+  }
+
+  #menu-close {
+    display: block;
+    margin-top: 1em;
+    text-align: right;
+    margin-right: 1em;
+    font-weight: 400;
+  }
+
+  .logo {
+    margin-left: 1em;
+  }
+}
+
