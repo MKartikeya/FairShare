@@ -3,6 +3,7 @@ var slideCounter = 0;
 var tripName = document.getElementsByClassName("trip-name")[0].value;
 let eventsData = new Array();
 const eventsList = [];
+var editStatus=0;
 let paidData = new Array();
 let toPayData = new Array();
 var participantsList = [];
@@ -426,12 +427,21 @@ function eventPageDone() {
   var totalAmount = Number(
     document.getElementsByClassName("event-amount-input")[0].value
   );
-  if (eventName == "" || eventsList.indexOf(eventName) != -1) {
+  if (eventName == "") {
     alert("You haven't entered event name or event name already used.!")
     // slideCounter++;
     goPrev()
     return;
   }
+
+if(eventsList.indexOf(eventName)!=-1 || (eventsList.indexOf(eventName)==eventsList.indexOf(currentEvent) && editStatus==1)){
+  let index=eventsList.indexOf(eventName)
+  eventsList.splice(index,1);
+  eventsData.splice(index,1);
+  paidData.splice(index,1);
+  toPayData.splice(index,1);
+  editStatus=0;
+}
   if (isNaN(totalAmount) || totalAmount == 0) {
     alert("You entered Invalid amount!!");
     // slideCounter++;
@@ -905,6 +915,7 @@ function editEvents() {
     alert('Select an Event first')
     return;
   };
+  editStatus=1
   createEvent();
   console.log(currentEvent);
   var eventName = document.getElementsByClassName("event-name-input")[0];
