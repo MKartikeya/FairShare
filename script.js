@@ -1,3 +1,4 @@
+var slideCounter = 0;
 // import Chart
 
 let eventsData = new Array();
@@ -42,6 +43,7 @@ function updatePList() {
 // const eventPFinishBtn=document.querySelector("")
 // const bgWelcome = document.querySelector(".bg-welcome");
 // const getStarted = document.querySelector(".getStarted");
+const editEventBtn = document.querySelector(".edit-events");
 const addedPList = document.getElementsByClassName("addedp-list")[0];
 const searchBtn = document.querySelector(".search-btn");
 const refreshBtn = document.querySelector(".refresh-btn");
@@ -212,7 +214,6 @@ function toggleSettings(n) {
 
 // functions to nav through popups =====
 
-let slideCounter = 0;
 function setEventPosition() {
   slideCounter = 0;
   const popups = document.querySelectorAll(".pop-up-event");
@@ -226,7 +227,7 @@ function setEventPosition() {
 function goNext() {
   const popups = document.querySelectorAll(".pop-up-event");
   if (slideCounter >= 1) {
-    slideCounter--;
+    // slideCounter--;
     eventPageDone();
   }
   slideCounter++;
@@ -238,7 +239,9 @@ function goNext() {
 
 function goPrev() {
   const popups = document.querySelectorAll(".pop-up-event");
-  if (slideCounter <= 0) return;
+  console.log("wnrered ",slideCounter)
+  if (slideCounter <= 0){ console.log("here"); return};
+  console.log(slideCounter)
   slideCounter--;
   popups.forEach((popup) => {
     popup.style.transform = `translateX(-${slideCounter * 100}%)`;
@@ -257,6 +260,10 @@ function editP(flag) {
   if (flag == 1) {
     participantsPage.style.display = "flex";
   } else {
+    if(participantsList.length<2) {
+      alert("Atleast two participants are required!")
+      return;
+    }
     // Create an XMLHttpRequest object
     const xhr = new XMLHttpRequest();
 
@@ -417,8 +424,16 @@ function eventPageDone() {
   var totalAmount = Number(
     document.getElementsByClassName("event-amount-input")[0].value
   );
-  if (isNaN(totalAmount)) {
+  if(eventName=="" || eventsList.indexOf(eventName)!=-1){
+  alert("You haven't entered event name or event name already used.!"  )
+  // slideCounter++;
+  goPrev()
+  return;
+}
+  if (isNaN(totalAmount) || totalAmount==0) {
     alert("You entered Invalid amount!!");
+    // slideCounter++;
+    goPrev()
     return;
   }
 
@@ -559,34 +574,10 @@ function updateEventsDb() {
  */
 
 var mychart;
+var currentEvent = '';
 function displayEventResults(event) {
   updateNet();
-  // const graphPositive = document.getElementsByClassName("graph-positive")[0];
-  // const graphNegative = document.getElementsByClassName("graph-negative")[0];
-  // graphPositive.innerHTML = "";
-  // graphNegative.innerHTML = "";
-
-  // let index = eventsList.indexOf(event);
-  // // const posBars = [];
-
-  // let maxPrice = 0;
-  // for (let i of eventsData[index]) maxPrice = Math.max(maxPrice, Math.abs(i));
-
-  // let posCount = 0;
-  // for (let i of eventsData[index]) posCount += i > 0;
-
-  // for (let i = 0; i < posCount; i++)
-  //   graphNegative.innerHTML += `<div class="invisible-bar"></div>`;
-
-  // for (let member of eventsData[index]) {
-  //   if (member > 0) {
-  //     graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 90
-  //       }%;'></div>`;
-  //   } else if (member < 0) {
-  //     graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 90
-  //       }%;'></div>`;
-  //   }
-  // }
+  currentEvent = event;
 
   const barColors = [];
   const barValues = [];
@@ -603,7 +594,6 @@ function displayEventResults(event) {
       barData.push(eventsData[index][i]);
     }
   }
-
 
   const ctx = document.getElementById('myChartBar');
 
@@ -650,6 +640,9 @@ function displayEventResults(event) {
     </div>`
   }
   spent.append(temp);
+
+  // const editEventBtn = document.querySelector(".edit-events");
+  // editEventBtn.addEventListener("click", (eventList.indexOf(event))=>{editEvents(index)});
 }
 
 function showResults() {
@@ -884,7 +877,7 @@ function updateNet() {
 
   mypie = new Chart(eventDiv, {
     type: 'polarArea',
-    data:  {
+    data: {
       labels: eventsList,
       datasets: [{
         label: 'Events',
@@ -892,7 +885,7 @@ function updateNet() {
       }]
     },
     options: {
-      
+
     }
   });
 }
@@ -912,4 +905,17 @@ function editEvents() {
   //two ways
   //1)modifying eventPage done such that it wont create another row and add again into eventsList
   //2)deleting this event and calling eventPageDone normally
+  // console.log(index);
+  if (currentEvent == '') {
+    alert('Select an Event first')
+    return;
+  };
+  console.log(currentEvent);
+
+  // createEvent();
+  // console.log(index)
+  var eventName = document.getElementsByClassName("event-name-input")[0];
+  eventName.value = name;
+  console.log(eventsList.indexOf(name), name)
+  // console.log(eventsList[index],eventName)
 }

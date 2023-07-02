@@ -196,6 +196,7 @@
 }
 .timeline{
     position: relative;
+    background-color:  rgb(14, 3, 30);
     /* max-width: 1200px; */
     /* margin: 100px auto; */
     overflow: hidden;
