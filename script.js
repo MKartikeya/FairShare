@@ -1,6 +1,6 @@
 var slideCounter = 0;
 // import Chart
-
+var tripName = document.getElementsByClassName("trip-name")[0].value;
 let eventsData = new Array();
 const eventsList = [];
 let paidData = new Array();
@@ -40,6 +40,8 @@ function updatePList() {
       });
   });
 }
+// const createNewBtn = document.querySelector(".createNew");
+// createEventBtn.addEventListener("click", createNew());
 // const eventPFinishBtn=document.querySelector("")
 // const bgWelcome = document.querySelector(".bg-welcome");
 // const getStarted = document.querySelector(".getStarted");
@@ -918,4 +920,21 @@ function editEvents() {
   eventName.value = name;
   console.log(eventsList.indexOf(name), name)
   // console.log(eventsList[index],eventName)
+}
+
+function createNew(){
+  let text = `Do you want to discard the present trip and create a new Trip!!`;
+  if (confirm(text) == true) {
+    const xhr = new XMLHttpRequest();
+    const data = new FormData();
+    data.append("delete", JSON.stringify("delete"))
+    xhr.open("POST", "clearDb.php", true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send(data);
+  }
+  location.reload();
 }
