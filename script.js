@@ -239,8 +239,8 @@ function goNext() {
 
 function goPrev() {
   const popups = document.querySelectorAll(".pop-up-event");
-  console.log("wnrered ",slideCounter)
-  if (slideCounter <= 0){ console.log("here"); return};
+  console.log("wnrered ", slideCounter)
+  if (slideCounter <= 0) { console.log("here"); return };
   console.log(slideCounter)
   slideCounter--;
   popups.forEach((popup) => {
@@ -260,7 +260,7 @@ function editP(flag) {
   if (flag == 1) {
     participantsPage.style.display = "flex";
   } else {
-    if(participantsList.length<2) {
+    if (participantsList.length < 2) {
       alert("Atleast two participants are required!")
       return;
     }
@@ -424,13 +424,13 @@ function eventPageDone() {
   var totalAmount = Number(
     document.getElementsByClassName("event-amount-input")[0].value
   );
-  if(eventName=="" || eventsList.indexOf(eventName)!=-1){
-  alert("You haven't entered event name or event name already used.!"  )
-  // slideCounter++;
-  goPrev()
-  return;
-}
-  if (isNaN(totalAmount) || totalAmount==0) {
+  if (eventName == "" || eventsList.indexOf(eventName) != -1) {
+    alert("You haven't entered event name or event name already used.!")
+    // slideCounter++;
+    goPrev()
+    return;
+  }
+  if (isNaN(totalAmount) || totalAmount == 0) {
     alert("You entered Invalid amount!!");
     // slideCounter++;
     goPrev()
@@ -709,99 +709,92 @@ function showResults() {
     positive.pop();
   }
 
-  let finalPay = document.getElementById("final-pay");
-  let finalReceive = document.getElementById("final-receive");
-
-  finalPay.innerHTML = "";
-  finalReceive.innerHTML = "";
+  const spent = document.getElementsByClassName("display-spent")[0];
+  spent.innerHTML = '';
 
   for (let i = 0; i < pay.length; i++) {
     if (pay[i].length == 0) continue;
 
-    let finalParent = `<div class="final-parent">`;
-    finalParent += `<div class="final-child" style="font-size: 1em;">
-        <button id='drop-down' onclick="dropDownResult('${i}p')">></button>
-        <p>${participantsList[i]} <span style='color:red;'>pays ${-totalNet[
-      i
-      ]}</span></p>
-        </div>`;
+    let parDiv = document.createElement('div');
+    parDiv.classList.add('final-parent');
+    parDiv.innerHTML += `<input type="checkbox" name="example_accordion" id="${participantsList[i]}id" class="accordion__input">
+    <label for="${participantsList[i]}id" class="accordion__label">${participantsList[i]} <span class="negative-result">pays ${-totalNet[i]}</span></label>`;
 
-    finalParent += `<div class='child-container' id='${i}p' style="display: none">`;
-    for (let member of pay[i]) {
-      finalParent += `<div class="final-child">
-            <p>${participantsList[i]} <span style='color:red;'>pays ${member[0]
-        }</span> to ${participantsList[member[1]]}</p>
-            </div>`;
+    let temp = '';
+    temp += `<div class="accordion__content">`
+    for (let j of pay[i]) {
+      temp += `<p>${participantsList[i]}
+      <span class="negative-result">pays ${j[0]}</span>
+      to ${participantsList[j[1]]}
+      </p>`
     }
-
-    finalParent += `</div>`;
-    finalParent += `</div>`;
-    finalPay.innerHTML += finalParent;
+    temp.innerHTML += `</div>`;
+    parDiv.innerHTML += temp;
+    spent.append(parDiv);
   }
+  // console.log(spent.innerHTML);
 
   for (let i = 0; i < receive.length; i++) {
     if (receive[i].length == 0) continue;
 
-    let finalParent = `<div class="final-parent">`;
-    finalParent += `<div class="final-child" style="font-size: 1em;">
-        <button id='drop-down' onclick="dropDownResult('${i}r')">></button>
-        <p>${participantsList[i]} <span style='color:chartreuse;'>receives ${totalNet[i]}</span></p>
-        </div>`;
+    let parDiv = document.createElement('div');
+    parDiv.classList.add('final-parent');
+    parDiv.innerHTML += `<input type="checkbox" name="example_accordion" id="${participantsList[i]}id" class="accordion__input">
+    <label for="${participantsList[i]}id" class="accordion__label">${participantsList[i]} <span class="positive-result">receives ${totalNet[i]}</span></label>`;
 
-    finalParent += `<div class='child-container' id='${i}r' style="display: none">`;
-    for (let member of receive[i]) {
-      finalParent += `<div class="final-child">
-            <p>${participantsList[i]
-        } <span style='color:chartreuse; '>receives ${member[0]
-        }</span> from ${participantsList[member[1]]}</p>
-            </div>`;
+    let temp = '';
+    temp += `<div class="accordion__content">`
+    for (let j of receive[i]) {
+      temp += `<p>${participantsList[i]}
+      <span class="positive-result">receive ${j[0]}</span>
+      frome ${participantsList[j[1]]}
+      </p>`
     }
-
-    finalParent += `</div>`;
-    finalParent += `</div>`;
-    finalReceive.innerHTML += finalParent;
+    temp.innerHTML += `</div>`;
+    parDiv.innerHTML += temp;
+    spent.append(parDiv);
   }
-  console.log(finalPay.innerHTML);
-  console.log(finalReceive.innerHTML);
 
-  const graphPositive = document.getElementsByClassName("graph-positive")[0];
-  const graphNegative = document.getElementsByClassName("graph-negative")[0];
-  graphPositive.innerHTML = "";
-  graphNegative.innerHTML = "";
+  const barColors = [];
+  const barValues = [];
+  const barData = [];
 
-  let maxPrice = 0;
-  for (let i of totalNet) maxPrice = Math.max(maxPrice, Math.abs(i));
-
-  let posCount = 0;
-  for (let i of totalNet) posCount += i > 0;
-
-  for (let i = 0; i < posCount; i++)
-    graphNegative.innerHTML += `<div class="invisible-bar"></div>`;
-
-  for (let member of totalNet) {
-    if (member > 0) {
-      graphPositive.innerHTML += `<div class="positive-bar" style='height:${(member / maxPrice) * 80
-        }%;'></div>`;
-      console.log(member);
-    } else if (member < 0) {
-      graphNegative.innerHTML += `<div class="negative-bar" style='height:${-(member / maxPrice) * 80
-        }%;'></div>`;
+  for (let i = 0; i < participantsList.length; i++) {
+    if (totalNet[i] > 0) {
+      barValues.push(participantsList[i]);
+      barColors.push('#24FF00');
+      barData.push(totalNet[i]);
+    } else if (totalNet[i] < 0) {
+      barValues.push(participantsList[i]);
+      barColors.push('#D80000');
+      barData.push(totalNet[i]);
     }
   }
 
-  const spent = document.getElementsByClassName("spent-body")[0];
-  const net = document.getElementsByClassName("net-body")[0];
-  spent.innerHTML = "";
-  net.innerHTML = "";
+  const ctx = document.getElementById('myChartBar');
 
-  for (let member in totalNet) {
-    net.innerHTML += `<div class="event-result">
-        <h1 class="event-result-text">${participantsList[member]}</h1>
-        <h1 class="event-result-text ${totalNet[member] >= 0 ? "positive-result" : "negative-result"
-      }">
-        ${(totalNet[member] >= 0 ? "+" : "") + totalNet[member]}</h1>
-        </div>`;
-  }
+  if (mychart != null)
+    mychart.destroy();
+
+  mychart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: barValues,
+      datasets: [{
+        label: 'Net',
+        data: barData,
+        borderWidth: 1,
+        backgroundColor: barColors
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
 
 var mypie;
