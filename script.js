@@ -1,6 +1,6 @@
 var slideCounter = 0;
 // import Chart
-
+var tripName = document.getElementsByClassName("trip-name")[0].value;
 let eventsData = new Array();
 const eventsList = [];
 let paidData = new Array();
@@ -40,6 +40,8 @@ function updatePList() {
       });
   });
 }
+// const createNewBtn = document.querySelector(".createNew");
+// createEventBtn.addEventListener("click", createNew());
 // const eventPFinishBtn=document.querySelector("")
 // const bgWelcome = document.querySelector(".bg-welcome");
 // const getStarted = document.querySelector(".getStarted");
@@ -903,12 +905,48 @@ function editEvents() {
     alert('Select an Event first')
     return;
   };
+  createEvent();
   console.log(currentEvent);
-
-  // createEvent();
-  // console.log(index)
   var eventName = document.getElementsByClassName("event-name-input")[0];
-  eventName.value = name;
-  console.log(eventsList.indexOf(name), name)
+  eventName.value = currentEvent;
+  let index=0,totalAmount=0;
+  toggleSettings(1)
+  paidData[eventsList.indexOf(currentEvent)].forEach((value)=>{
+    if(value!='0') {
+      var name=participantsList[index];
+      document.getElementById(`${name + 3 + 1}`).checked=true;
+      document.getElementById(`${name + 1}`).value=value;
+      totalAmount+=Number(value)
+    }
+    index++;
+  })
+  index=0;
+  toPayData[eventsList.indexOf(currentEvent)].forEach((value)=>{
+    if(value!='0') {
+      var name=participantsList[index];
+      document.getElementById(`${name + 3 + 2}`).checked=true;
+      document.getElementById(`${name + 2}`).value=value;
+    }
+    index++;
+  })
+  index=0;
+  document.getElementsByClassName("event-amount-input")[0].value=totalAmount;
   // console.log(eventsList[index],eventName)
+}
+
+function createNew(){
+  let text = `Do you want to discard the present trip and create a new Trip!!`;
+  if (confirm(text) == true) {
+    const xhr = new XMLHttpRequest();
+    const data = new FormData();
+    data.append("delete", JSON.stringify("delete"))
+    xhr.open("POST", "clearDb.php", true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send(data);
+  }
+  location.reload();
 }
