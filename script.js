@@ -434,13 +434,12 @@ function eventPageDone() {
     return;
   }
 
-if(eventsList.indexOf(eventName)!=-1 || (eventsList.indexOf(eventName)==eventsList.indexOf(currentEvent) && editStatus==1)){
+if(eventsList.indexOf(eventName)!=-1 ){
   let index=eventsList.indexOf(eventName)
   eventsList.splice(index,1);
   eventsData.splice(index,1);
   paidData.splice(index,1);
   toPayData.splice(index,1);
-  editStatus=0;
 }
   if (isNaN(totalAmount) || totalAmount == 0) {
     alert("You entered Invalid amount!!");
@@ -941,6 +940,7 @@ function editEvents() {
     index++;
   })
   index=0;
+  editStatus=0;
   document.getElementsByClassName("event-amount-input")[0].value=totalAmount;
   // console.log(eventsList[index],eventName)
 }
