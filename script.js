@@ -607,7 +607,7 @@ function displayEventResults(event) {
     data: {
       labels: barValues,
       datasets: [{
-        label: 'Net',
+        label: "Net",
         data: barData,
         borderWidth: 1,
         backgroundColor: barColors
@@ -619,6 +619,12 @@ function displayEventResults(event) {
         y: {
           beginAtZero: true
         }
+      },
+
+      plugins: {
+        legend: {
+          display: false
+        },
       }
     }
   });
@@ -909,32 +915,32 @@ function editEvents() {
   console.log(currentEvent);
   var eventName = document.getElementsByClassName("event-name-input")[0];
   eventName.value = currentEvent;
-  let index=0,totalAmount=0;
+  let index = 0, totalAmount = 0;
   toggleSettings(1)
-  paidData[eventsList.indexOf(currentEvent)].forEach((value)=>{
-    if(value!='0') {
-      var name=participantsList[index];
-      document.getElementById(`${name + 3 + 1}`).checked=true;
-      document.getElementById(`${name + 1}`).value=value;
-      totalAmount+=Number(value)
+  paidData[eventsList.indexOf(currentEvent)].forEach((value) => {
+    if (value != '0') {
+      var name = participantsList[index];
+      document.getElementById(`${name + 3 + 1}`).checked = true;
+      document.getElementById(`${name + 1}`).value = value;
+      totalAmount += Number(value)
     }
     index++;
   })
-  index=0;
-  toPayData[eventsList.indexOf(currentEvent)].forEach((value)=>{
-    if(value!='0') {
-      var name=participantsList[index];
-      document.getElementById(`${name + 3 + 2}`).checked=true;
-      document.getElementById(`${name + 2}`).value=value;
+  index = 0;
+  toPayData[eventsList.indexOf(currentEvent)].forEach((value) => {
+    if (value != '0') {
+      var name = participantsList[index];
+      document.getElementById(`${name + 3 + 2}`).checked = true;
+      document.getElementById(`${name + 2}`).value = value;
     }
     index++;
   })
-  index=0;
-  document.getElementsByClassName("event-amount-input")[0].value=totalAmount;
+  index = 0;
+  document.getElementsByClassName("event-amount-input")[0].value = totalAmount;
   // console.log(eventsList[index],eventName)
 }
 
-function createNew(){
+function createNew() {
   let text = `Do you want to discard the present trip and create a new Trip!!`;
   if (confirm(text) == true) {
     const xhr = new XMLHttpRequest();

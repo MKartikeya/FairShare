@@ -190,7 +190,6 @@ hr {
 .event-list-container {
   width: 22%;
   background-color: #0a0a1b;
-  /* height: 100%; */
   border: 2px solid #302f38;
   border-top: none;
   display: flex;
@@ -200,7 +199,6 @@ hr {
 
 .event-list {
   width: 100%;
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
   overflow-y: scroll;
@@ -213,10 +211,14 @@ hr {
   height: 40px;
   width: 90%;
   border-radius: 6px;
-  /* background-color: #3e3e3e; */
   background-image: linear-gradient(to right, #00e0ff, #8f00ff);
   overflow: hidden;
   border: none;
+  cursor: pointer;
+}
+
+.event:hover {
+  opacity: 0.8;
 }
 
 .events-text {
@@ -335,6 +337,7 @@ hr {
   transition: 1s;
   position: relative;
   top: 0;
+  margin: 0;
 }
 
 .pop-up-window {
@@ -550,14 +553,13 @@ hr {
 .event-participants-container-2 {
   width: 80%;
   max-width: 400px;
-  /* display: flex; */
   height: 220px;
   overflow: scroll;
   overflow-x: hidden;
 }
 
 .event-participants-container-2 {
-  height: 550px;
+  height: 400px;
 }
 
 .event-participant {
@@ -617,12 +619,21 @@ hr {
 }
 
 .event-btn {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-color: #383838;
   border: none;
-  border-radius: 15px;
+  border-radius: 20px;
   color: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+span {
+  overflow: hidden;
 }
 
 .event-btn:hover {
@@ -666,12 +677,15 @@ hr {
 
 .logo {
   font-family: "Poppins", sans-serif;
-  color: white;
+  /* color: white; */
   font-size: 2rem;
   height: 1.3em;
   overflow: hidden;
   margin-left: 4em;
   font-weight: 800;
+  background: linear-gradient(to right, #00e0ff, #0088ff, rgb(255, 24, 182));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-tab-container {
@@ -726,7 +740,7 @@ hr {
   width: 150px;
   height: 150px;
   border-radius: 100px;
-  background-image: url("lorem-photo.jpeg");
+  background-image: url("images/profile-pic.png");
   background-size: cover;
 }
 
@@ -743,6 +757,11 @@ hr {
   font-weight: 700;
   margin-bottom: 4em;
   font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  width: 100px;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
 /* ================================================= */
@@ -782,6 +801,11 @@ hr {
   color: rgb(255, 255, 255);
   font-size: 20px;
   border: none;
+  cursor: pointer;
+}
+
+.tools:hover {
+  opacity: 0.8;
 }
 
 .tools-container {
@@ -1122,6 +1146,10 @@ label {
 
 .spent-body::-webkit-scrollbar-track {
   background-color: #141417;
+}
+
+.event-list::-webkit-scrollbar-track {
+  background-color: #0a0a1b;
 }
 /* browser support */
 @supports (scrollbar-color: rgb(59, 59, 59), black) {

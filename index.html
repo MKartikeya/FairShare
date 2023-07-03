@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://fontawesome.com/icons/filter?f=classic&s=solid&an=bounce&pc=%231a5181">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 
 <body>
@@ -66,14 +68,20 @@
                     </div>
                     <div class="event-participants-container-2">
                     </div>
-
                 </div>
             </div>
             <div class="event-next-page">
                 <div class="next-previous">
                     <button class="event-btn" onclick="goPrev()">
-                        &#x27E8;</button>
-                    <button class="event-btn" onclick="goNext()">&#12297;</button>
+                        <span class="material-symbols-outlined">
+                            arrow_back
+                        </span>
+                    </button>
+                    <button class="event-btn" onclick="goNext()">
+                        <span class="material-symbols-outlined">
+                            arrow_forward
+                            </span>
+                    </button>
                 </div>
                 <div class="events-settings">
                     <a onclick="toggleSettings(1)" id="settings1">Advanced Settings</a>
@@ -117,7 +125,9 @@
                     <div class="profile-pic"></div>
                     <p class="profile-name">Nimai Parsa</p>
                     <button class="profile-log">Log Out
-                        <!-- <i class="fa-regular fa-arrow-right-from-bracket">f08b</i> -->
+                        <span class="material-symbols-outlined">
+                            logout
+                        </span>
                     </button>
                 </div>
                 <div class="search-bar-container">
