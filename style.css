@@ -152,6 +152,7 @@ hr {
   color: #d9d9d9;
   font-family: "Poppins", sans-serif;
   overflow: hidden;
+  color: #0196e3;
 }
 
 .search-bar-container {
@@ -750,8 +751,9 @@ span {
   color: #d9d9d9;
   font-family: "Poppins", sans-serif;
   overflow: hidden;
-  padding-right: 40%;
+  padding-right: 60%;
   padding-top: 0.5em;
+  color: #0196e3;
 }
 
 .tools-content {
@@ -890,7 +892,7 @@ canvas {
 .event-data-head h1,
 .event-result-text {
   font-size: 1.5rem;
-  color: #00ddff;
+  color: #0196e3;
   font-family: "Poppins", sans-serif;
   margin: 0 30px;
   animation: none;
