@@ -903,7 +903,7 @@ function updateNet() {
   eventsList.forEach((value, index) => {
     eventNet[index] = 0;
     paidData[index].forEach((val) => {
-      eventNet[index] += val;
+      eventNet[index] += Number(val);
     });
   });
 

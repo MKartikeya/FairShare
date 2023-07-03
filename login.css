@@ -196,7 +196,7 @@
 }
 .timeline{
     position: relative;
-    background-color:  rgb(14, 3, 30);
+    background-color:  rgb(0, 0, 0);
     /* max-width: 1200px; */
     /* margin: 100px auto; */
     overflow: hidden;
@@ -244,7 +244,7 @@
 }
 .content{
     width: 40%;
-    background-color: rgba(255, 255, 255, 0.083);
+    background-color: rgba(38, 38, 38, 0.577);
     min-height: 20rem;
     margin-left: 10rem;
     margin-right: 10rem;
@@ -270,12 +270,15 @@
     display: flex;
     flex-direction: row;
 }
+.fa{
+    padding-bottom: 2px;
+}
 .instruction-steps{
     width: 40%;
     padding: 1rem;
-    color: rgb(84, 89, 252);
+    color: rgb(255, 255, 255);
     font-size: 1.2rem;
-    list-style: circle;
+    list-style: circle!important;
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -360,4 +363,8 @@
         width: 70%;
         max-width: 80%;
     }
+}
+
+.about{
+    margin-top: 160px;
 }
