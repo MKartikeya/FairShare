@@ -289,8 +289,8 @@ function editP(flag) {
     if (eventsList.length > 0) {
       updateEventsDb();
     }
-    // added by nimai
-    updateNet();
+
+    updateNet();// added by nimai
   }
 }
 

@@ -50,8 +50,11 @@ body{
   font-size: 2rem;
   height: 1.3em;
   overflow: hidden;
+  background: linear-gradient(to right, #00e0ff, #0088ff, rgb(255, 24, 182));
   margin-left: 4em;
   font-weight: 800;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-tab-container {
