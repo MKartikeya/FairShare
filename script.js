@@ -3,6 +3,7 @@ var slideCounter = 0;
 var tripName = document.getElementsByClassName("trip-name")[0].value;
 let eventsData = new Array();
 const eventsList = [];
+var editStatus = 0;
 let paidData = new Array();
 let toPayData = new Array();
 var participantsList = [];
@@ -426,11 +427,19 @@ function eventPageDone() {
   var totalAmount = Number(
     document.getElementsByClassName("event-amount-input")[0].value
   );
-  if (eventName == "" || eventsList.indexOf(eventName) != -1) {
+  if (eventName == "") {
     alert("You haven't entered event name or event name already used.!")
     // slideCounter++;
     goPrev()
     return;
+  }
+
+  if (eventsList.indexOf(eventName) != -1) {
+    let index = eventsList.indexOf(eventName)
+    eventsList.splice(index, 1);
+    eventsData.splice(index, 1);
+    paidData.splice(index, 1);
+    toPayData.splice(index, 1);
   }
   if (isNaN(totalAmount) || totalAmount == 0) {
     alert("You entered Invalid amount!!");
@@ -564,6 +573,31 @@ function updateEventsDb() {
     }
   };
   req.send(dataEventData);
+
+  //Database for paidData
+  const request = new XMLHttpRequest();
+  const dataPaidData = new FormData();
+  dataPaidData.append("paidData", JSON.stringify(paidData));
+  request.open("POST", "paidData.php", true);
+  request.onload = function () {
+    if (request.status === 200) {
+      console.log(request.responseText); // Handle the response from PHP
+    }
+  };
+  request.send(dataPaidData);
+
+  //Database for toPayData
+  const r = new XMLHttpRequest();
+  const dataToPayData = new FormData();
+  dataToPayData.append("toPayData", JSON.stringify(toPayData));
+  r.open("POST", "toPayData.php", true);
+  r.onload = function () {
+    if (r.status === 200) {
+      console.log(r.responseText); // Handle the response from PHP
+    }
+  };
+  r.send(dataToPayData);
+
   updateNet();
 }
 
@@ -755,7 +789,7 @@ function showResults() {
     for (let j of receive[i]) {
       temp += `<p>${participantsList[i]}
       <span class="positive-result">receive ${j[0]}</span>
-      frome ${participantsList[j[1]]}
+      from ${participantsList[j[1]]}
       </p>`
     }
     temp.innerHTML += `</div>`;
@@ -911,6 +945,7 @@ function editEvents() {
     alert('Select an Event first')
     return;
   };
+  editStatus = 1
   createEvent();
   console.log(currentEvent);
   var eventName = document.getElementsByClassName("event-name-input")[0];
@@ -936,6 +971,7 @@ function editEvents() {
     index++;
   })
   index = 0;
+  editStatus = 0;
   document.getElementsByClassName("event-amount-input")[0].value = totalAmount;
   // console.log(eventsList[index],eventName)
 }
