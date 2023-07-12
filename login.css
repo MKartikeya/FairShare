@@ -123,11 +123,12 @@
     display: flex;
     position: absolute;
     margin-left: 4%;
-    top: 18rem;
+    top: 21rem;
 }
 .frontp-heading{
-    margin-top:10%;
+    margin-top:10rem;
     font-size: 6rem;
+    z-index: 100;
     color: white;
     font-weight: bolder;
     background: linear-gradient(to right, #00E0FF, #0088ff,rgb(255, 24, 182));
@@ -243,11 +244,11 @@
     background-color: #00E0FF;
 }
 .content{
-    width: 40%;
+    max-width: 40%;
     background-color: rgba(38, 38, 38, 0.577);
     min-height: 20rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    margin-left: 5%;
+    margin-right: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -272,6 +273,14 @@
 }
 .fa{
     padding-bottom: 2px;
+}
+.about{
+    z-index: 0;
+    /* margin-top: 10rem; */
+    position: absolute;
+    top: 28rem;
+    /* padding-left: -1rem; */
+    left: -1rem;
 }
 .instruction-steps{
     width: 40%;
@@ -344,6 +353,35 @@
         width: calc(100% + 8px);
     }
 }
+@media screen and (max-width:1300px) {
+    .frontp-heading{
+        font-size: 420%;
+        left: 0%;
+        /* top: 1rem; */
+        /* margin-top: ; */
+    }
+    .left{
+        width: 100vw;
+        margin-left: 5rem;
+    }
+    .line{
+        left:15%
+    }
+    .bead{
+        left: 15.22%;
+    }
+    .content{
+        /* font-size: 20%; */
+        margin-left: 20%;
+        margin-right: 20%;
+        /* margin-right: 25%; */
+        min-width: 60%;
+        max-height: 80vh;
+    }
+    .instruction-steps{
+        font-size: 80%;
+    }
+}
 @media screen and (max-width:1000px) {
     .login-box{
         max-width: 95%;
@@ -352,6 +390,38 @@
     .boxes{
         width: 65%;
         max-width: 80%;
+    }
+}
+@media screen and (max-width:900px) {
+    .frontp-heading{
+        font-size: 350%;
+    }
+    .typing{
+        font-size: 300%;
+    }
+    .left{
+        margin-left: 0;
+    }
+    .frontp-heading{
+        margin-top:4rem
+    }
+    .typing{
+        top: 12rem;
+    }
+    .right::after{
+        /* display: none; */
+        right: 0.5rem;
+    }
+    .about{
+        top: 17rem;
+    }
+}
+@media screen and (max-width:600px) {
+    .right{
+        width: 0;
+    }
+    .about{
+        top:21rem
     }
 }
 @media screen and (max-width:600px) {
@@ -365,6 +435,3 @@
     }
 }
 
-.about{
-    margin-top: 160px;
-}
