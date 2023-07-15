@@ -25,6 +25,53 @@ FairShare is a user-friendly website for seamless bill splitting. Create a group
    
 4. You are all ready to run the website [FairShare](http://localhost/FairShare/login.html)
 
+# File Structure 
+
+```
+├── aboutUs.html
+├── aboutUsStyle.css
+├── clearDb.php
+├── eventsData.php
+├── events.php
+├── fetch_eventData.php
+├── fetch_events.php
+├── fetch_paidData.php
+├── fetch_participants.php
+├── fetch_toPayData.php
+├── images
+│   └── profile-pic.png
+├── img1.png
+├── img2.png
+├── img3.png
+├── img4.png
+├── index.html
+├── login.css
+├── login.html
+├── package.json
+├── package-lock.json
+├── paidData.php
+├── participants.php
+├── random.html
+├── README.md
+├── results.html
+├── results.js
+├── results-style.css
+├── script.js
+├── style.css
+├── timeline.js
+└── toPayData.php
+```
+Entry Point: [login.html](http://localhost/FairShare/login.html)
+
+# Built using
+
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+ 
 # Acknowledgment
 
 [Kartikeya M](https://github.com/MKartikeya)
